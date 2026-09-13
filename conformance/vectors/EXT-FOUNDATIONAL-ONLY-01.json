@@ -1,0 +1,53 @@
+{
+  "action": "Share",
+  "actor": {
+    "id": "Receiver-FoundationalOnly",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-P",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-P",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "EXT-FOUNDATIONAL-ONLY-01",
+  "exchangeType": "Request",
+  "extensions": [
+    {
+      "claims": {},
+      "fields": {
+        "localCode": "Q-9"
+      },
+      "namespace": "org.ext",
+      "recognized": false
+    }
+  ],
+  "foundationalTrusted": true,
+  "note": "Unknown extension fields must be ignored for effect and preserved for round-trip.",
+  "policy": {
+    "id": "Pol-P"
+  },
+  "provenance": {
+    "assertedBy": "Org-A",
+    "derivedFrom": [
+      "ext-fo"
+    ],
+    "independent": true,
+    "traceId": "ext-fo"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "Audit",
+  "resource": {
+    "id": "Record-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:Record"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "extensions"
+}

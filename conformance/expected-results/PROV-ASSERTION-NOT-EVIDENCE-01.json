@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "assertion_is_not_trusted_evidence"
+  ],
+  "decision": "ESCALATE",
+  "exchangeId": "PROV-ASSERTION-NOT-EVIDENCE-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "provenance"
+}

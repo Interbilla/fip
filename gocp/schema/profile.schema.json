@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["profileId", "version", "admittedFields", "mappings", "immutableDuringRun"],
+  "properties": {
+    "profileId": {"type": "string"}, "version": {"type": "string"},
+    "admittedFields": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "mappings": {"type": "object"}, "immutableDuringRun": {"const": true}
+  },
+  "additionalProperties": false
+}

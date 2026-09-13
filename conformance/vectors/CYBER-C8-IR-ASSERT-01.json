@@ -1,0 +1,36 @@
+{
+  "action": "SuspiciousBehaviorDetected",
+  "actor": {
+    "id": "Monitor",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "case": "C8",
+  "evidence": [
+    {
+      "id": "Host-Obs",
+      "independent": true
+    }
+  ],
+  "exchangeId": "CYBER-C8-IR-ASSERT-01",
+  "exchangeType": "Assertion",
+  "provenance": {
+    "assertedBy": "Monitor",
+    "derivedFrom": [
+      "c8a"
+    ],
+    "independent": true,
+    "traceId": "c8a"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Eval-Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:Agent"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "cyber"
+}

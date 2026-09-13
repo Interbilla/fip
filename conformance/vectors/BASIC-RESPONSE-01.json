@@ -1,0 +1,29 @@
+{
+  "actor": {
+    "id": "Org-B",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": "Responder"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "BASIC-RESPONSE-01",
+  "exchangeType": "Response",
+  "provenance": {
+    "assertedBy": "Org-B",
+    "derivedFrom": [
+      "t-basic-res"
+    ],
+    "independent": true,
+    "traceId": "t-basic-res"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Org-B:Board-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:StatusBoard"
+  },
+  "respondsTo": "BASIC-REQUEST-01",
+  "status": "REFERENCE CANDIDATE",
+  "suite": "basic"
+}

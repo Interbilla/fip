@@ -1,0 +1,30 @@
+{
+  "actor": {
+    "id": "Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "attemptedEffect": "authorization",
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "channel": "agent-to-memory",
+  "exchangeId": "AGENT-MEMORY-NO-AUTH-01",
+  "exchangeType": "Assertion",
+  "provenance": {
+    "assertedBy": "Agent-A",
+    "derivedFrom": [
+      "mem-1"
+    ],
+    "independent": true,
+    "traceId": "mem-1"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Memory-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:SharedMemory"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "multi-agent"
+}

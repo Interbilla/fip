@@ -1,0 +1,51 @@
+{
+  "action": "Mutate",
+  "actor": {
+    "id": "Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-X",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-X",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "EXT-MALICIOUS-AUTHORITY-01",
+  "exchangeType": "Request",
+  "extensions": [
+    {
+      "claims": {
+        "authority": true,
+        "permission": true
+      },
+      "namespace": "hostile",
+      "recognized": false
+    }
+  ],
+  "policy": {
+    "id": "Pol-X"
+  },
+  "provenance": {
+    "assertedBy": "Agent-A",
+    "derivedFrom": [
+      "ext-m"
+    ],
+    "independent": true,
+    "traceId": "ext-m"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "Escalate",
+  "resource": {
+    "id": "Cluster-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:ComputeCluster"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "extensions"
+}

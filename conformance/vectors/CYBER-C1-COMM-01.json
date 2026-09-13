@@ -1,0 +1,48 @@
+{
+  "action": "WriteDirectoryName",
+  "actor": {
+    "id": "Eval-Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Eval-Sandbox",
+    "kind": "sandbox-package-access"
+  },
+  "authorization": {
+    "id": "AZ-Package-Read",
+    "permitsCommunication": false,
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "case": "C1",
+  "credential": {
+    "id": "Shared-Package-Credential",
+    "validity": "valid"
+  },
+  "exchangeId": "CYBER-C1-COMM-01",
+  "exchangeType": "Request",
+  "note": "RETROSPECTIVE SEMANTIC RECONSTRUCTION. NOT CLAIMED INCIDENT PREVENTION.",
+  "policy": {
+    "id": "Pol-Sandbox-Isolate"
+  },
+  "provenance": {
+    "assertedBy": "Eval-Host",
+    "derivedFrom": [
+      "c1"
+    ],
+    "independent": true,
+    "traceId": "c1"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "cross-agent-communication",
+  "resource": {
+    "id": "Artifactory:Directory",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "cyber:PackageRepository"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "cyber"
+}

@@ -1,0 +1,42 @@
+{
+  "action": "AskTechnique",
+  "actor": {
+    "id": "Eval-Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Eval-Sandbox",
+    "kind": "sandbox-package-access"
+  },
+  "authorization": {
+    "id": "AZ-Package-Read",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "case": "C2",
+  "exchangeId": "CYBER-C2-REQUEST-01",
+  "exchangeType": "Request",
+  "policy": {
+    "id": "Pol-Sandbox-Isolate"
+  },
+  "provenance": {
+    "assertedBy": "Eval-Host",
+    "derivedFrom": [
+      "c2"
+    ],
+    "independent": true,
+    "traceId": "c2"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "cross-agent-communication",
+  "resource": {
+    "id": "Eval-Agent-B:Knowledge",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:ResearchNote"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "cyber"
+}

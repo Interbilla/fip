@@ -1,0 +1,29 @@
+{
+  "action": "ObservedState",
+  "actor": {
+    "id": "Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "BASIC-ASSERTION-01",
+  "exchangeType": "Assertion",
+  "provenance": {
+    "assertedBy": "Agent-A",
+    "derivedFrom": [
+      "t-assert"
+    ],
+    "independent": true,
+    "traceId": "t-assert"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "File-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:File"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "basic"
+}

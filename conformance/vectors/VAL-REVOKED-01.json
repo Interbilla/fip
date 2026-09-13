@@ -1,0 +1,44 @@
+{
+  "action": "UseToken",
+  "actor": {
+    "id": "Org-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-V",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-V",
+    "validity": "revoked"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "VAL-REVOKED-01",
+  "exchangeType": "Request",
+  "normative": {
+    "state": "unknown"
+  },
+  "policy": {
+    "id": "Pol-V"
+  },
+  "provenance": {
+    "assertedBy": "Org-A",
+    "derivedFrom": [
+      "val-revoked-01"
+    ],
+    "independent": true,
+    "traceId": "val-revoked-01"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "Read",
+  "resource": {
+    "id": "API-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:Service"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "validity"
+}

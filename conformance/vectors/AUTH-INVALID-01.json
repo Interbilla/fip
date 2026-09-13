@@ -1,0 +1,41 @@
+{
+  "action": "FireReconnaissance",
+  "actor": {
+    "id": "LAFD",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Authority-Z",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AuthZ-Air-01",
+    "validity": "expired"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "AUTH-INVALID-01",
+  "exchangeType": "Request",
+  "policy": {
+    "id": "Policy-MutualAid-Air"
+  },
+  "provenance": {
+    "assertedBy": "LAFD",
+    "derivedFrom": [
+      "lafd-exp"
+    ],
+    "independent": true,
+    "traceId": "lafd-exp"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "WildfireAssessment",
+  "resource": {
+    "id": "LAPD:Drone-17",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:Drone"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "authority"
+}

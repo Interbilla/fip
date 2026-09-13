@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fip-reference"
+version = "0.1.0"
+description = "FIP 0.1 Reference Candidate adapter"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [{name = "Foundational UDG contributors"}]
+
+[tool.setuptools]
+package-dir = {"" = "reference/python"}
+
+[tool.setuptools.packages.find]
+where = ["reference/python"]
+

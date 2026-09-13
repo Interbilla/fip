@@ -1,0 +1,7 @@
+{
+  "profileId": "SYNTHETIC-RESOURCE-PROFILE-0.1",
+  "version": "0.1",
+  "admittedFields": ["actor", "resource", "action", "purpose", "authority", "authorization", "scope", "validity"],
+  "mappings": {"actor": "Actor", "resource": "Resource", "action": "Action", "purpose": "Purpose", "authority": "Authority", "authorization": "Authorization", "scope": "Scope", "validity": "Validity"},
+  "immutableDuringRun": true
+}

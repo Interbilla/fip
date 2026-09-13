@@ -1,0 +1,42 @@
+{
+  "action": "Subdelegate",
+  "actor": {
+    "id": "Worker-B",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Worker-Local",
+    "kind": "coordination"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "delegation": {
+    "canDelegate": false,
+    "from": "Worker-B",
+    "to": "Worker-C"
+  },
+  "emergentDelegation": true,
+  "exchangeId": "AGENT-SUBDELEGATE-DENIED-01",
+  "exchangeType": "Delegation",
+  "policy": {
+    "id": "Pol-Eval"
+  },
+  "provenance": {
+    "assertedBy": "Worker-B",
+    "derivedFrom": [
+      "sub-1"
+    ],
+    "independent": true,
+    "traceId": "sub-1"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Task-2",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:WorkItem"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "multi-agent"
+}

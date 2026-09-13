@@ -1,0 +1,52 @@
+{
+  "action": "AssignWork",
+  "actor": {
+    "id": "Approver",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-Delegable",
+    "kind": "delegable"
+  },
+  "authorization": {
+    "id": "AZ-Del",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "delegation": {
+    "authorizedChain": true,
+    "canDelegate": true,
+    "from": "Approver",
+    "to": "Delegate-1"
+  },
+  "exchangeId": "AUTH-DELEGATION-BOUNDED-01",
+  "exchangeType": "Delegation",
+  "policy": {
+    "id": "Pol-Del"
+  },
+  "provenance": {
+    "assertedBy": "Approver",
+    "derivedFrom": [
+      "del-ok"
+    ],
+    "independent": true,
+    "traceId": "del-ok"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Task-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:WorkItem"
+  },
+  "scope": [
+    {
+      "dimension": "jurisdictional",
+      "value": "Eval-Lab"
+    }
+  ],
+  "status": "REFERENCE CANDIDATE",
+  "suite": "authority"
+}

@@ -1,0 +1,12 @@
+name: Interoperability report
+description: Report results from an independent implementation
+body:
+  - type: textarea
+    attributes: {label: Implementation and environment}
+    validations: {required: true}
+  - type: input
+    attributes: {label: Conformance result, description: "For example, 47/47."}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Mismatches and artifacts}
+

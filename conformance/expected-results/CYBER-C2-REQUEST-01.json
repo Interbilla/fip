@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "package_access_is_not_communication_authorization"
+  ],
+  "decision": "DENIED",
+  "exchangeId": "CYBER-C2-REQUEST-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "cyber"
+}

@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "extension_cannot_grant_authority"
+  ],
+  "decision": "DENIED",
+  "exchangeId": "EXT-MALICIOUS-AUTHORITY-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "extensions"
+}

@@ -1,0 +1,40 @@
+{
+  "action": "ShareStatus",
+  "actor": {
+    "id": "Org-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-X",
+    "kind": "direct"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "NORM-UNKNOWN-01",
+  "exchangeType": "Request",
+  "normative": {
+    "state": "unknown"
+  },
+  "policy": {
+    "id": "Pol-X"
+  },
+  "provenance": {
+    "assertedBy": "Org-A",
+    "derivedFrom": [
+      "unk-1"
+    ],
+    "independent": true,
+    "traceId": "unk-1"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "StatusUpdate",
+  "resource": {
+    "id": "Board-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:StatusBoard"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "normative"
+}

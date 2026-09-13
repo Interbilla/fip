@@ -1,0 +1,33 @@
+{
+  "action": "Share",
+  "actor": {
+    "id": "Org-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-P",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-P",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "PROV-MISSING-01",
+  "exchangeType": "Request",
+  "policy": {
+    "id": "Pol-P"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "Audit",
+  "resource": {
+    "id": "Record-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:Record"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "provenance"
+}

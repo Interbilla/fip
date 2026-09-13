@@ -1,0 +1,47 @@
+{
+  "action": "RequestPrivilegedMutation",
+  "actor": {
+    "id": "Eval-Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-P",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-P",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "case": "C7",
+  "correlatedPrivilegeChain": true,
+  "exchangeId": "CYBER-C7-CHAIN-01",
+  "exchangeType": "Request",
+  "history": {
+    "privilegeEscalationPath": true
+  },
+  "implementationRequirement": "STATEFUL_CORRELATED_EVALUATION",
+  "policy": {
+    "id": "Pol-P"
+  },
+  "provenance": {
+    "assertedBy": "Eval-Host",
+    "derivedFrom": [
+      "c7"
+    ],
+    "independent": true,
+    "traceId": "c7"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "AccumulatedPrivilege",
+  "resource": {
+    "id": "Cluster-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "cyber:KubernetesCluster"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "cyber"
+}

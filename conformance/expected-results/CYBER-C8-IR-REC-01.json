@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "recommendation_has_no_operational_effect"
+  ],
+  "decision": "DENIED",
+  "exchangeId": "CYBER-C8-IR-REC-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "cyber"
+}

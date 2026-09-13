@@ -1,0 +1,53 @@
+{
+  "action": "FireReconnaissance",
+  "actor": {
+    "id": "LAFD",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Authority-Z",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-1",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "EXT-TRUSTED-01",
+  "exchangeType": "Request",
+  "extensions": [
+    {
+      "claims": {},
+      "fields": {
+        "incidentId": "INC-1"
+      },
+      "namespace": "lafd",
+      "publisher": "LAFD",
+      "recognized": true,
+      "trusted_publisher": true
+    }
+  ],
+  "policy": {
+    "id": "Pol-Air"
+  },
+  "provenance": {
+    "assertedBy": "LAFD",
+    "derivedFrom": [
+      "ext-t"
+    ],
+    "independent": true,
+    "traceId": "ext-t"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "WildfireAssessment",
+  "resource": {
+    "id": "LAPD:Drone-17",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:Drone"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "extensions"
+}

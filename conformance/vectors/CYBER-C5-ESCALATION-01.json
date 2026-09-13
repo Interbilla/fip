@@ -1,0 +1,27 @@
+{
+  "action": "PrivilegedMutation",
+  "actor": {
+    "id": "Eval-Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "case": "C5",
+  "credential": {
+    "id": "Privileged-Token",
+    "validity": "valid"
+  },
+  "exchangeId": "CYBER-C5-ESCALATION-01",
+  "exchangeType": "Request",
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "ConsequentialProductionAction",
+  "resource": {
+    "id": "HF:Production-Node",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "cyber:Host"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "cyber"
+}

@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "Foundational Interaction Primitives (FIP) 0.1 — Reference Candidate"
+message: "If you use this reference candidate, cite it as research software, not as a standard."
+type: software
+version: "0.1"
+license: Apache-2.0
+authors:
+  - given-names: "Edward T."
+    family-names: "Chow"
+abstract: >
+  A compact semantic interaction layer for governed consequential interactions.
+  Reference Candidate; not a published standard.
+keywords:
+  - semantic interoperability
+  - agent governance
+  - semantic micro-firewall
+  - reference candidate

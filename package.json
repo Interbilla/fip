@@ -1,0 +1,8 @@
+{
+  "name": "fip-reference-candidate",
+  "version": "0.1.0",
+  "private": true,
+  "description": "FIP 0.1 JavaScript Reference Candidate",
+  "license": "Apache-2.0",
+  "scripts": {"test": "node conformance/runners/javascript-runner.js"}
+}

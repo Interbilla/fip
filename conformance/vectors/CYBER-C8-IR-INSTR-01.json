@@ -1,0 +1,46 @@
+{
+  "action": "TerminateEvaluation",
+  "actor": {
+    "id": "IR-Authority",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": "Approver"
+  },
+  "authority": {
+    "id": "IR-Auth",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-IR",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "case": "C8",
+  "condition": [
+    {
+      "id": "suspicious-behavior"
+    }
+  ],
+  "exchangeId": "CYBER-C8-IR-INSTR-01",
+  "exchangeType": "Instruction",
+  "policy": {
+    "id": "Pol-IR"
+  },
+  "provenance": {
+    "assertedBy": "IR-Authority",
+    "derivedFrom": [
+      "c8c"
+    ],
+    "independent": true,
+    "traceId": "c8c"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Eval-Job",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:EvaluationJob"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "cyber"
+}

@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "permission_not_established"
+  ],
+  "decision": "ESCALATE",
+  "exchangeId": "NORM-UNKNOWN-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "normative"
+}

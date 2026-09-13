@@ -1,0 +1,43 @@
+{
+  "action": "ReportIncident",
+  "actor": {
+    "id": "Regulator",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-Reg",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-Reg",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "NORM-OBLIGATION-01",
+  "exchangeType": "Instruction",
+  "normative": {
+    "state": "obligated"
+  },
+  "policy": {
+    "id": "Pol-Report"
+  },
+  "provenance": {
+    "assertedBy": "Regulator",
+    "derivedFrom": [
+      "obl-1"
+    ],
+    "independent": true,
+    "traceId": "obl-1"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Incident-File",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:IncidentRecord"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "normative"
+}

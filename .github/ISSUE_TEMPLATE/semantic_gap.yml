@@ -1,0 +1,30 @@
+name: Semantic gap
+description: Propose a reproducible representational counterexample
+body:
+  - type: input
+    attributes: {label: Domain}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Scenario}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Existing FIP primitives attempted}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Existing relations attempted}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Why representation is insufficient}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Proposed primitive or relation}
+  - type: textarea
+    attributes: {label: Could this remain domain-specific instead?}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Operational consequence of the gap}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Reproducible example}
+    validations: {required: true}
+

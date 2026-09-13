@@ -1,0 +1,44 @@
+{
+  "action": "TransferRecord",
+  "actor": {
+    "id": "Hospital-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-H",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-H",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "NORM-PROHIBITION-01",
+  "exchangeType": "Request",
+  "normative": {
+    "state": "prohibited"
+  },
+  "policy": {
+    "id": "Pol-HIE"
+  },
+  "provenance": {
+    "assertedBy": "Hospital-A",
+    "derivedFrom": [
+      "h-no"
+    ],
+    "independent": true,
+    "traceId": "h-no"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "Marketing",
+  "resource": {
+    "id": "Hospital-B:Bed-Count",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:CapacityRecord"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "normative"
+}

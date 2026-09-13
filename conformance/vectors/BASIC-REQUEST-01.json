@@ -1,0 +1,44 @@
+{
+  "action": "ShareStatus",
+  "actor": {
+    "id": "Org-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": "Requester"
+  },
+  "authority": {
+    "id": "Auth-Direct",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-1",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "BASIC-REQUEST-01",
+  "exchangeType": "Request",
+  "normative": {
+    "state": "allowed"
+  },
+  "policy": {
+    "id": "Pol-Share"
+  },
+  "provenance": {
+    "assertedBy": "Org-A",
+    "derivedFrom": [
+      "t-basic-req"
+    ],
+    "independent": true,
+    "traceId": "t-basic-req"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "purpose": "StatusUpdate",
+  "resource": {
+    "id": "Org-B:Board-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:StatusBoard"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "basic"
+}

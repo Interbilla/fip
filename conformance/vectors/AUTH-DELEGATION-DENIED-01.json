@@ -1,0 +1,41 @@
+{
+  "action": "AssignWork",
+  "actor": {
+    "id": "Coordinator",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Coord-Norm",
+    "kind": "coordination"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "delegation": {
+    "canDelegate": false,
+    "from": "Coordinator",
+    "to": "Worker-B"
+  },
+  "exchangeId": "AUTH-DELEGATION-DENIED-01",
+  "exchangeType": "Delegation",
+  "policy": {
+    "id": "Pol-Eval"
+  },
+  "provenance": {
+    "assertedBy": "Coordinator",
+    "derivedFrom": [
+      "del-1"
+    ],
+    "independent": true,
+    "traceId": "del-1"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Task-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:WorkItem"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "authority"
+}

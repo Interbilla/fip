@@ -1,0 +1,40 @@
+{
+  "action": "TerminateEvaluation",
+  "actor": {
+    "id": "Ops",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": "Approver"
+  },
+  "authority": {
+    "id": "Auth-IR",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-IR",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "BASIC-INSTRUCTION-01",
+  "exchangeType": "Instruction",
+  "policy": {
+    "id": "Pol-IR"
+  },
+  "provenance": {
+    "assertedBy": "Ops",
+    "derivedFrom": [
+      "t-instr"
+    ],
+    "independent": true,
+    "traceId": "t-instr"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Eval-Job-3",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:EvaluationJob"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "basic"
+}

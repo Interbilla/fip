@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "memory_cannot_manufacture_authority"
+  ],
+  "decision": "DENIED",
+  "exchangeId": "AGENT-MEMORY-NO-AUTH-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "multi-agent"
+}

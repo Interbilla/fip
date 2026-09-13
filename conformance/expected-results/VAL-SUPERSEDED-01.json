@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "validity_superseded"
+  ],
+  "decision": "DENIED",
+  "exchangeId": "VAL-SUPERSEDED-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "validity"
+}

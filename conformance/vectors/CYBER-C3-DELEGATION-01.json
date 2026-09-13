@@ -1,0 +1,43 @@
+{
+  "action": "AssignIntrusionWork",
+  "actor": {
+    "id": "Coordinator-Agent",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Coord-Emergent",
+    "kind": "coordination"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "case": "C3",
+  "delegation": {
+    "canDelegate": false,
+    "from": "Coordinator-Agent",
+    "to": "Worker-Agent"
+  },
+  "emergentDelegation": true,
+  "exchangeId": "CYBER-C3-DELEGATION-01",
+  "exchangeType": "Delegation",
+  "policy": {
+    "id": "Pol-Sandbox-Isolate"
+  },
+  "provenance": {
+    "assertedBy": "Eval-Host",
+    "derivedFrom": [
+      "c3"
+    ],
+    "independent": true,
+    "traceId": "c3"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Task:ExternalRecon",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:WorkItem"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "cyber"
+}

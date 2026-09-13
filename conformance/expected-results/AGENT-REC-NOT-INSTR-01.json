@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "silent_semantic_escalation"
+  ],
+  "decision": "DENIED",
+  "exchangeId": "AGENT-REC-NOT-INSTR-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "multi-agent"
+}

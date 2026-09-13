@@ -1,0 +1,47 @@
+{
+  "action": "ExecuteA",
+  "actor": {
+    "id": "Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-P",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-P",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "exchangeId": "PROV-CONFLICT-01",
+  "exchangeType": "Instruction",
+  "instruction": {
+    "requested_command": "A"
+  },
+  "policy": {
+    "id": "Pol-P"
+  },
+  "provenance": {
+    "assertedBy": "Agent-A",
+    "derivedFrom": [
+      "prov-cf"
+    ],
+    "independent": true,
+    "traceId": "prov-cf"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Host-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:Host"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "provenance",
+  "trustedEvidence": {
+    "observed_command": "B",
+    "observer": "TrustedHost"
+  }
+}

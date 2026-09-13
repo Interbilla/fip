@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "delegation_requires_explicit_authority"
+  ],
+  "decision": "DENIED",
+  "exchangeId": "AUTH-DELEGATION-DENIED-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "authority"
+}

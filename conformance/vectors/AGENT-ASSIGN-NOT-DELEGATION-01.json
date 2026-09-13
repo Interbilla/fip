@@ -1,0 +1,41 @@
+{
+  "action": "AssignTask",
+  "actor": {
+    "id": "Coordinator",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Coord-Norm",
+    "kind": "coordination"
+  },
+  "authorization": {
+    "id": "AZ-C",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "emergentCoordination": true,
+  "exchangeId": "AGENT-ASSIGN-NOT-DELEGATION-01",
+  "exchangeType": "Instruction",
+  "policy": {
+    "id": "Pol-Eval"
+  },
+  "provenance": {
+    "assertedBy": "Coordinator",
+    "derivedFrom": [
+      "asg-1"
+    ],
+    "independent": true,
+    "traceId": "asg-1"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Task-2",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "object:WorkItem"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "multi-agent"
+}

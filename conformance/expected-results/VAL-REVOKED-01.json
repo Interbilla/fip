@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "validity_revoked"
+  ],
+  "decision": "DENIED",
+  "exchangeId": "VAL-REVOKED-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "validity"
+}

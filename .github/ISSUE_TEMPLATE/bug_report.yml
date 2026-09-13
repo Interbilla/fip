@@ -1,0 +1,13 @@
+name: Implementation bug
+description: Report a reproducible reference implementation defect
+body:
+  - type: textarea
+    attributes: {label: Reproduction, description: Include synthetic input and exact command.}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Expected and actual behavior}
+    validations: {required: true}
+  - type: input
+    attributes: {label: Version}
+    validations: {required: true}
+

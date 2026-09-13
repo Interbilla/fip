@@ -1,0 +1,48 @@
+{
+  "action": "ExecuteA",
+  "actor": {
+    "id": "Eval-Agent-A",
+    "layer": "UDG_CORE_OR_ORG",
+    "role": null
+  },
+  "authority": {
+    "id": "Auth-P",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "AZ-P",
+    "validity": "valid"
+  },
+  "canonical": "NOT CANONICAL EXTERNAL VOCABULARY",
+  "canonical_swids": 0,
+  "case": "C6",
+  "exchangeId": "CYBER-C6-SPOOF-01",
+  "exchangeType": "Instruction",
+  "instruction": {
+    "requested_command": "A"
+  },
+  "policy": {
+    "id": "Pol-P"
+  },
+  "provenance": {
+    "assertedBy": "Eval-Agent-A",
+    "derivedFrom": [
+      "c6"
+    ],
+    "independent": true,
+    "traceId": "c6"
+  },
+  "publication": "NOT A PUBLISHED STANDARD",
+  "published_objects": 0,
+  "resource": {
+    "id": "Host-1",
+    "layer": "UDG_CORE_OR_ORG",
+    "rdfType": "cyber:Host"
+  },
+  "status": "REFERENCE CANDIDATE",
+  "suite": "cyber",
+  "trustedEvidence": {
+    "observed_command": "B",
+    "observer": "TrustedHost"
+  }
+}

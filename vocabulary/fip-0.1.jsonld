@@ -1,0 +1,21 @@
+{
+  "@context": {
+    "@vocab": "urn:fip:0.1:",
+    "requests": {"@type": "@id"}, "respondsTo": {"@type": "@id"},
+    "usesResource": {"@type": "@id"}, "hasPurpose": {"@type": "@id"},
+    "hasIdentity": {"@type": "@id"}, "presentsCredential": {"@type": "@id"},
+    "hasRole": {"@type": "@id"}, "ownedBy": {"@type": "@id"},
+    "controlledBy": {"@type": "@id"}, "actsUnderAuthority": {"@type": "@id"},
+    "authorizedBy": {"@type": "@id"}, "governedBy": {"@type": "@id"},
+    "permits": {"@type": "@id"}, "prohibits": {"@type": "@id"},
+    "obligates": {"@type": "@id"}, "constrainedBy": {"@type": "@id"},
+    "appliesWithin": {"@type": "@id"}, "validDuring": {"@type": "@id"},
+    "delegatesTo": {"@type": "@id"}, "delegatesAuthority": {"@type": "@id"},
+    "hasEvidence": {"@type": "@id"}, "derivedFrom": {"@type": "@id"},
+    "assertedBy": {"@type": "@id"}, "decidedBy": {"@type": "@id"}
+  },
+  "version": "0.1",
+  "status": "REFERENCE CANDIDATE",
+  "primitives": ["Actor","Resource","Role","Identity","Credential","Request","Response","Action","Assertion","Recommendation","Instruction","Delegation","Decision","Purpose","Condition","Constraint","Authority","Authorization","Permission","Prohibition","Obligation","Policy","Evidence","Provenance","Validity","Scope"],
+  "relations": ["requests","respondsTo","usesResource","hasPurpose","hasIdentity","presentsCredential","hasRole","ownedBy","controlledBy","actsUnderAuthority","authorizedBy","governedBy","permits","prohibits","obligates","constrainedBy","appliesWithin","validDuring","delegatesTo","delegatesAuthority","hasEvidence","derivedFrom","assertedBy","decidedBy"]
+}

@@ -1,0 +1,18 @@
+name: Semantic bypass
+description: Report a reproducible unauthorized operational effect
+body:
+  - type: textarea
+    attributes: {label: Synthetic scenario and authorization oracle}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Exact FIP interaction and semantic sequence}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Firewall decision, gateway result, and actual effect}
+    validations: {required: true}
+  - type: textarea
+    attributes: {label: Reproduction and artifact hashes}
+    validations: {required: true}
+  - type: markdown
+    attributes: {value: "Do not submit secrets or details that endanger systems you do not own."}
+

@@ -1,0 +1,8 @@
+{
+  "actor": {"id": "synthetic:operator"},
+  "resource": {"id": "synthetic:resource-a"},
+  "action": "inspect",
+  "purpose": "maintenance",
+  "domainEmergencyColor": "amber",
+  "agentSaysAuthorized": true
+}

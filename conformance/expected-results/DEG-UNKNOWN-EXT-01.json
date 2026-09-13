@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "unknown_publisher"
+  ],
+  "decision": "ESCALATE",
+  "exchangeId": "DEG-UNKNOWN-EXT-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "graceful-degradation"
+}

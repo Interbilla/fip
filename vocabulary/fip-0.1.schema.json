@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fip:0.1:exchange-schema",
+  "title": "FIP 0.1 Reference Candidate exchange",
+  "type": "object",
+  "required": ["exchangeId", "exchangeType"],
+  "properties": {
+    "exchangeId": {"type": "string", "minLength": 1},
+    "exchangeType": {"enum": ["Assertion","Recommendation","Request","Response","Instruction","Delegation","Authorization","Decision"]},
+    "actor": {"type": "object"}, "resource": {"type": "object"},
+    "action": {"type": "string"}, "purpose": {"type": "string"},
+    "authority": {"type": "object"}, "authorization": {"type": "object"},
+    "credential": {"type": "object"}, "policy": {"type": "object"},
+    "normative": {"type": "object"}, "scope": {"type": "array"},
+    "validity": {"type": "object"}, "evidence": {"type": "array"},
+    "provenance": {"type": "object"}, "delegation": {"type": "object"},
+    "extensions": {"type": "array"}
+  },
+  "additionalProperties": true
+}

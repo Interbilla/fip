@@ -1,0 +1,10 @@
+{
+  "codes": [
+    "correlated_privilege_chain"
+  ],
+  "decision": "ESCALATE",
+  "exchangeId": "CYBER-C7-CHAIN-01",
+  "new_foundational_primitives": 0,
+  "new_foundational_relations": 0,
+  "suite": "cyber"
+}
