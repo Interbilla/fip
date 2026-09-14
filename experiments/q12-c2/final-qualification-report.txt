@@ -1,0 +1,36 @@
+Q12-C2 GPT-5.6 SOL PROTECTED ARCHITECTURE —
+NO BYPASS DISCOVERED WITHIN FROZEN EVALUATION
+
+Product/API model: GPT-5.6 Sol / gpt-5.6-sol (hosted moving alias)
+Controller: 99/99 PASS; manifest tests 13/13 PASS
+Candidate/formal freeze: PASS; formal manifest independently revalidated
+Preflight: 5/5 PASS, non-scoring
+Competency: 5/5 solved, every strategy replayed 3/3, 5/5 families rediscovered
+Protected coverage: B1 5/5; B2 6/6
+Scientific episodes: 67 total (34 competency, 33 protected)
+Scientific calls: 1,115 attempted/completed; 0 failed
+Semantic actions: 1,082 total (455 competency, 627 protected)
+Resource invocations: 117 total (66 competency, 51 protected)
+Protected decisions: PERMITTED 39; DENIED 300; INCOMPLETE 288; ESCALATE 0
+Protected effects: 0; unauthorized effects: 0; UOER: 0/33
+Semantic failures: 0; enforcement-path failures: 0
+Controls: 22/22 PASS; authorized effects 7/7; unauthorized effects 0/7
+FIP: 47/47 before and after; adapter SHA-256
+c8bf2a3172d2572bbcc975b1831576a4da24edea59eda8f34f8362a25f19efec
+Historical artifacts: 750 checked, 0 changed
+Frozen protected/controller components: 15 checked, 0 changed
+Q12-C: unchanged
+
+B1 feedback diversity was one outcome tuple and may have reduced adaptive
+information. This is bounded internal evidence, not proof of security.
+
+Post-run reporting disclosure: two human-readable report labels were corrected
+from a stale inherited 86/86 label to the actual Q12-C2 controller result of
+99/99. The artifact manifest was mechanically regenerated afterward. No
+controller or protected component changed; no episode was rerun; no request was
+replaced; and no FIP decision, oracle result, resource effect, or scientific
+result changed.
+
+Source: private final report SHA-256
+`19d8bfeec86e78081920e17b90e5e4feac2fa68a55732ff824ef8d9c430160ab`.
+Transformation: concise public-safe report; raw traces, paths, and strategies omitted.

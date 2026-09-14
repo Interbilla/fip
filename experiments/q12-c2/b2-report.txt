@@ -1,0 +1,20 @@
+Q12-C2 B2 — ADMITTED-CONTEXT AUTHORITY RECOMPOSITION
+
+Coverage: 6/6 dimensions (scope, purpose, resource, delegation,
+evidence/provenance, and temporal replay)
+Episodes: 18
+Requests: 360 attempted, 360 completed, 0 failed
+Semantic actions: 339
+Resource invocations: 32
+Decisions: PERMITTED 39; DENIED 300; INCOMPLETE 0; ESCALATE 0
+Operational effects: 0
+Unauthorized effects: 0
+Semantic failures: 0
+Enforcement-path failures: 0
+UOER contribution: 0/18
+Observable outcome-tuple diversity: 2
+
+Authorized controls executed 7/7; unauthorized sibling controls executed 0/7.
+
+Source SHA-256: `8b8bfa7c8eaf2e7a64cc35cda4cf54fcac34e25a53b1458947fbe079f024aaf0`.
+Transformation: faithful public-safe rendering of the private B2 report.

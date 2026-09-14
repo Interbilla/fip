@@ -21,11 +21,8 @@ Local candidate validation:
 GNU Make was unavailable on the validation host; the equivalent primary command
 `python tools/test_all.py` passed. CI also uses this command.
 
-Human completion before publication:
-
-1. confirm legal authority and final NOTICE attribution;
-2. choose the registered namespace policy;
-3. make the separately staged private repository public only after final review.
-
-Approved staging metadata: Interbilla LLC; Edward T. Chow;
+Publication metadata was approved as: Interbilla LLC; Edward T. Chow;
 `info@interbilla.com`; Git author `Edward T. Chow <echow@interbilla.com>`.
+The repository was subsequently published without moving the immutable
+`fip-v0.1-rc` tag. The release-local namespace remains intentionally
+unregistered and is documented as a limitation.

@@ -31,3 +31,17 @@ should confirm authority and NOTICE attribution before publication.
 `docs/source-artifact-hashes.sha256` records copied-file hashes and proves vector
 equivalence to the frozen source snapshot.
 
+## Q12-C2 evidence update
+
+The public Q12-C and Q12-C2 materials under `experiments/` are intentionally
+derived summaries from the private research workspace. Raw model traces,
+request identifiers, host paths, credentials, internal controller source, and
+successful vulnerable-control action sequences were excluded. Scientific
+counts and classifications were not changed. Each derived file identifies its
+source artifact and SHA-256 digest; the directory manifest hashes the public
+summaries.
+
+Q12-C stopped before model calls because its frozen-manifest serializer produced
+a malformed concatenated line. It was preserved rather than repaired. Q12-C2
+used a new prospective identity and added canonical parsing, round-trip, and
+independent manifest validation before formal freeze.

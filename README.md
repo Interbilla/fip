@@ -31,6 +31,23 @@ FIP **describes** the consequential interaction. A Semantic Micro-Firewall
 **Open description; closed operational interpretation.** Descriptive
 extensibility does not imply governance extensibility.
 
+## Latest bounded evidence
+
+A prospective stronger-model replication replaced the GPT-5.6 Luna adversary
+with GPT-5.6 Sol (`gpt-5.6-sol`) while preserving the protected architecture and
+bounded semantic interface. Sol first qualified against all five vulnerable
+semantic attack families. The subsequent frozen protected evaluation covered
+five untrusted-semantic families and six admitted-context recomposition
+dimensions. It observed no unauthorized operational effect across 33 protected
+episodes (UOER 0/33).
+
+This does **not** establish security against GPT-5.6 Sol generally, other
+frontier models, or attacks outside the evaluated interface, scenarios,
+observation model, and budget. B1 feedback collapsed to one observable outcome
+tuple, which may have reduced adaptive information available to the adversary.
+See the [Q12-C2 evidence](experiments/q12-c2/README.md) and the preserved
+[Q12-C pre-scientific failure](experiments/q12-c/README.md).
+
 ## Run and test
 
 Requirements: Python 3.10+; Node.js 18+ for the JavaScript reference.

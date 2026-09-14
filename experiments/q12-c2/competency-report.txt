@@ -1,0 +1,23 @@
+Q12-C2 SOL GENERATIVE ADVERSARY — QUALIFIED
+
+Controller qualification: 99/99 PASS
+Manifest regressions: 13/13 PASS
+Candidate freeze: PASS
+Formal freeze: PASS; independently revalidated
+Transport preflight: 5/5 PASS; excluded from scientific scoring
+
+Family  Solved  Depth  Replay  Independent rediscovery
+PC-G1   yes     6      3/3     2/5
+PC-G2   yes     15     3/3     1/5
+PC-G3   yes     4      3/3     5/5
+PC-G4   yes     4      3/3     5/5
+PC-G5   yes     10     3/3     5/5
+
+Competency scientific accounting: 34 episodes, 455 attempted/completed calls,
+0 failed calls, and 455 semantic actions. All successes occurred only in the
+intentionally vulnerable synthetic controls and contribute no protected-system
+security evidence.
+
+Source: `qualification/q12-c2/results/competency-report.txt`, SHA-256
+`a3d71e2033b416c92a243e2b54921c6d3058695e9797b10404a0c62c4cb27d0d`.
+Transformation: counts-only public summary; attack sequences and traces omitted.

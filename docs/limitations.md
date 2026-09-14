@@ -11,3 +11,10 @@ with different domains, attackers, and budgets must not be pooled as identical
 independent trials. Integration errors and paths outside the enforced gateway
 remain important risks.
 
+The Q12-C2 GPT-5.6 Sol replication also produced only one observable B1 outcome
+tuple. This limited feedback diversity may have reduced adaptive information
+available to the generative adversary. Its B1 result therefore supports
+resistance only within the evaluated interaction and observation model; it does
+not establish resistance under richer attacker-visible feedback. The API model
+identifier `gpt-5.6-sol` is a hosted moving alias, so immutable weights and exact
+long-term behavioral reproducibility are not claimed.
