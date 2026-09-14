@@ -86,6 +86,7 @@ prompt injection or guarantee universal domain independence.
 - `examples/`: synthetic semantic safety cases
 - `experiments/`: bounded evidence and reproducibility guidance
 - `docs/provenance.md`: source hashes and release transformations
+- `paper/FIP Paper 9-13-26.pdf`: read the preprint paper
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) to propose gaps or independent
 implementations. FIP 0.1 semantics are frozen; accepted semantic changes target
