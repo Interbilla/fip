@@ -71,7 +71,7 @@ Seccomp filtering is applied by the supervisor and is not a policy field. The ma
 
 Provider attachment gives the workload an opaque placeholder. The proxy substitutes the provider credential only at an endpoint the provider profile authorizes. Detach removes that provider's policy and credential access. That mechanism is endpoint-bound.
 
-The FIP proxy-mediated examples locate a credential by `serviceId` and require disclosure `proxy-mediated`. This manifest lists that disclosure and requires `host` and `port` on the binding. The examples omit those locators, so the boundary is broader than the mechanism and coverage is `subset_not_demonstrated`. Kind `credential` is absent. That absence is not the reason: a binding that names the host and port can be enforced through `credentialBinding`.
+The FIP proxy-mediated examples locate a credential by `serviceId` and require disclosure `proxy-mediated`. This manifest lists that disclosure. Kind `credential` is absent. Pinned v0.1.2 does not enforce credential use independently of provider attachment. A provider profile that names endpoints injects those endpoints and the credential together. `credential_binding.provider` still requires an attached provider, and attaching one requires a secret this adapter does not hold. Coverage therefore rejects kind `credential` on this adapter even when the binding names a host and port. The diagnostic is `credential_use_not_independent`. Secret confidentiality is not credential authorization.
 
 Provider profiles can add endpoint and binary rules to the effective policy. That extra network access appears only when a provider is attached. It is not an always-on substrate entry, for the same reason GPU paths are not. A hostless network substrate entry would reject every assessment, including a filesystem policy with no provider.
 
@@ -128,7 +128,7 @@ Assessed with `assess_coverage` against `manifest.json` and `execution-profile.j
 |---|---|---|---|---|---|---|
 | Filesystem read/write | `REJECTED` | `req-read` and `req-write` unenforced | correlated unmet | establishment-bound matches the filesystem class | accepted runtime substrate | `unsupported_requirement` |
 | REST GET | `PARTIAL` | `req-weather` unenforced; `req-no-other-network` enforced | permit correlated unmet; deny target-native matches | `revocable` matches the network class and does not apply to filesystem | accepted runtime substrate | `unsupported_requirement` |
-| Model inference | `REJECTED` | `req-model` rejected; `req-provider` unenforced | correlated unmet on the provider requirement | model has no capability, so its `revocable` lifetime does not borrow the network class | accepted runtime substrate | `lifetime_mismatch`, `unsupported_requirement` |
+| Model inference | `REJECTED` | `req-model` rejected; `req-provider` rejected | correlated not reached | model has no capability, so its `revocable` lifetime does not borrow the network class; an inference-provider binding is not exact model authority | accepted runtime substrate | `lifetime_mismatch`, `subset_not_demonstrated` |
 | Proxy-mediated credential | `REJECTED` | permit rejected because host and port are absent; credential deny unenforced | correlated unmet, not reached | `revocable` matches the credential class | accepted runtime substrate | `subset_not_demonstrated`, `unsupported_requirement` |
 | Multi-binding action | `REJECTED` | connect and GET unenforced on correlated audit; credential rejected on the missing host and port | correlated unmet for connect and GET | network `revocable` matches connect and GET | accepted runtime substrate | `unsupported_requirement`, `subset_not_demonstrated` |
 | Prohibition, authorized ReadInspectionInput exchange | `PARTIAL` | permit unenforced; deny enforced | permit correlated unmet; deny target-native matches | establishment-bound matches | accepted runtime substrate | `unsupported_requirement` |
@@ -139,7 +139,7 @@ Filesystem read/write is `REJECTED` because the permits require correlated audit
 
 REST GET can use the network class's `revocable` lifetime while filesystem capabilities remain `establishment-bound`. The published REST permit is still unenforced because its audit strength is `correlated`.
 
-The proxy-mediated permit is characterized as an endpoint binding. Disclosure matches. The example does not name a host and port, so the boundary fails the subset invariant.
+The proxy-mediated permit fails the subset invariant. Adding a host and port does not make it deployable on this adapter. Provider attachment is not a FIP credential grant.
 
 Exact `modelId` remains unsupported. Kind `model` is absent, `modelId` is false, and the pinned inference text leaves model selection to the workload.
 
@@ -187,3 +187,21 @@ Three REST documents stay distinct. [rest-get.json](../../../../examples/fip-0.2
 Successful base-policy compilation is not a runtime enforcement claim. `runtimeDisposition` stays `UNOBSERVED` until a live observation. Before a runtime allow is accepted, `openshell policy get --full` must pass `verify_effective_policy` on the whole tuple: host, port, protocol, enforcement, HTTP method, HTTP path, binary scope, access preset, and TLS inspection. The same host is not enough. A provider rule whose name starts with `_provider_`, or a global policy that replaces the authored rules, fails closed.
 
 `openshell policy get --base` shows the saved user policy. `openshell policy get --full` shows the composed effective policy, including provider rules. While a gateway global policy is active, both commands show the global policy and provider layers are suppressed. Neither view includes runtime-only paths such as the supervisor CA. A readback may add `name` on a network policy when that value is the map key. The verifier accepts that echo. A different name, or any other extra field, is rejected. The OpenShell policy-load hash is a separate native value and is not the FIP canonical policy hash.
+
+## Remaining v0.1.2 surfaces
+
+Pinned source for this record is NVIDIA OpenShell v0.1.2, commit `6648bd0c290efbc41ba131ee9831ee45cd431f94`. The files used are `docs/how-it-works/policies/schema.mdx`, `docs/how-it-works/inference.mdx`, `crates/openshell-core/src/mcp.rs`, `crates/openshell-supervisor-network/src/l7/mcp.rs`, and `crates/openshell-sandbox/src/sandbox/linux/seccomp.rs`. Where current product documentation differs, that commit is authoritative.
+
+TCP `protocol: tcp` accepts a hostname and a port and no request fields. [openshell-tcp-connect.json](../../../../examples/fip-0.2/openshell-tcp-connect.json) is `service` plus `connect` with an exact host and port and no HTTP method or path. The compiler emits `protocol: tcp` and the profile binary restriction. It does not emit method, path, access, or TLS skip. A REST grant is not compiled as TCP. A service connect that also names an HTTP method or path is `REJECTED`. Runtime for this slice stays `UNOBSERVED`. The M5 REST run already observed connection denial. A second live TCP sandbox would not add a credential-free fact this static policy does not already show.
+
+MCP exists in v0.1.2. A rule can name one method, and `tools/call` can name one tool. Tool arguments are not matched. Server responses are not inspected. The compiler emits only the granted method and tool. It does not add `initialize`, `notifications/initialized`, or `allow_all_known_mcp_methods`. [openshell-mcp-tool.json](../../../../examples/fip-0.2/openshell-mcp-tool.json) is `FULL` for that exact tool name. Argument acceptance is a target limitation, the same class of gap as a query on an exact REST path. Runtime stays `UNOBSERVED` because no local MCP server fixture is part of this campaign. Network reachability to the MCP host is not tool authorization.
+
+Exact model identity stays unsupported. Re-reading `docs/how-it-works/inference.mdx` at this pin confirms the workload chooses `modelId`. Kind `inference-provider` is `REJECTED` with `subset_not_demonstrated` and diagnostic `model_identity_unsupported`. Provider routing is not recorded as model authorization.
+
+Kind `process` stays outside `kinds`. [openshell-process-execute.json](../../../../examples/fip-0.2/openshell-process-execute.json) is `REJECTED` with `unsupported_requirement`. Seccomp, an unprivileged user, and namespace isolation remain execution substrate. Strict executable identity stays `REJECTED` because a binary rule matches the connecting process and its parent chain, which includes descendants of the listed binary.
+
+Effective policy must be verified immediately before execution. A later policy update, provider attach or detach, global policy change, credential change, or model-provider change invalidates that verification. This adapter does not watch those changes continuously, so it does not claim continuous monotonicity.
+
+OCSF can name a policy key, binary, host, port, method, path, and a denial reason. It does not emit FIP `traceId`, `requirementId`, `bindingId`, or `targetRuleId`. Those events stay target-native. They are not correlated audit. The log does not distinguish credential resolution, model routing, or tool-argument acceptance as FIP authority.
+
+Substrate entries stay out of `fipGrants`. Filesystem runtime paths and the supervisor CA are read-only runtime. `/tmp` and `/dev/null` are writable runtime. Seccomp is restrictive. The curl path is a target narrowing restriction. DNS policy addresses, the gateway control plane, and provider infrastructure are infrastructure dependencies. None of them is a FIP grant.

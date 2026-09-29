@@ -35,10 +35,22 @@ def compile_policy(ir, assessment, manifest, profile):
         diagnostics = list(refused[1])
         if _permit_requires_executable(ir):
             diagnostics.append("executable_identity_not_exact")
+        if _permit_has_kind(ir, "credential"):
+            diagnostics.append("credential_use_not_independent")
+        if _permit_has_kind(ir, "model") or _permit_has_kind(ir, "inference-provider"):
+            diagnostics.append("model_identity_unsupported")
         return _empty(ir, assessment, refused[0], diagnostics)
     refused = _identities(assessment, manifest, profile)
     if refused:
         return _empty(ir, assessment, "REJECTED", refused)
+    if _permit_has_kind(ir, "credential"):
+        return _empty(ir, assessment, "REJECTED", ["credential_use_not_independent"])
+    if _permit_has_kind(ir, "model") or _permit_has_kind(ir, "inference-provider"):
+        return _empty(ir, assessment, "REJECTED", ["model_identity_unsupported"])
+    if _mcp_slice(ir, assessment):
+        return _network_slices().compile_mcp(ir, assessment, manifest, profile, _compiler_host())
+    if _tcp_slice(ir, assessment):
+        return _network_slices().compile_tcp(ir, assessment, manifest, profile, _compiler_host())
     if _rest_slice(ir, assessment):
         return _rest_compiler().compile_slice(ir, assessment, manifest, profile, _compiler_host())
     prepared = _prepare(ir, assessment, manifest, profile)
@@ -234,6 +246,62 @@ def _permit_requires_executable(ir):
     return False
 
 
+def _permit_has_kind(ir, kind):
+    if not isinstance(ir, dict):
+        return False
+    bindings = {
+        item.get("bindingId"): item
+        for item in ir.get("bindings") or []
+        if isinstance(item, dict)
+    }
+    for requirement in ir.get("requirements") or []:
+        if not isinstance(requirement, dict) or requirement.get("effect") != "permit":
+            continue
+        for binding_id in requirement.get("bindingIds") or []:
+            if (bindings.get(binding_id) or {}).get("kind") == kind:
+                return True
+    return False
+
+
+def _selected_bindings(ir, assessment):
+    requirements = {
+        item.get("requirementId"): item
+        for item in (ir or {}).get("requirements") or []
+        if isinstance(item, dict)
+    }
+    bindings = {
+        item.get("bindingId"): item
+        for item in (ir or {}).get("bindings") or []
+        if isinstance(item, dict)
+    }
+    found = []
+    for requirement_id in (assessment or {}).get("selectedRequirementIds") or []:
+        requirement = requirements.get(requirement_id) or {}
+        if requirement.get("effect") != "permit":
+            continue
+        for binding_id in requirement.get("bindingIds") or []:
+            binding = bindings.get(binding_id)
+            if isinstance(binding, dict):
+                found.append((requirement, binding))
+    return found
+
+
+def _mcp_slice(ir, assessment):
+    return any(
+        (binding.get("protocol") or {}).get("family") == "mcp"
+        for _requirement, binding in _selected_bindings(ir, assessment)
+    )
+
+
+def _tcp_slice(ir, assessment):
+    for _requirement, binding in _selected_bindings(ir, assessment):
+        family = (binding.get("protocol") or {}).get("family")
+        http = (binding.get("protocol") or {}).get("http") or {}
+        if binding.get("kind") == "service" and binding.get("operation") == "connect" and family != "mcp" and not http:
+            return True
+    return False
+
+
 def _rest_slice(ir, assessment):
     if not isinstance(ir, dict) or not isinstance(assessment, dict):
         return False
@@ -275,6 +343,18 @@ def _compiler_host():
 
 
 _REST = None
+_SLICES = None
+
+
+def _network_slices():
+    global _SLICES
+    if _SLICES is None:
+        path = Path(__file__).with_name("network_slices.py")
+        spec = importlib.util.spec_from_file_location("openshell_network_slices", path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _SLICES = module
+    return _SLICES
 
 
 def _rest_compiler():

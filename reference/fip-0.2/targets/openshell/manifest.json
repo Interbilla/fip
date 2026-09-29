@@ -8,7 +8,7 @@
   "kinds": ["filesystem", "service", "api", "executable", "inference-provider"],
   "operations": ["read", "write", "connect", "query", "execute", "invoke"],
   "locatorForms": ["path", "host", "port", "uri", "executableId"],
-  "protocolFamilies": ["http"],
+  "protocolFamilies": ["http", "mcp"],
   "protocolConstraints": ["http.method", "http.path"],
   "capabilities": [
     {

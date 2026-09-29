@@ -1,0 +1,65 @@
+{
+  "fipVersion": "0.2",
+  "document": "AuthorityPolicy",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "policyId": "pol-openshell-mcp",
+  "traceId": "trace-openshell-mcp",
+  "actors": [
+    {"id": "agent-field", "identity": "id-agent-field"}
+  ],
+  "resources": [
+    {"id": "service:IssueList"}
+  ],
+  "actions": [
+    {"id": "ListIssues", "resourceId": "service:IssueList"}
+  ],
+  "authorities": [
+    {"id": "auth-mission-control", "kind": "direct"}
+  ],
+  "executionBindings": [
+    {
+      "bindingId": "list-issues",
+      "resourceId": "service:IssueList",
+      "actionId": "ListIssues",
+      "kind": "api",
+      "operation": "invoke",
+      "locator": {"host": "mcp.example.com", "port": 443},
+      "protocol": {
+        "family": "mcp",
+        "mcp": {"method": "tools/call", "tool": "list_issues"}
+      },
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "enforcementRequirements": [
+    {
+      "requirementId": "req-list-issues",
+      "effect": "permit",
+      "bindingIds": ["list-issues"],
+      "composition": "allOf",
+      "groupId": "mcp",
+      "audit": "target-native",
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "authorizations": [
+    {
+      "authorizationId": "az-openshell-mcp",
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "actionIds": ["ListIssues"],
+      "resourceIds": ["service:IssueList"],
+      "purpose": "FieldInspection",
+      "requirementIds": ["req-list-issues"],
+      "validity": {"state": "valid"}
+    }
+  ],
+  "validity": {"state": "valid"},
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": ["trace-openshell-mcp"],
+    "independent": true,
+    "traceId": "trace-openshell-mcp"
+  }
+}

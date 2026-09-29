@@ -145,8 +145,8 @@ class OpenShellProfileTest(unittest.TestCase):
     def test_model_inference_is_rejected_before_model_kind(self):
         result = self.assess(project(load_json(EXAMPLES / "model-inference.json"))["operationalIr"])
         self.assertEqual(result["compilationDisposition"], "REJECTED")
-        self.assertEqual(result["codes"], ["lifetime_mismatch", "unsupported_requirement"])
-        self.assertEqual(self.status(result), {"req-model": "rejected", "req-provider": "unenforced"})
+        self.assertEqual(result["codes"], ["lifetime_mismatch", "subset_not_demonstrated"])
+        self.assertEqual(self.status(result), {"req-model": "rejected", "req-provider": "rejected"})
         self.assertEqual(result["selectedRequirementIds"], [])
 
     def test_proxy_credential_is_not_claimed(self):

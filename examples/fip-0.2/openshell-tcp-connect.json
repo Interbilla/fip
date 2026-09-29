@@ -1,0 +1,61 @@
+{
+  "fipVersion": "0.2",
+  "document": "AuthorityPolicy",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "policyId": "pol-openshell-tcp",
+  "traceId": "trace-openshell-tcp",
+  "actors": [
+    {"id": "agent-field", "identity": "id-agent-field"}
+  ],
+  "resources": [
+    {"id": "service:Example"}
+  ],
+  "actions": [
+    {"id": "ConnectExample", "resourceId": "service:Example"}
+  ],
+  "authorities": [
+    {"id": "auth-mission-control", "kind": "direct"}
+  ],
+  "executionBindings": [
+    {
+      "bindingId": "example-connect",
+      "resourceId": "service:Example",
+      "actionId": "ConnectExample",
+      "kind": "service",
+      "operation": "connect",
+      "locator": {"host": "example.com", "port": 443},
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "enforcementRequirements": [
+    {
+      "requirementId": "req-example-connect",
+      "effect": "permit",
+      "bindingIds": ["example-connect"],
+      "composition": "allOf",
+      "groupId": "tcp",
+      "audit": "target-native",
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "authorizations": [
+    {
+      "authorizationId": "az-openshell-tcp",
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "actionIds": ["ConnectExample"],
+      "resourceIds": ["service:Example"],
+      "purpose": "FieldInspection",
+      "requirementIds": ["req-example-connect"],
+      "validity": {"state": "valid"}
+    }
+  ],
+  "validity": {"state": "valid"},
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": ["trace-openshell-tcp"],
+    "independent": true,
+    "traceId": "trace-openshell-tcp"
+  }
+}

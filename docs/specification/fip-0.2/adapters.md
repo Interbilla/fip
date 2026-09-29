@@ -196,7 +196,20 @@ A successful base-policy compilation leaves `runtimeDisposition` at
 accepted, the live `policy get --full` document MUST pass effective-policy
 verification on host, port, protocol, enforcement, HTTP method, HTTP path,
 binary restriction, access preset, and TLS inspection. Provider or global
-widening fails closed.
+widening fails closed. A later target-policy change invalidates that verification.
+This adapter does not observe policy changes continuously.
+
+On pinned OpenShell v0.1.2, `service` plus `connect` with an exact host and
+port and no HTTP method or path may compile to `protocol: tcp`. That policy
+carries no application-layer method, path, or tool. An HTTP method or path on
+that connect binding fails closed. `api` plus `invoke` with protocol family
+`mcp`, one exact method, and, for `tools/call`, one exact tool name, may
+compile to one MCP allow rule. The compiler does not add session methods or
+allow every known MCP method. Tool arguments are outside that grant. Kind
+`credential` and kind `inference-provider` stay `REJECTED` on this adapter.
+Provider attachment is not credential-use authority and is not exact model
+authority. Kind `process` stays unenforced. Seccomp and user identity stay
+execution substrate.
 
 An undisclosed dangerous default is treated as an inability to demonstrate the
 subset invariant. Compilation is `REJECTED`.

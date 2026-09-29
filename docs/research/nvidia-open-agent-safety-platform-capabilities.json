@@ -1,0 +1,54 @@
+{
+  "study": "nvidia-open-agent-safety-platform-integration-study",
+  "status": "non-normative",
+  "doesNotModify": ["fip-0.1", "fip-0.2-normative-spec", "m6-adapter", "m6-evidence"],
+  "pinnedOpenShell": {
+    "product": "NVIDIA OpenShell",
+    "version": "0.1.2",
+    "commit": "6648bd0c290efbc41ba131ee9831ee45cd431f94",
+    "policySchema": 1,
+    "m6Gate": "PASS_WITH_DOCUMENTED_LIMITATIONS"
+  },
+  "currentPublicOpenShell": {
+    "latestRelease": "v0.1.2",
+    "mainAheadOfTag": 23,
+    "mainCommitObserved": "33a8eac196a21aff3125dea46462a4591bcb5d0b",
+    "proverAndAdvisorDocsInThatDiff": false
+  },
+  "m6SurfaceConclusionsPreserved": {
+    "filesystem": "DEMONSTRATED",
+    "restL7": "DEMONSTRATED_WITH_LIMITATIONS",
+    "credentialProvider": "REJECTED_BY_DESIGN",
+    "genericTcp": "SUPPORTED_UNOBSERVED",
+    "processExecutable": "SUBSTRATE_ONLY",
+    "inferenceModel": "UNSUPPORTED",
+    "mcpTool": "SUPPORTED_UNOBSERVED"
+  },
+  "hashesPreserved": {
+    "filesystem": "6cf6240b86186a0d94fcffe49034e8cb2fb5a03835dea68c765ceddb47456afb",
+    "rest": "487cf5c82708397a7a45e48d6d7f2b97d7d948715f235dba215ca2ab53c8b504",
+    "tcp": "d7a2c6495adbf67144be31e14ac4237d9db9876eeb3a2d913bff0c63fcbf103b",
+    "mcp": "5e24f694358aa4c1566546e2df8d5d369afdbc24bb4f49d5f68fee261dc5ba3a"
+  },
+  "availability": {
+    "openShellV012Runtime": "OPEN-SOURCE IMPLEMENTED",
+    "policyProverBoundaryCheck": "OPEN-SOURCE IMPLEMENTED",
+    "policyAdvisorProposalWorkflow": "OPEN-SOURCE IMPLEMENTED",
+    "sentry": "ANNOUNCED",
+    "sentryPublicPolicyApi": "FUTURE / NOT YET AVAILABLE",
+    "blueFieldZeroTrustMode": "DOCUMENTED",
+    "docaArgusVaultFlow": "DOCUMENTED",
+    "blueField4SentryPath": "HARDWARE-DEPENDENT"
+  },
+  "fipImpact": "NO_CHANGE",
+  "q13": "unchanged",
+  "recommendation": "KEEP_M6_AND_PROCEED_TO_Q13",
+  "roadmap": [
+    {"stage": 1, "name": "pinned OpenShell adapter", "classification": "NOW"},
+    {"stage": 2, "name": "Policy Prover as an independent target-policy check", "classification": "PROTOTYPE"},
+    {"stage": 3, "name": "permission request as evidence for a FIP Decision", "classification": "PROTOTYPE"},
+    {"stage": 4, "name": "Sentry observation", "classification": "WAIT_FOR_NVIDIA_API"},
+    {"stage": 5, "name": "Sentry enforcement adapter", "classification": "WAIT_FOR_NVIDIA_API"},
+    {"stage": 6, "name": "multi-enforcer proof chain", "classification": "RESEARCH"}
+  ]
+}

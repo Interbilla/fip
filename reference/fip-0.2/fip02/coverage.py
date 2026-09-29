@@ -281,6 +281,10 @@ def _binding(binding, requirement, manifest):
     kind = binding.get("kind")
     operation = binding.get("operation")
     precision = manifest["precision"]
+    if manifest.get("adapterId") == "openshell-v0.1.2" and kind == "credential":
+        return "rejected", ["subset_not_demonstrated"]
+    if manifest.get("adapterId") == "openshell-v0.1.2" and kind == "inference-provider":
+        return "rejected", ["subset_not_demonstrated"]
     kinds = manifest.get("kinds") or []
     credential_declared = False
     if kind == "credential":
@@ -399,6 +403,22 @@ def _network_exactness(binding, manifest):
         return None
     if kind not in ("service", "api", "inference-provider"):
         return None
+    family = (binding.get("protocol") or {}).get("family")
+    http = ((binding.get("protocol") or {}).get("http") or {})
+    if kind == "service" and binding.get("operation") == "connect":
+        if family == "http" or http.get("method") or http.get("path"):
+            return "rejected", ["subset_not_demonstrated"]
+    if family == "mcp":
+        mcp = (binding.get("protocol") or {}).get("mcp") or {}
+        method = mcp.get("method")
+        tool = mcp.get("tool")
+        if not isinstance(method, str) or method in ("*",) or _glob_widens(method):
+            return "rejected", ["subset_not_demonstrated"]
+        if method == "tools/call":
+            if not isinstance(tool, str) or not tool or _glob_widens(tool):
+                return "rejected", ["subset_not_demonstrated"]
+        elif tool:
+            return "rejected", ["subset_not_demonstrated"]
     if isinstance(locator.get("uri"), str) and "?" in locator["uri"]:
         return "rejected", ["subset_not_demonstrated"]
     host = locator.get("host")

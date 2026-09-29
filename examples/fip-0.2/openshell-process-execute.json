@@ -1,0 +1,61 @@
+{
+  "fipVersion": "0.2",
+  "document": "AuthorityPolicy",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "policyId": "pol-openshell-process",
+  "traceId": "trace-openshell-process",
+  "actors": [
+    {"id": "agent-field", "identity": "id-agent-field"}
+  ],
+  "resources": [
+    {"id": "process:Curl"}
+  ],
+  "actions": [
+    {"id": "RunCurl", "resourceId": "process:Curl"}
+  ],
+  "authorities": [
+    {"id": "auth-mission-control", "kind": "direct"}
+  ],
+  "executionBindings": [
+    {
+      "bindingId": "run-curl",
+      "resourceId": "process:Curl",
+      "actionId": "RunCurl",
+      "kind": "process",
+      "operation": "execute",
+      "locator": {"path": "/usr/bin/curl"},
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "enforcementRequirements": [
+    {
+      "requirementId": "req-run-curl",
+      "effect": "permit",
+      "bindingIds": ["run-curl"],
+      "composition": "allOf",
+      "groupId": "process",
+      "audit": "target-native",
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "authorizations": [
+    {
+      "authorizationId": "az-openshell-process",
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "actionIds": ["RunCurl"],
+      "resourceIds": ["process:Curl"],
+      "purpose": "FieldInspection",
+      "requirementIds": ["req-run-curl"],
+      "validity": {"state": "valid"}
+    }
+  ],
+  "validity": {"state": "valid"},
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": ["trace-openshell-process"],
+    "independent": true,
+    "traceId": "trace-openshell-process"
+  }
+}
