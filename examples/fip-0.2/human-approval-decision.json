@@ -1,0 +1,24 @@
+{
+  "fipVersion": "0.2",
+  "document": "Exchange",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "exchangeId": "ex-approve-delete",
+  "exchangeType": "Decision",
+  "policyId": "pol-approval",
+  "traceId": "trace-approval-decision",
+  "actor": {"id": "approver-mission", "identity": "id-approver"},
+  "decision": {
+    "decisionId": "dec-approve-delete",
+    "kind": "approval",
+    "value": "approved",
+    "requirementId": "req-delete",
+    "validity": {"state": "valid"}
+  },
+  "provenance": {
+    "assertedBy": "approver-mission",
+    "derivedFrom": ["trace-approval"],
+    "independent": true,
+    "traceId": "trace-approval-decision"
+  }
+}

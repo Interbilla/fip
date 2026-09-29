@@ -1,0 +1,25 @@
+{
+  "fipVersion": "0.2",
+  "document": "Exchange",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "semantic-only",
+  "fipCompat": "0.1",
+  "exchangeId": "lift-share-status",
+  "exchangeType": "Request",
+  "actor": {"id": "Org-A", "role": "Requester"},
+  "resource": {"id": "Org-B:Board-1"},
+  "action": "ShareStatus",
+  "purpose": "StatusUpdate",
+  "authority": {"id": "Auth-Direct", "kind": "direct"},
+  "authorization": {"id": "AZ-1", "validity": "valid"},
+  "normative": {"state": "allowed"},
+  "policy": {"id": "Pol-Share"},
+  "provenance": {
+    "assertedBy": "Org-A",
+    "derivedFrom": ["t-lift"],
+    "independent": true,
+    "traceId": "t-lift"
+  },
+  "executionBindings": [],
+  "enforcementRequirements": []
+}

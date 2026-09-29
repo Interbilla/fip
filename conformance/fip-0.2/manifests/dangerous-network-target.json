@@ -1,0 +1,65 @@
+{
+  "manifestVersion": "0",
+  "adapterId": "dangerous-network-target",
+  "targetType": "generic",
+  "targetVersion": "0",
+  "adapterVersion": "0",
+  "acceptsFipVersions": [
+    "0.2"
+  ],
+  "kinds": [
+    "service",
+    "api"
+  ],
+  "operations": [
+    "connect",
+    "query"
+  ],
+  "locatorForms": [
+    "host",
+    "port"
+  ],
+  "protocolFamilies": [
+    "http"
+  ],
+  "protocolConstraints": [],
+  "effects": [
+    "permit"
+  ],
+  "auditStrengths": [
+    "none"
+  ],
+  "compositions": [
+    "allOf"
+  ],
+  "approval": {
+    "actionGate": false,
+    "policyMutation": false
+  },
+  "precision": {
+    "filesystemOperations": "exact",
+    "networkHost": "unrestricted",
+    "httpMethod": false,
+    "httpPath": false,
+    "modelId": false,
+    "credentialDisclosures": [],
+    "traceCorrelation": false
+  },
+  "substrate": [],
+  "dangerousDefaults": [
+    "canConnectAnyHost",
+    "cannotRestrictHost"
+  ],
+  "capabilities": [
+    {
+      "capabilityId": "network",
+      "kinds": [
+        "service",
+        "api"
+      ],
+      "lifetimes": [
+        "revocable"
+      ]
+    }
+  ]
+}

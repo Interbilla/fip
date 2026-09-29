@@ -1,0 +1,146 @@
+{
+  "irVersion": "0",
+  "fipVersion": "0.2",
+  "policyId": "pol-weather",
+  "traceId": "trace-weather",
+  "authorityDecision": "AUTHORIZED",
+  "compilationDisposition": "NOT_COMPILED",
+  "deployable": false,
+  "codes": [
+    "not_compiled"
+  ],
+  "authorizationIds": [
+    "az-weather"
+  ],
+  "authorityIds": [
+    "auth-mission-control"
+  ],
+  "requirements": [
+    {
+      "requirementId": "req-no-other-network",
+      "effect": "deny",
+      "bindingIds": [],
+      "constraints": [],
+      "conditions": [],
+      "composition": "allOf",
+      "groupId": "weather-deny",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-weather",
+      "audit": "target-native",
+      "bindingPattern": {
+        "kinds": [
+          "service",
+          "api",
+          "inference-provider"
+        ],
+        "exceptBindingIds": [
+          "weather-get"
+        ]
+      },
+      "prohibitionIds": [
+        "proh-open-network"
+      ]
+    },
+    {
+      "requirementId": "req-weather",
+      "effect": "permit",
+      "bindingIds": [
+        "weather-get"
+      ],
+      "constraints": [
+        {
+          "constraintId": "con-get-weather",
+          "type": "protocol-parameter",
+          "method": "GET",
+          "path": "/weather"
+        }
+      ],
+      "conditions": [],
+      "composition": "allOf",
+      "groupId": "weather",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-weather",
+      "lifetime": "revocable",
+      "audit": "correlated",
+      "authorizationId": "az-weather",
+      "authorityId": "auth-mission-control"
+    }
+  ],
+  "groups": [
+    {
+      "groupId": "weather",
+      "composition": "allOf",
+      "requirementIds": [
+        "req-weather"
+      ]
+    },
+    {
+      "groupId": "weather-deny",
+      "composition": "allOf",
+      "requirementIds": [
+        "req-no-other-network"
+      ]
+    }
+  ],
+  "prohibitions": [
+    {
+      "prohibitionId": "proh-open-network",
+      "traceId": "trace-weather",
+      "requirementIds": [
+        "req-no-other-network"
+      ],
+      "bindingPattern": {
+        "kinds": [
+          "service",
+          "api",
+          "inference-provider"
+        ],
+        "exceptBindingIds": [
+          "weather-get"
+        ]
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "bindingId": "weather-get",
+      "resourceId": "service:Weather",
+      "actionId": "GetWeather",
+      "kind": "api",
+      "operation": "query",
+      "locator": {
+        "host": "weather.example.com",
+        "port": 443,
+        "uri": "https://weather.example.com/weather"
+      },
+      "protocol": {
+        "family": "http",
+        "transport": "https",
+        "http": {
+          "method": "GET",
+          "path": "/weather"
+        }
+      },
+      "lifetime": "revocable"
+    }
+  ],
+  "coverage": {
+    "fipGrants": [
+      "req-weather"
+    ],
+    "targetEnforcement": [
+      {
+        "requirementId": "req-no-other-network",
+        "status": "unassessed"
+      },
+      {
+        "requirementId": "req-weather",
+        "status": "unassessed"
+      }
+    ],
+    "targetBaseline": [],
+    "auditCoverage": "unassessed"
+  }
+}

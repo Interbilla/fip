@@ -1,0 +1,155 @@
+{
+  "manifestVersion": "0",
+  "adapterId": "openshell-v0.1.2",
+  "targetType": "sandbox",
+  "targetVersion": "0.1.2",
+  "adapterVersion": "0",
+  "acceptsFipVersions": ["0.2"],
+  "kinds": ["filesystem", "service", "api", "executable", "inference-provider"],
+  "operations": ["read", "write", "connect", "query", "execute", "invoke"],
+  "locatorForms": ["path", "host", "port", "uri", "executableId"],
+  "protocolFamilies": ["http"],
+  "protocolConstraints": ["http.method", "http.path"],
+  "capabilities": [
+    {
+      "capabilityId": "filesystem",
+      "kinds": ["filesystem"],
+      "lifetimes": ["establishment-bound"]
+    },
+    {
+      "capabilityId": "process",
+      "kinds": ["process", "executable"],
+      "lifetimes": ["establishment-bound"]
+    },
+    {
+      "capabilityId": "network",
+      "kinds": ["service", "api", "inference-provider"],
+      "lifetimes": ["establishment-bound", "revocable"]
+    },
+    {
+      "capabilityId": "credential",
+      "kinds": ["credential"],
+      "lifetimes": ["establishment-bound", "revocable"]
+    }
+  ],
+  "effects": ["permit", "deny"],
+  "auditStrengths": ["none", "target-native"],
+  "compositions": ["allOf", "anyOf"],
+  "approval": {
+    "actionGate": false,
+    "policyMutation": true
+  },
+  "precision": {
+    "filesystemOperations": "exact",
+    "networkHost": "exact",
+    "httpMethod": true,
+    "httpPath": true,
+    "modelId": false,
+    "credentialDisclosures": ["proxy-mediated"],
+    "credentialBinding": {
+      "dimensions": ["provider", "host", "port", "path", "protocol"],
+      "required": ["host", "port"]
+    },
+    "traceCorrelation": false
+  },
+  "substrate": [
+    {
+      "substrateId": "runtime-usr",
+      "description": "Runtime library path /usr",
+      "substrateClass": "read-only-runtime",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/usr"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-lib",
+      "description": "Runtime library path /lib",
+      "substrateClass": "read-only-runtime",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/lib"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-etc",
+      "description": "Runtime configuration path /etc",
+      "substrateClass": "read-only-runtime",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/etc"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-app",
+      "description": "Runtime application path /app",
+      "substrateClass": "read-only-runtime",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/app"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-var-log",
+      "description": "Runtime log path /var/log",
+      "substrateClass": "read-only-runtime",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/var/log"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-proc",
+      "description": "Runtime process information path /proc",
+      "substrateClass": "read-only-runtime",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/proc"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-urandom",
+      "description": "Runtime randomness path /dev/urandom",
+      "substrateClass": "read-only-runtime",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/dev/urandom"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-ca",
+      "description": "Runtime CA material at /run/openshell-supervisor-ca",
+      "substrateClass": "read-only-runtime",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/run/openshell-supervisor-ca"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-tmp",
+      "description": "Runtime temporary workspace /tmp",
+      "substrateClass": "writable-runtime",
+      "kind": "filesystem",
+      "operation": "write",
+      "locator": {"path": "/tmp"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-null",
+      "description": "Runtime null device /dev/null",
+      "substrateClass": "writable-runtime",
+      "kind": "filesystem",
+      "operation": "write",
+      "locator": {"path": "/dev/null"},
+      "authorityBearing": false
+    },
+    {
+      "substrateId": "runtime-syscall-restriction",
+      "description": "Runtime syscall restriction applied by the supervisor. It is not a process grant.",
+      "substrateClass": "restrictive",
+      "kind": "process",
+      "authorityBearing": false
+    }
+  ],
+  "dangerousDefaults": []
+}

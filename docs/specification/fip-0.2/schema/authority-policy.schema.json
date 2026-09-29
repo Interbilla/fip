@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fip:0.2:authority-policy",
+  "title": "FIP 0.2 AuthorityPolicy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fipVersion", "document", "status", "mode", "policyId", "validity"],
+  "properties": {
+    "fipVersion": {"const": "0.2"},
+    "document": {"const": "AuthorityPolicy"},
+    "status": {"const": "ENFORCEMENT CANDIDATE"},
+    "mode": {"enum": ["operational", "semantic-only"]},
+    "policyId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "traceId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "actors": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/actor"}},
+    "resources": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/resource"}},
+    "actions": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/action"}},
+    "authorities": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/authority"}},
+    "authorizations": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/authorization"}},
+    "executionBindings": {
+      "type": "array",
+      "items": {"$ref": "urn:fip:0.2:common#/$defs/executionBinding"}
+    },
+    "enforcementRequirements": {
+      "type": "array",
+      "items": {"$ref": "urn:fip:0.2:common#/$defs/enforcementRequirement"}
+    },
+    "conditions": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/condition"}},
+    "constraints": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/constraint"}},
+    "scopes": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/scope"}},
+    "prohibitions": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/prohibition"}},
+    "obligations": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/obligation"}},
+    "delegations": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/delegation"}},
+    "validity": {"$ref": "urn:fip:0.2:common#/$defs/validity"},
+    "provenance": {"$ref": "urn:fip:0.2:common#/$defs/provenance"},
+    "extensions": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/extension"}}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"mode": {"const": "operational"}},
+        "required": ["mode"]
+      },
+      "then": {
+        "required": [
+          "traceId", "actors", "resources", "actions", "authorities",
+          "authorizations", "executionBindings", "enforcementRequirements", "provenance"
+        ],
+        "properties": {
+          "actors": {"minItems": 1},
+          "authorities": {"minItems": 1},
+          "authorizations": {"minItems": 1},
+          "executionBindings": {"minItems": 1},
+          "enforcementRequirements": {"minItems": 1}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"mode": {"const": "semantic-only"}},
+        "required": ["mode"]
+      },
+      "then": {
+        "properties": {
+          "executionBindings": {"maxItems": 0},
+          "enforcementRequirements": {"maxItems": 0}
+        }
+      }
+    }
+  ]
+}

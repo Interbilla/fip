@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fip:0.2:audit-correlation",
+  "title": "FIP 0.2 audit correlation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["traceId", "requirementId", "runtimeDisposition"],
+  "properties": {
+    "traceId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "policyId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "exchangeId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "authorizationId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "requirementId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "bindingId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "irNodeId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "adapterId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "targetRuleId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "targetEventId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "runtimeDisposition": {
+      "enum": [
+        "ENFORCED_ALLOW", "ENFORCED_DENY", "AUDIT_ONLY",
+        "APPROVAL_PENDING", "UNOBSERVED"
+      ]
+    },
+    "observedAt": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"runtimeDisposition": {"enum": ["ENFORCED_ALLOW", "ENFORCED_DENY", "AUDIT_ONLY", "APPROVAL_PENDING"]}},
+        "required": ["runtimeDisposition"]
+      },
+      "then": {
+        "anyOf": [
+          {"required": ["targetRuleId"]},
+          {"required": ["targetEventId"]}
+        ]
+      }
+    }
+  ]
+}

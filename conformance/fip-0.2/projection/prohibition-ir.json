@@ -1,0 +1,133 @@
+{
+  "irVersion": "0",
+  "fipVersion": "0.2",
+  "policyId": "pol-prohibition",
+  "traceId": "trace-prohibition",
+  "authorityDecision": "AUTHORIZED",
+  "compilationDisposition": "NOT_COMPILED",
+  "deployable": false,
+  "codes": [
+    "not_compiled"
+  ],
+  "authorizationIds": [
+    "az-reads"
+  ],
+  "authorityIds": [
+    "auth-mission-control"
+  ],
+  "requirements": [
+    {
+      "requirementId": "req-deny-output",
+      "effect": "deny",
+      "bindingIds": [
+        "out-read"
+      ],
+      "constraints": [],
+      "conditions": [],
+      "composition": "allOf",
+      "groupId": "deny-output",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-prohibition",
+      "lifetime": "establishment-bound",
+      "audit": "target-native",
+      "prohibitionIds": [
+        "proh-output-read"
+      ]
+    },
+    {
+      "requirementId": "req-read-input",
+      "effect": "permit",
+      "bindingIds": [
+        "in-read"
+      ],
+      "constraints": [],
+      "conditions": [],
+      "composition": "allOf",
+      "groupId": "read-input",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-prohibition",
+      "lifetime": "establishment-bound",
+      "audit": "correlated",
+      "authorizationId": "az-reads",
+      "authorityId": "auth-mission-control"
+    }
+  ],
+  "groups": [
+    {
+      "groupId": "deny-output",
+      "composition": "allOf",
+      "requirementIds": [
+        "req-deny-output"
+      ]
+    },
+    {
+      "groupId": "read-input",
+      "composition": "allOf",
+      "requirementIds": [
+        "req-read-input"
+      ]
+    }
+  ],
+  "prohibitions": [
+    {
+      "prohibitionId": "proh-output-read",
+      "traceId": "trace-prohibition",
+      "actionIds": [
+        "ReadInspectionOutput"
+      ],
+      "resourceIds": [
+        "mission:InspectionOutput"
+      ],
+      "bindingIds": [
+        "out-read"
+      ],
+      "requirementIds": [
+        "req-deny-output"
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "bindingId": "in-read",
+      "resourceId": "mission:InspectionInput",
+      "actionId": "ReadInspectionInput",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {
+        "path": "/mission/input"
+      },
+      "lifetime": "establishment-bound"
+    },
+    {
+      "bindingId": "out-read",
+      "resourceId": "mission:InspectionOutput",
+      "actionId": "ReadInspectionOutput",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {
+        "path": "/mission/output"
+      },
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "coverage": {
+    "fipGrants": [
+      "req-read-input"
+    ],
+    "targetEnforcement": [
+      {
+        "requirementId": "req-deny-output",
+        "status": "unassessed"
+      },
+      {
+        "requirementId": "req-read-input",
+        "status": "unassessed"
+      }
+    ],
+    "targetBaseline": [],
+    "auditCoverage": "unassessed"
+  },
+  "exchangeId": "ex-ReadInspectionInput"
+}

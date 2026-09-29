@@ -1,0 +1,63 @@
+{
+  "manifestVersion": "0",
+  "adapterId": "filesystem-only-target",
+  "targetType": "generic",
+  "targetVersion": "0",
+  "adapterVersion": "0",
+  "acceptsFipVersions": [
+    "0.2"
+  ],
+  "kinds": [
+    "filesystem"
+  ],
+  "operations": [
+    "read",
+    "write"
+  ],
+  "locatorForms": [
+    "path"
+  ],
+  "protocolFamilies": [],
+  "protocolConstraints": [],
+  "effects": [
+    "permit",
+    "deny"
+  ],
+  "auditStrengths": [
+    "none",
+    "target-native",
+    "correlated"
+  ],
+  "compositions": [
+    "allOf",
+    "anyOf"
+  ],
+  "approval": {
+    "actionGate": true,
+    "policyMutation": false
+  },
+  "precision": {
+    "filesystemOperations": "bundle",
+    "networkHost": "exact",
+    "httpMethod": false,
+    "httpPath": false,
+    "modelId": false,
+    "credentialDisclosures": [],
+    "traceCorrelation": true
+  },
+  "substrate": [],
+  "dangerousDefaults": [],
+  "capabilities": [
+    {
+      "capabilityId": "filesystem",
+      "kinds": [
+        "filesystem"
+      ],
+      "lifetimes": [
+        "establishment-bound",
+        "revocable",
+        "validity-bound"
+      ]
+    }
+  ]
+}

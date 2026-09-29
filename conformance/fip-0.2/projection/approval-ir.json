@@ -1,0 +1,96 @@
+{
+  "irVersion": "0",
+  "fipVersion": "0.2",
+  "policyId": "pol-approval",
+  "traceId": "trace-approval",
+  "authorityDecision": "AUTHORIZED",
+  "compilationDisposition": "NOT_COMPILED",
+  "deployable": false,
+  "codes": [
+    "not_compiled"
+  ],
+  "authorizationIds": [
+    "az-delete"
+  ],
+  "authorityIds": [
+    "auth-mission-control"
+  ],
+  "requirements": [
+    {
+      "requirementId": "req-delete",
+      "effect": "require-approval",
+      "bindingIds": [
+        "out-delete"
+      ],
+      "constraints": [],
+      "conditions": [
+        {
+          "conditionId": "cond-approval",
+          "type": "approval-present",
+          "requirementId": "req-delete"
+        }
+      ],
+      "composition": "allOf",
+      "groupId": "delete",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-approval",
+      "lifetime": "establishment-bound",
+      "audit": "correlated",
+      "authorizationId": "az-delete",
+      "authorityId": "auth-mission-control"
+    }
+  ],
+  "groups": [
+    {
+      "groupId": "delete",
+      "composition": "allOf",
+      "requirementIds": [
+        "req-delete"
+      ]
+    }
+  ],
+  "prohibitions": [],
+  "bindings": [
+    {
+      "bindingId": "out-delete",
+      "resourceId": "mission:InspectionOutput",
+      "actionId": "DeleteInspectionOutput",
+      "kind": "filesystem",
+      "operation": "delete",
+      "locator": {
+        "path": "/mission/output"
+      },
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "coverage": {
+    "fipGrants": [],
+    "targetEnforcement": [
+      {
+        "requirementId": "req-delete",
+        "status": "unassessed"
+      }
+    ],
+    "targetBaseline": [],
+    "auditCoverage": "unassessed"
+  },
+  "approvals": [
+    {
+      "satisfied": true,
+      "requirementId": "req-delete",
+      "exchangeId": "ex-approve-delete",
+      "provenance": {
+        "assertedBy": "approver-mission",
+        "derivedFrom": [
+          "trace-approval"
+        ],
+        "independent": true,
+        "traceId": "trace-approval-decision"
+      },
+      "effect": "require-approval",
+      "decisionId": "dec-approve-delete",
+      "actorId": "approver-mission"
+    }
+  ]
+}

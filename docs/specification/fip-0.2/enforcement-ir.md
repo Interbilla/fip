@@ -1,0 +1,90 @@
+# Enforcement IR
+
+The Enforcement IR is a compilation contract. It is not an AuthorityPolicy, not
+an Exchange, and not a primitive. A target adapter consumes the IR. It does
+not consume vendor fields inside an authoring document, because those fields
+are not part of FIP.
+
+The shape is [schema/enforcement-ir.schema.json](schema/enforcement-ir.schema.json).
+
+## Producer and consumers
+
+A future compiler produces an IR only after it has an `authorityDecision`.
+Adapters MUST NOT produce an IR that upgrades `DENIED`, `INCOMPLETE`, or
+`REVIEW` into `AUTHORIZED`.
+
+The IR MUST include:
+
+| Field | Rule |
+| --- | --- |
+| `irVersion` | The string `0`. |
+| `fipVersion` | The string `0.2`. |
+| `policyId` | The source policy. |
+| `traceId` | Copied from the policy or exchange. |
+| `authorityDecision` | One of the four authority values. |
+| `compilationDisposition` | One of the four compilation values. |
+| `deployable` | `true` only when `compilationDisposition` is `FULL`. Otherwise `false`. |
+| `codes` | Reason codes from [decisions.md](decisions.md). |
+| `requirements` | One node per EnforcementRequirement in the projected slice. Each node carries its effect, binding identifiers, resolved constraints and conditions, lifetime, audit strength, composition, group, authority or prohibition reference, trace id, and a coverage status. |
+| `groups` | Every composition group that contributed a requirement, with the full member list. An `allOf` group is not reduced to one member. |
+| `prohibitions` | Applicable prohibitions. A prohibition stays in the IR when another action in the same policy was authorized. |
+| `bindings` | Snapshots of the ExecutionBindings that the slice references, still in FIP vocabulary. |
+| `coverage` | The coverage object defined in [adapters.md](adapters.md). |
+
+`exchangeId` MUST be present when the compilation was requested for one
+exchange, and MUST be omitted when the compilation is of a standing policy
+with no exchange.
+
+## Target-neutral projection
+
+A projection that has not been matched to a Capability Manifest is not a
+compilation. Its `compilationDisposition` is `NOT_COMPILED` and `deployable`
+is false. It MUST NOT use `FULL`, `PARTIAL`, or `REJECTED`. Those values
+require a Capability Manifest.
+
+Only an `AUTHORIZED` operational slice is projected. `DENIED`, `INCOMPLETE`,
+and `REVIEW` produce no operational IR. A semantic-only `AUTHORIZED` document
+may produce a semantic trace. It produces no execution bindings. An
+outstanding `require-approval` produces no operational IR. A satisfied
+approval is recorded with its Decision and provenance, and the requirement
+effect remains `require-approval`.
+
+Every requirement `coverage` value in this projection is `unassessed`.
+`coverage.auditCoverage` is `unassessed`. `targetBaseline` is empty. The
+requirement's own `audit` value is preserved and is not a claim that an
+audit event was produced.
+
+The projection copies locators and protocol parameters that the author wrote
+on a binding. It does not invent a path from a resource identifier, a method
+from an action name, or a hostname from a service name. Unknown or `custom`
+kinds and operations produce no operational IR. The IR contains no vendor
+policy fields.
+
+## Deployable bit
+
+`deployable` MUST be `true` if and only if `compilationDisposition` is `FULL`.
+A `PARTIAL` IR MAY include `candidate`, which is diagnostic. `candidate` MUST
+NOT be installed. A conforming implementation MUST NOT treat `candidate` as a
+policy source.
+
+A `REJECTED` or `NOT_COMPILED` IR MUST NOT include an installable rule set.
+`candidate` on those dispositions, if present, MUST be limited to diagnostics
+and MUST have no allow rules.
+
+## Adapter annotations
+
+`adapterAnnotations` is an object whose keys are adapter identifiers and whose
+values are opaque. Core evaluation MUST ignore them. They MUST NOT be required
+to decide authority. They MUST NOT introduce a primitive, relationship, kind,
+or effect.
+
+An annotation MAY record a target rule identifier so audit correlation can
+point at it. That identifier is not FIP vocabulary.
+
+## What the IR must not contain
+
+The IR schema is closed. A conforming IR MUST NOT contain a vendor policy
+document as a normative field. A future adapter writes its target document
+beside the IR, not inside the FIP vocabulary. If an implementation embeds a
+target document, it does so only inside `adapterAnnotations`, and coverage
+remains the FIP account of what was enforced.

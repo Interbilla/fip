@@ -1,0 +1,100 @@
+{
+  "fipVersion": "0.2",
+  "document": "AuthorityPolicy",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "policyId": "pol-weather",
+  "traceId": "trace-weather",
+  "actors": [
+    {"id": "agent-field", "identity": "id-agent-field"}
+  ],
+  "resources": [
+    {"id": "service:Weather"}
+  ],
+  "actions": [
+    {"id": "GetWeather", "resourceId": "service:Weather"}
+  ],
+  "authorities": [
+    {"id": "auth-mission-control", "kind": "direct"}
+  ],
+  "constraints": [
+    {
+      "constraintId": "con-get-weather",
+      "type": "protocol-parameter",
+      "method": "GET",
+      "path": "/weather"
+    }
+  ],
+  "executionBindings": [
+    {
+      "bindingId": "weather-get",
+      "resourceId": "service:Weather",
+      "actionId": "GetWeather",
+      "kind": "api",
+      "operation": "query",
+      "locator": {
+        "host": "weather.example.com",
+        "port": 443,
+        "uri": "https://weather.example.com/weather"
+      },
+      "protocol": {
+        "family": "http",
+        "transport": "https",
+        "http": {"method": "GET", "path": "/weather"}
+      },
+      "lifetime": "revocable"
+    }
+  ],
+  "enforcementRequirements": [
+    {
+      "requirementId": "req-weather",
+      "effect": "permit",
+      "bindingIds": ["weather-get"],
+      "constraintIds": ["con-get-weather"],
+      "composition": "allOf",
+      "groupId": "weather",
+      "audit": "correlated",
+      "lifetime": "revocable"
+    },
+    {
+      "requirementId": "req-no-other-network",
+      "effect": "deny",
+      "bindingPattern": {
+        "kinds": ["service", "api", "inference-provider"],
+        "exceptBindingIds": ["weather-get"]
+      },
+      "composition": "allOf",
+      "groupId": "weather-deny",
+      "audit": "target-native"
+    }
+  ],
+  "prohibitions": [
+    {
+      "prohibitionId": "proh-open-network",
+      "requirementIds": ["req-no-other-network"],
+      "bindingPattern": {
+        "kinds": ["service", "api", "inference-provider"],
+        "exceptBindingIds": ["weather-get"]
+      }
+    }
+  ],
+  "authorizations": [
+    {
+      "authorizationId": "az-weather",
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "actionIds": ["GetWeather"],
+      "resourceIds": ["service:Weather"],
+      "purpose": "FieldInspection",
+      "requirementIds": ["req-weather"],
+      "validity": {"state": "valid"}
+    }
+  ],
+  "validity": {"state": "valid"},
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": ["trace-weather"],
+    "independent": true,
+    "traceId": "trace-weather"
+  }
+}

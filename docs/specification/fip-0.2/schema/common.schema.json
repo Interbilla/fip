@@ -1,0 +1,470 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fip:0.2:common",
+  "title": "FIP 0.2 shared definitions",
+  "$defs": {
+    "id": {"type": "string", "minLength": 1},
+    "kind": {
+      "enum": [
+        "filesystem", "service", "api", "process", "executable", "model",
+        "inference-provider", "credential", "device", "message-channel",
+        "datastore", "custom"
+      ]
+    },
+    "operation": {
+      "enum": [
+        "read", "write", "execute", "connect", "invoke", "create", "modify",
+        "delete", "publish", "subscribe", "query", "command", "custom"
+      ]
+    },
+    "lifetime": {"enum": ["establishment-bound", "revocable", "validity-bound"]},
+    "effect": {"enum": ["permit", "deny", "require-approval", "audit-only"]},
+    "auditStrength": {"enum": ["none", "target-native", "correlated"]},
+    "composition": {"enum": ["allOf", "anyOf"]},
+    "validityState": {
+      "enum": ["valid", "expired", "revoked", "superseded", "not-yet-valid"]
+    },
+    "scopeDimension": {"enum": ["spatial", "temporal", "jurisdictional"]},
+    "validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state"],
+      "properties": {
+        "state": {"$ref": "#/$defs/validityState"},
+        "notBefore": {"type": "string", "minLength": 1},
+        "notAfter": {"type": "string", "minLength": 1}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scopeId", "dimension", "value"],
+      "properties": {
+        "scopeId": {"$ref": "#/$defs/id"},
+        "dimension": {"$ref": "#/$defs/scopeDimension"},
+        "value": {"$ref": "#/$defs/id"}
+      }
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "identity": {"$ref": "#/$defs/id"},
+        "role": {"type": "string", "minLength": 1}
+      }
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "rdfType": {"type": "string", "minLength": 1},
+        "layer": {"type": "string", "minLength": 1}
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "resourceId"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "resourceId": {"$ref": "#/$defs/id"}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "kind": {"type": "string", "minLength": 1}
+      }
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "host": {"type": "string", "minLength": 1},
+        "port": {"type": "integer", "minimum": 1, "maximum": 65535},
+        "uri": {"type": "string", "minLength": 1},
+        "serviceId": {"$ref": "#/$defs/id"},
+        "executableId": {"$ref": "#/$defs/id"},
+        "modelId": {"$ref": "#/$defs/id"},
+        "deviceId": {"$ref": "#/$defs/id"},
+        "channelId": {"$ref": "#/$defs/id"}
+      }
+    },
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family"],
+      "properties": {
+        "family": {"enum": ["http", "mcp", "graphql", "websocket", "json-rpc", "custom"]},
+        "transport": {"type": "string", "minLength": 1},
+        "customNamespace": {"$ref": "#/$defs/id"},
+        "http": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "method": {"type": "string", "minLength": 1},
+            "path": {"type": "string", "minLength": 1}
+          }
+        },
+        "mcp": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "method": {"type": "string", "minLength": 1},
+            "tool": {"type": "string", "minLength": 1}
+          }
+        },
+        "graphql": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operationType": {"enum": ["query", "mutation", "subscription", "*"]},
+            "operationName": {"type": "string", "minLength": 1},
+            "fields": {"type": "array", "items": {"type": "string", "minLength": 1}}
+          }
+        },
+        "websocket": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "method": {"enum": ["GET", "WEBSOCKET_TEXT", "*"]},
+            "path": {"type": "string", "minLength": 1}
+          }
+        },
+        "jsonRpc": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "method": {"type": "string", "minLength": 1}
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"family": {"const": "custom"}},
+            "required": ["family"]
+          },
+          "then": {"required": ["customNamespace"]}
+        }
+      ]
+    },
+    "executionBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bindingId", "kind", "operation", "lifetime", "locator"],
+      "properties": {
+        "bindingId": {"$ref": "#/$defs/id"},
+        "resourceId": {"$ref": "#/$defs/id"},
+        "actionId": {"$ref": "#/$defs/id"},
+        "kind": {"$ref": "#/$defs/kind"},
+        "operation": {"$ref": "#/$defs/operation"},
+        "locator": {"$ref": "#/$defs/locator"},
+        "protocol": {"$ref": "#/$defs/protocol"},
+        "disclosure": {"enum": ["none", "proxy-mediated", "process-visible"]},
+        "lifetime": {"$ref": "#/$defs/lifetime"},
+        "customNamespace": {"$ref": "#/$defs/id"},
+        "customKind": {"$ref": "#/$defs/id"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"kind": {"const": "credential"}},
+            "required": ["kind"]
+          },
+          "then": {"required": ["disclosure"]}
+        },
+        {
+          "if": {
+            "properties": {"kind": {"const": "custom"}},
+            "required": ["kind"]
+          },
+          "then": {"required": ["customNamespace", "customKind"]}
+        },
+        {
+          "if": {
+            "properties": {"operation": {"const": "custom"}},
+            "required": ["operation"]
+          },
+          "then": {"required": ["customNamespace"]}
+        }
+      ]
+    },
+    "bindingPattern": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kinds": {"type": "array", "items": {"$ref": "#/$defs/kind"}, "minItems": 1},
+        "operations": {"type": "array", "items": {"$ref": "#/$defs/operation"}, "minItems": 1},
+        "exceptBindingIds": {"type": "array", "items": {"$ref": "#/$defs/id"}}
+      }
+    },
+    "enforcementRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requirementId", "effect", "composition"],
+      "properties": {
+        "requirementId": {"$ref": "#/$defs/id"},
+        "effect": {"$ref": "#/$defs/effect"},
+        "bindingIds": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1},
+        "bindingPattern": {"$ref": "#/$defs/bindingPattern"},
+        "constraintIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "conditionIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "lifetime": {"$ref": "#/$defs/lifetime"},
+        "audit": {"$ref": "#/$defs/auditStrength"},
+        "composition": {"$ref": "#/$defs/composition"},
+        "groupId": {"$ref": "#/$defs/id"},
+        "approverIds": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"effect": {"enum": ["permit", "deny", "require-approval"]}},
+            "required": ["effect"]
+          },
+          "then": {
+            "anyOf": [
+              {"required": ["bindingIds"]},
+              {"required": ["bindingPattern"]}
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {"effect": {"const": "require-approval"}},
+            "required": ["effect"]
+          },
+          "then": {"required": ["approverIds"]}
+        }
+      ]
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["conditionId", "type"],
+      "properties": {
+        "conditionId": {"$ref": "#/$defs/id"},
+        "type": {
+          "enum": ["scope-match", "validity-window", "purpose-match", "approval-present", "custom"]
+        },
+        "scopeId": {"$ref": "#/$defs/id"},
+        "purpose": {"type": "string", "minLength": 1},
+        "requirementId": {"$ref": "#/$defs/id"},
+        "namespace": {"$ref": "#/$defs/id"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"type": {"const": "custom"}},
+            "required": ["type"]
+          },
+          "then": {"required": ["namespace"]}
+        }
+      ]
+    },
+    "constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["constraintId", "type"],
+      "properties": {
+        "constraintId": {"$ref": "#/$defs/id"},
+        "type": {"enum": ["locator-pattern", "operation", "protocol-parameter", "custom"]},
+        "operation": {"$ref": "#/$defs/operation"},
+        "path": {"type": "string", "minLength": 1},
+        "method": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "value": {"type": "string", "minLength": 1},
+        "namespace": {"$ref": "#/$defs/id"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"type": {"const": "custom"}},
+            "required": ["type"]
+          },
+          "then": {"required": ["namespace"]}
+        }
+      ]
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authorizationId", "actorId", "authorityId", "actionIds", "requirementIds"],
+      "properties": {
+        "authorizationId": {"$ref": "#/$defs/id"},
+        "actorId": {"$ref": "#/$defs/id"},
+        "authorityId": {"$ref": "#/$defs/id"},
+        "actionIds": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1},
+        "resourceIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "purpose": {"type": "string", "minLength": 1},
+        "requirementIds": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1},
+        "scopeIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "validity": {"$ref": "#/$defs/validity"}
+      }
+    },
+    "authorizationRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "validity": {"$ref": "#/$defs/validityState"}
+      }
+    },
+    "prohibition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prohibitionId"],
+      "properties": {
+        "prohibitionId": {"$ref": "#/$defs/id"},
+        "actionIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "resourceIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "bindingIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "requirementIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "bindingPattern": {"$ref": "#/$defs/bindingPattern"}
+      }
+    },
+    "obligation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["obligationId", "requirementIds"],
+      "properties": {
+        "obligationId": {"$ref": "#/$defs/id"},
+        "actionIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "requirementIds": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1}
+      }
+    },
+    "delegation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["delegationId", "from", "to", "canDelegate"],
+      "properties": {
+        "delegationId": {"$ref": "#/$defs/id"},
+        "from": {"$ref": "#/$defs/id"},
+        "to": {"$ref": "#/$defs/id"},
+        "canDelegate": {"type": "boolean"},
+        "authorizationIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "bindingIds": {"type": "array", "items": {"$ref": "#/$defs/id"}}
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decisionId", "kind"],
+      "properties": {
+        "decisionId": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["authority", "approval", "review"]},
+        "value": {"type": "string", "minLength": 1},
+        "requirementId": {"$ref": "#/$defs/id"},
+        "authorizationId": {"$ref": "#/$defs/id"},
+        "validity": {"$ref": "#/$defs/validity"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"kind": {"const": "approval"}},
+            "required": ["kind"]
+          },
+          "then": {
+            "required": ["value", "requirementId", "validity"],
+            "properties": {"value": {"enum": ["approved", "rejected"]}}
+          }
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assertedBy", "traceId"],
+      "properties": {
+        "assertedBy": {"$ref": "#/$defs/id"},
+        "derivedFrom": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "independent": {"type": "boolean"},
+        "traceId": {"$ref": "#/$defs/id"},
+        "digest": {"type": "string", "minLength": 1}
+      }
+    },
+    "extensionClaims": {
+      "type": "object",
+      "properties": {
+        "authority": false,
+        "authorization": false,
+        "permission": false,
+        "prohibition": false,
+        "obligation": false,
+        "delegation": false,
+        "provenance": false,
+        "policy": false,
+        "validity": false
+      },
+      "additionalProperties": true
+    },
+    "extension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["namespace"],
+      "properties": {
+        "namespace": {"$ref": "#/$defs/id"},
+        "recognized": {"type": "boolean"},
+        "claims": {"$ref": "#/$defs/extensionClaims"}
+      }
+    },
+    "substrateClass": {
+      "enum": ["restrictive", "read-only-runtime", "writable-runtime", "operational-authority"]
+    },
+    "substrateEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description", "authorityBearing"],
+      "properties": {
+        "substrateId": {"$ref": "#/$defs/id"},
+        "description": {"type": "string", "minLength": 1},
+        "substrateClass": {"$ref": "#/$defs/substrateClass"},
+        "kind": {"$ref": "#/$defs/kind"},
+        "operation": {"$ref": "#/$defs/operation"},
+        "locator": {"$ref": "#/$defs/locator"},
+        "authorityBearing": {"const": false}
+      }
+    },
+    "reasonCode": {
+      "enum": [
+        "missing_authority",
+        "missing_execution_binding",
+        "prohibition_dominates",
+        "explicit_prohibition",
+        "absence_is_not_permission",
+        "obligation_is_not_authority",
+        "approval_required",
+        "semantic_only",
+        "not_compiled",
+        "compilation_rejected",
+        "subset_not_demonstrated",
+        "unsupported_requirement",
+        "baseline_exceeds_grant",
+        "lifetime_mismatch",
+        "validity_expired",
+        "validity_revoked",
+        "validity_superseded",
+        "validity_not_yet_valid",
+        "credential_is_not_authorization",
+        "silent_semantic_escalation",
+        "delegation_requires_explicit_authority",
+        "coordination_is_not_enterprise_delegation",
+        "free_text_cannot_manufacture_authority",
+        "authority_source_free_text",
+        "memory_cannot_manufacture_authority",
+        "unknown_fip_version",
+        "extension_cannot_grant_authority"
+      ]
+    }
+  }
+}

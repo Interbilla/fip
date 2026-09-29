@@ -1,0 +1,109 @@
+{
+  "irVersion": "0",
+  "fipVersion": "0.2",
+  "policyId": "pol-files",
+  "traceId": "trace-files",
+  "authorityDecision": "AUTHORIZED",
+  "compilationDisposition": "NOT_COMPILED",
+  "deployable": false,
+  "codes": [
+    "not_compiled"
+  ],
+  "authorizationIds": [
+    "az-files"
+  ],
+  "authorityIds": [
+    "auth-mission-control"
+  ],
+  "requirements": [
+    {
+      "requirementId": "req-read",
+      "effect": "permit",
+      "bindingIds": [
+        "in-read"
+      ],
+      "constraints": [],
+      "conditions": [],
+      "composition": "allOf",
+      "groupId": "files",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-files",
+      "lifetime": "establishment-bound",
+      "audit": "correlated",
+      "authorizationId": "az-files",
+      "authorityId": "auth-mission-control"
+    },
+    {
+      "requirementId": "req-write",
+      "effect": "permit",
+      "bindingIds": [
+        "out-write"
+      ],
+      "constraints": [],
+      "conditions": [],
+      "composition": "allOf",
+      "groupId": "files",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-files",
+      "lifetime": "establishment-bound",
+      "audit": "correlated",
+      "authorizationId": "az-files",
+      "authorityId": "auth-mission-control"
+    }
+  ],
+  "groups": [
+    {
+      "groupId": "files",
+      "composition": "allOf",
+      "requirementIds": [
+        "req-read",
+        "req-write"
+      ]
+    }
+  ],
+  "prohibitions": [],
+  "bindings": [
+    {
+      "bindingId": "in-read",
+      "resourceId": "mission:InspectionInput",
+      "actionId": "ReadInspectionInput",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {
+        "path": "/mission/input"
+      },
+      "lifetime": "establishment-bound"
+    },
+    {
+      "bindingId": "out-write",
+      "resourceId": "mission:InspectionOutput",
+      "actionId": "WriteInspectionOutput",
+      "kind": "filesystem",
+      "operation": "write",
+      "locator": {
+        "path": "/mission/output"
+      },
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "coverage": {
+    "fipGrants": [
+      "req-read",
+      "req-write"
+    ],
+    "targetEnforcement": [
+      {
+        "requirementId": "req-read",
+        "status": "unassessed"
+      },
+      {
+        "requirementId": "req-write",
+        "status": "unassessed"
+      }
+    ],
+    "targetBaseline": [],
+    "auditCoverage": "unassessed"
+  }
+}

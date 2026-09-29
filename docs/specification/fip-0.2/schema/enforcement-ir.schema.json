@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fip:0.2:enforcement-ir",
+  "title": "FIP 0.2 Enforcement IR",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "irVersion", "fipVersion", "policyId", "traceId", "authorityDecision",
+    "compilationDisposition", "deployable", "codes", "authorizationIds",
+    "authorityIds", "requirements", "groups", "prohibitions", "bindings",
+    "coverage"
+  ],
+  "properties": {
+    "irVersion": {"const": "0"},
+    "fipVersion": {"const": "0.2"},
+    "policyId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "exchangeId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "traceId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "authorityDecision": {"enum": ["AUTHORIZED", "DENIED", "INCOMPLETE", "REVIEW"]},
+    "compilationDisposition": {"enum": ["FULL", "PARTIAL", "REJECTED", "NOT_COMPILED"]},
+    "deployable": {"type": "boolean"},
+    "codes": {
+      "type": "array",
+      "items": {"$ref": "urn:fip:0.2:common#/$defs/reasonCode"}
+    },
+    "authorizationIds": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/id"}},
+    "authorityIds": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/id"}},
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requirementId", "effect", "bindingIds", "constraints", "conditions",
+          "composition", "groupId", "coverage", "auditCoverage", "traceId"
+        ],
+        "properties": {
+          "requirementId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "effect": {"$ref": "urn:fip:0.2:common#/$defs/effect"},
+          "bindingIds": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/id"}},
+          "bindingPattern": {"$ref": "urn:fip:0.2:common#/$defs/bindingPattern"},
+          "constraints": {
+            "type": "array",
+            "items": {"$ref": "urn:fip:0.2:common#/$defs/constraint"}
+          },
+          "conditions": {
+            "type": "array",
+            "items": {"$ref": "urn:fip:0.2:common#/$defs/condition"}
+          },
+          "lifetime": {"$ref": "urn:fip:0.2:common#/$defs/lifetime"},
+          "audit": {"$ref": "urn:fip:0.2:common#/$defs/auditStrength"},
+          "auditCoverage": {"const": "unassessed"},
+          "composition": {"$ref": "urn:fip:0.2:common#/$defs/composition"},
+          "groupId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "authorityId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "authorizationId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "prohibitionIds": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/id"}},
+          "traceId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "coverage": {"enum": ["unassessed", "enforced", "unenforced", "rejected"]}
+        }
+      }
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["groupId", "composition", "requirementIds"],
+        "properties": {
+          "groupId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "composition": {"$ref": "urn:fip:0.2:common#/$defs/composition"},
+          "requirementIds": {
+            "type": "array",
+            "items": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "prohibitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["prohibitionId", "traceId"],
+        "properties": {
+          "prohibitionId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "actionIds": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/id"}},
+          "resourceIds": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/id"}},
+          "bindingIds": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/id"}},
+          "requirementIds": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/id"}},
+          "bindingPattern": {"$ref": "urn:fip:0.2:common#/$defs/bindingPattern"},
+          "traceId": {"$ref": "urn:fip:0.2:common#/$defs/id"}
+        }
+      }
+    },
+    "approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["satisfied", "requirementId", "exchangeId", "provenance"],
+        "properties": {
+          "satisfied": {"const": true},
+          "requirementId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "decisionId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "exchangeId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "actorId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "provenance": {"$ref": "urn:fip:0.2:common#/$defs/provenance"},
+          "effect": {"const": "require-approval"}
+        }
+      }
+    },
+    "bindings": {
+      "type": "array",
+      "items": {"$ref": "urn:fip:0.2:common#/$defs/executionBinding"}
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fipGrants", "targetEnforcement", "targetBaseline", "auditCoverage"],
+      "properties": {
+        "fipGrants": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/id"}},
+        "targetEnforcement": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["requirementId", "status"],
+            "properties": {
+              "requirementId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+              "status": {"enum": ["unassessed", "enforced", "unenforced", "rejected"]}
+            }
+          }
+        },
+        "targetBaseline": {
+          "type": "array",
+          "items": {"$ref": "urn:fip:0.2:common#/$defs/substrateEntry"}
+        },
+        "auditCoverage": {"const": "unassessed"}
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nonDeployable"],
+      "properties": {
+        "nonDeployable": {"const": true},
+        "diagnostics": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "adapterAnnotations": {
+      "type": "object",
+      "additionalProperties": {"type": "object"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"compilationDisposition": {"const": "FULL"}},
+        "required": ["compilationDisposition"]
+      },
+      "then": {"properties": {"deployable": {"const": true}}},
+      "else": {"properties": {"deployable": {"const": false}}}
+    },
+    {
+      "if": {
+        "not": {
+          "properties": {"compilationDisposition": {"const": "PARTIAL"}},
+          "required": ["compilationDisposition"]
+        }
+      },
+      "then": {"properties": {"candidate": false}}
+    }
+  ]
+}

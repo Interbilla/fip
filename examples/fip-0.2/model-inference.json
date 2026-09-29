@@ -1,0 +1,80 @@
+{
+  "fipVersion": "0.2",
+  "document": "AuthorityPolicy",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "policyId": "pol-model",
+  "traceId": "trace-model",
+  "actors": [
+    {"id": "agent-field", "identity": "id-agent-field"}
+  ],
+  "resources": [
+    {"id": "model:FieldSummary"},
+    {"id": "provider:FieldSummary"}
+  ],
+  "actions": [
+    {"id": "SummarizeWithModel", "resourceId": "model:FieldSummary"}
+  ],
+  "authorities": [
+    {"id": "auth-mission-control", "kind": "direct"}
+  ],
+  "executionBindings": [
+    {
+      "bindingId": "model-invoke",
+      "resourceId": "model:FieldSummary",
+      "actionId": "SummarizeWithModel",
+      "kind": "model",
+      "operation": "invoke",
+      "locator": {"modelId": "field-summary-v1"},
+      "lifetime": "revocable"
+    },
+    {
+      "bindingId": "provider-invoke",
+      "resourceId": "provider:FieldSummary",
+      "actionId": "SummarizeWithModel",
+      "kind": "inference-provider",
+      "operation": "invoke",
+      "locator": {"serviceId": "inference-provider:field-summary"},
+      "lifetime": "revocable"
+    }
+  ],
+  "enforcementRequirements": [
+    {
+      "requirementId": "req-model",
+      "effect": "permit",
+      "bindingIds": ["model-invoke"],
+      "composition": "allOf",
+      "groupId": "model-call",
+      "audit": "correlated",
+      "lifetime": "revocable"
+    },
+    {
+      "requirementId": "req-provider",
+      "effect": "permit",
+      "bindingIds": ["provider-invoke"],
+      "composition": "allOf",
+      "groupId": "model-call",
+      "audit": "correlated",
+      "lifetime": "revocable"
+    }
+  ],
+  "authorizations": [
+    {
+      "authorizationId": "az-model",
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "actionIds": ["SummarizeWithModel"],
+      "resourceIds": ["model:FieldSummary", "provider:FieldSummary"],
+      "purpose": "FieldInspection",
+      "requirementIds": ["req-model", "req-provider"],
+      "validity": {"state": "valid"}
+    }
+  ],
+  "validity": {"state": "valid"},
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": ["trace-model"],
+    "independent": true,
+    "traceId": "trace-model"
+  }
+}

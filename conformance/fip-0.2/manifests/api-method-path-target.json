@@ -1,0 +1,76 @@
+{
+  "manifestVersion": "0",
+  "adapterId": "api-method-path-target",
+  "targetType": "generic",
+  "targetVersion": "0",
+  "adapterVersion": "0",
+  "acceptsFipVersions": [
+    "0.2"
+  ],
+  "kinds": [
+    "service",
+    "api",
+    "inference-provider"
+  ],
+  "operations": [
+    "connect",
+    "query",
+    "invoke"
+  ],
+  "locatorForms": [
+    "host",
+    "port",
+    "uri",
+    "serviceId"
+  ],
+  "protocolFamilies": [
+    "http"
+  ],
+  "protocolConstraints": [
+    "http.method",
+    "http.path"
+  ],
+  "effects": [
+    "permit",
+    "deny"
+  ],
+  "auditStrengths": [
+    "none",
+    "target-native",
+    "correlated"
+  ],
+  "compositions": [
+    "allOf",
+    "anyOf"
+  ],
+  "approval": {
+    "actionGate": true,
+    "policyMutation": false
+  },
+  "precision": {
+    "filesystemOperations": "exact",
+    "networkHost": "exact",
+    "httpMethod": true,
+    "httpPath": true,
+    "modelId": false,
+    "credentialDisclosures": [],
+    "traceCorrelation": true
+  },
+  "substrate": [],
+  "dangerousDefaults": [],
+  "capabilities": [
+    {
+      "capabilityId": "network",
+      "kinds": [
+        "service",
+        "api",
+        "inference-provider"
+      ],
+      "lifetimes": [
+        "establishment-bound",
+        "revocable",
+        "validity-bound"
+      ]
+    }
+  ]
+}

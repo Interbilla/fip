@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fip:0.2:exchange",
+  "title": "FIP 0.2 Exchange",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fipVersion", "document", "status", "mode", "exchangeId", "exchangeType"],
+  "properties": {
+    "fipVersion": {"const": "0.2"},
+    "document": {"const": "Exchange"},
+    "status": {"const": "ENFORCEMENT CANDIDATE"},
+    "mode": {"enum": ["operational", "semantic-only"]},
+    "fipCompat": {"const": "0.1"},
+    "exchangeId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "exchangeType": {
+      "enum": [
+        "Assertion", "Recommendation", "Request", "Response", "Instruction",
+        "Delegation", "Authorization", "Decision"
+      ]
+    },
+    "policyId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "traceId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "actor": {"$ref": "urn:fip:0.2:common#/$defs/actor"},
+    "resource": {"$ref": "urn:fip:0.2:common#/$defs/resource"},
+    "action": {"type": "string", "minLength": 1},
+    "purpose": {"type": "string", "minLength": 1},
+    "authority": {"$ref": "urn:fip:0.2:common#/$defs/authority"},
+    "authorization": {"$ref": "urn:fip:0.2:common#/$defs/authorizationRef"},
+    "credential": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {"id": {"$ref": "urn:fip:0.2:common#/$defs/id"}}
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {"id": {"$ref": "urn:fip:0.2:common#/$defs/id"}}
+    },
+    "normative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state"],
+      "properties": {
+        "state": {"enum": ["allowed", "prohibited", "obligated", "unknown"]}
+      }
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dimension", "value"],
+        "properties": {
+          "dimension": {"$ref": "urn:fip:0.2:common#/$defs/scopeDimension"},
+          "value": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "validity": {"$ref": "urn:fip:0.2:common#/$defs/validity"},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id"],
+        "properties": {
+          "id": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "independent": {"type": "boolean"}
+        }
+      }
+    },
+    "provenance": {"$ref": "urn:fip:0.2:common#/$defs/provenance"},
+    "delegation": {"$ref": "urn:fip:0.2:common#/$defs/delegation"},
+    "decision": {"$ref": "urn:fip:0.2:common#/$defs/decision"},
+    "respondsTo": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "attemptedEffect": {"type": "string", "minLength": 1},
+    "expectedPurpose": {"type": "string", "minLength": 1},
+    "expectedActor": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "untrustedFreeText": {"type": "string"},
+    "authoritySource": {"type": "string", "minLength": 1},
+    "channel": {"type": "string", "minLength": 1},
+    "tamperedAfterBinding": {"type": "boolean"},
+    "staleReplay": {"type": "boolean"},
+    "executionBindings": {
+      "type": "array",
+      "items": {"$ref": "urn:fip:0.2:common#/$defs/executionBinding"}
+    },
+    "enforcementRequirements": {
+      "type": "array",
+      "items": {"$ref": "urn:fip:0.2:common#/$defs/enforcementRequirement"}
+    },
+    "extensions": {"type": "array", "items": {"$ref": "urn:fip:0.2:common#/$defs/extension"}}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"mode": {"const": "operational"}},
+        "required": ["mode"]
+      },
+      "then": {"required": ["policyId", "traceId"]}
+    },
+    {
+      "if": {
+        "properties": {"mode": {"const": "semantic-only"}},
+        "required": ["mode"]
+      },
+      "then": {
+        "properties": {
+          "executionBindings": {"maxItems": 0},
+          "enforcementRequirements": {"maxItems": 0}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"fipCompat": {"const": "0.1"}},
+        "required": ["fipCompat"]
+      },
+      "then": {
+        "properties": {"mode": {"const": "semantic-only"}},
+        "required": ["provenance"]
+      }
+    },
+    {
+      "if": {
+        "properties": {"exchangeType": {"const": "Decision"}},
+        "required": ["exchangeType"]
+      },
+      "then": {"required": ["decision", "actor", "provenance"]}
+    }
+  ]
+}

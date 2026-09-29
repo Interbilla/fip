@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fip:0.2:compilation-profile",
+  "title": "FIP 0.2 Compilation Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profileVersion", "profileId", "acceptedExecutionSubstrate"],
+  "properties": {
+    "profileVersion": {"const": "0"},
+    "profileId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "acceptedExecutionSubstrate": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["substrateClass"],
+        "properties": {
+          "substrateClass": {
+            "enum": ["restrictive", "read-only-runtime", "writable-runtime"]
+          },
+          "substrateId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "kind": {"$ref": "urn:fip:0.2:common#/$defs/kind"},
+          "operation": {"$ref": "urn:fip:0.2:common#/$defs/operation"},
+          "locator": {"$ref": "urn:fip:0.2:common#/$defs/locator"}
+        }
+      }
+    }
+  }
+}

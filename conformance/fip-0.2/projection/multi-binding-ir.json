@@ -1,0 +1,156 @@
+{
+  "irVersion": "0",
+  "fipVersion": "0.2",
+  "policyId": "pol-query",
+  "traceId": "trace-query",
+  "authorityDecision": "AUTHORIZED",
+  "compilationDisposition": "NOT_COMPILED",
+  "deployable": false,
+  "codes": [
+    "not_compiled"
+  ],
+  "authorizationIds": [
+    "az-query"
+  ],
+  "authorityIds": [
+    "auth-mission-control"
+  ],
+  "requirements": [
+    {
+      "requirementId": "req-connect",
+      "effect": "permit",
+      "bindingIds": [
+        "status-connect"
+      ],
+      "constraints": [],
+      "conditions": [],
+      "composition": "allOf",
+      "groupId": "query-status",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-query",
+      "lifetime": "revocable",
+      "audit": "correlated",
+      "authorizationId": "az-query",
+      "authorityId": "auth-mission-control"
+    },
+    {
+      "requirementId": "req-credential",
+      "effect": "permit",
+      "bindingIds": [
+        "status-credential"
+      ],
+      "constraints": [],
+      "conditions": [],
+      "composition": "allOf",
+      "groupId": "query-status",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-query",
+      "lifetime": "revocable",
+      "audit": "correlated",
+      "authorizationId": "az-query",
+      "authorityId": "auth-mission-control"
+    },
+    {
+      "requirementId": "req-get",
+      "effect": "permit",
+      "bindingIds": [
+        "status-get"
+      ],
+      "constraints": [],
+      "conditions": [],
+      "composition": "allOf",
+      "groupId": "query-status",
+      "coverage": "unassessed",
+      "auditCoverage": "unassessed",
+      "traceId": "trace-query",
+      "lifetime": "revocable",
+      "audit": "correlated",
+      "authorizationId": "az-query",
+      "authorityId": "auth-mission-control"
+    }
+  ],
+  "groups": [
+    {
+      "groupId": "query-status",
+      "composition": "allOf",
+      "requirementIds": [
+        "req-connect",
+        "req-credential",
+        "req-get"
+      ]
+    }
+  ],
+  "prohibitions": [],
+  "bindings": [
+    {
+      "bindingId": "status-connect",
+      "resourceId": "service:Status",
+      "actionId": "QueryStatus",
+      "kind": "service",
+      "operation": "connect",
+      "locator": {
+        "host": "status.example.com",
+        "port": 443
+      },
+      "lifetime": "revocable"
+    },
+    {
+      "bindingId": "status-credential",
+      "resourceId": "credential:Status",
+      "actionId": "QueryStatus",
+      "kind": "credential",
+      "operation": "invoke",
+      "locator": {
+        "serviceId": "credential:Status"
+      },
+      "disclosure": "proxy-mediated",
+      "lifetime": "revocable"
+    },
+    {
+      "bindingId": "status-get",
+      "resourceId": "service:Status",
+      "actionId": "QueryStatus",
+      "kind": "api",
+      "operation": "query",
+      "locator": {
+        "host": "status.example.com",
+        "port": 443,
+        "uri": "https://status.example.com/status"
+      },
+      "protocol": {
+        "family": "http",
+        "transport": "https",
+        "http": {
+          "method": "GET",
+          "path": "/status"
+        }
+      },
+      "lifetime": "revocable"
+    }
+  ],
+  "coverage": {
+    "fipGrants": [
+      "req-connect",
+      "req-credential",
+      "req-get"
+    ],
+    "targetEnforcement": [
+      {
+        "requirementId": "req-connect",
+        "status": "unassessed"
+      },
+      {
+        "requirementId": "req-credential",
+        "status": "unassessed"
+      },
+      {
+        "requirementId": "req-get",
+        "status": "unassessed"
+      }
+    ],
+    "targetBaseline": [],
+    "auditCoverage": "unassessed"
+  }
+}

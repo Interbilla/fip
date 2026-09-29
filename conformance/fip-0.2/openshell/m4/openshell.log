@@ -1,0 +1,30 @@
+==== containers ====
+==== docker-logs [redacted] ====
+2026-09-29T14:26:20.487Z INFO openshell_supervisor: Isolation boundary enforcement confirmed
+2026-09-29T14:26:20.615Z OCSF CONFIG:LOADED [INFO] Acknowledged initial policy revision as loaded [version:1] [hash:0b78911ec0b9fd74c6d1aba4749097bc2fc8b73a960907c1e261e2a194deb907]
+==== docker-logs [redacted] ====
+2026-09-29T14:26:20.497Z OCSF CONFIG:PROBED [INFO] Landlock filesystem sandbox available [abi:v7 compat:HardRequirement ro:9 rw:3]
+2026-09-29T14:26:20.497Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:20.497Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:20.762Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:20.762Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:20.909Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:20.909Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:21.043Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:21.043Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:21.235Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:21.235Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:21.413Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:21.413Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:21.567Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:21.567Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:21.708Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:21.708Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:21.872Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:21.872Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:22.020Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:22.020Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+2026-09-29T14:26:22.169Z OCSF CONFIG:APPLYING [INFO] Applying Landlock filesystem sandbox [abi:V3 compat:HardRequirement ro:12 rw:3]
+2026-09-29T14:26:22.169Z OCSF CONFIG:BUILT [INFO] Landlock ruleset built [rules_applied:14 skipped:1]
+[1790691980.487] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary enforcement confirmed backend=openshell-sandbox
+[1790691980.615] [sandbox] [OCSF ] [ocsf] CONFIG:LOADED [INFO] Acknowledged initial policy revision as loaded [version:1] [hash:0b78911ec0b9fd74c6d1aba4749097bc2fc8b73a960907c1e261e2a194deb907]

@@ -1,0 +1,99 @@
+{
+  "fipVersion": "0.2",
+  "document": "AuthorityPolicy",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "policyId": "pol-prohibition",
+  "traceId": "trace-prohibition",
+  "actors": [
+    {"id": "agent-field", "identity": "id-agent-field"}
+  ],
+  "resources": [
+    {"id": "mission:InspectionInput"},
+    {"id": "mission:InspectionOutput"}
+  ],
+  "actions": [
+    {"id": "ReadInspectionInput", "resourceId": "mission:InspectionInput"},
+    {"id": "ReadInspectionOutput", "resourceId": "mission:InspectionOutput"}
+  ],
+  "authorities": [
+    {"id": "auth-mission-control", "kind": "direct"}
+  ],
+  "executionBindings": [
+    {
+      "bindingId": "in-read",
+      "resourceId": "mission:InspectionInput",
+      "actionId": "ReadInspectionInput",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/mission/input"},
+      "lifetime": "establishment-bound"
+    },
+    {
+      "bindingId": "out-read",
+      "resourceId": "mission:InspectionOutput",
+      "actionId": "ReadInspectionOutput",
+      "kind": "filesystem",
+      "operation": "read",
+      "locator": {"path": "/mission/output"},
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "enforcementRequirements": [
+    {
+      "requirementId": "req-read-input",
+      "effect": "permit",
+      "bindingIds": ["in-read"],
+      "composition": "allOf",
+      "groupId": "read-input",
+      "audit": "correlated",
+      "lifetime": "establishment-bound"
+    },
+    {
+      "requirementId": "req-read-output",
+      "effect": "permit",
+      "bindingIds": ["out-read"],
+      "composition": "allOf",
+      "groupId": "read-output",
+      "audit": "correlated",
+      "lifetime": "establishment-bound"
+    },
+    {
+      "requirementId": "req-deny-output",
+      "effect": "deny",
+      "bindingIds": ["out-read"],
+      "composition": "allOf",
+      "groupId": "deny-output",
+      "audit": "target-native",
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "prohibitions": [
+    {
+      "prohibitionId": "proh-output-read",
+      "actionIds": ["ReadInspectionOutput"],
+      "resourceIds": ["mission:InspectionOutput"],
+      "bindingIds": ["out-read"],
+      "requirementIds": ["req-deny-output"]
+    }
+  ],
+  "authorizations": [
+    {
+      "authorizationId": "az-reads",
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "actionIds": ["ReadInspectionInput", "ReadInspectionOutput"],
+      "resourceIds": ["mission:InspectionInput", "mission:InspectionOutput"],
+      "purpose": "FieldInspection",
+      "requirementIds": ["req-read-input", "req-read-output"],
+      "validity": {"state": "valid"}
+    }
+  ],
+  "validity": {"state": "valid"},
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": ["trace-prohibition"],
+    "independent": true,
+    "traceId": "trace-prohibition"
+  }
+}

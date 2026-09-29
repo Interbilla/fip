@@ -1,0 +1,30 @@
+{
+  "suite": "fip-0.2-m2b-coverage",
+  "cases": [
+    {"id": "M2B-01", "situation": "filesystem exact read enforced"},
+    {"id": "M2B-02", "situation": "filesystem read/write bundle rejects a read-only grant"},
+    {"id": "M2B-03", "situation": "REST GET method and path enforced"},
+    {"id": "M2B-04", "situation": "REST GET on a host-only target is not FULL"},
+    {"id": "M2B-05", "situation": "exact modelId enforced"},
+    {"id": "M2B-06", "situation": "provider-only model capability is not FULL"},
+    {"id": "M2B-07", "situation": "proxy-mediated credential enforced"},
+    {"id": "M2B-08", "situation": "process-visible credential is not FULL"},
+    {"id": "M2B-09", "situation": "allOf with every member enforced is FULL"},
+    {"id": "M2B-10", "situation": "allOf with one member missing is PARTIAL and not deployable"},
+    {"id": "M2B-11", "situation": "allOf with one widened member is REJECTED and not deployable"},
+    {"id": "M2B-12", "situation": "anyOf with one exact alternative enforced is FULL"},
+    {"id": "M2B-13", "situation": "enforceable prohibition is covered"},
+    {"id": "M2B-14", "situation": "unsupported prohibition is not FULL"},
+    {"id": "M2B-15", "situation": "correlated audit is covered"},
+    {"id": "M2B-16", "situation": "target-native audit does not cover correlated"},
+    {"id": "M2B-17", "situation": "revocable lifetime is covered"},
+    {"id": "M2B-18", "situation": "revocable requirement on a static target is not FULL"},
+    {"id": "M2B-19", "situation": "baseline capability is reported separately"},
+    {"id": "M2B-20", "situation": "baseline never becomes a fipGrant"},
+    {"id": "M2B-21", "situation": "broader target permission does not upgrade FIP authority"},
+    {"id": "M2B-22", "situation": "a manifest cannot alter authorityDecision"},
+    {"id": "M2B-23", "situation": "author-stamped FULL or deployable is ignored"},
+    {"id": "M2B-24", "situation": "semantic-only input cannot become FULL"},
+    {"id": "M2B-25", "situation": "a malformed or unknown manifest fails closed"}
+  ]
+}

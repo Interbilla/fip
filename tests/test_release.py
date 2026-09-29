@@ -1,7 +1,10 @@
-import hashlib, importlib.util, json, subprocess, sys, unittest
+import importlib.util, json, subprocess, sys, unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from canonical_hash import sha256_canonical_text  # noqa: E402
+
 PY = ROOT / "reference/python/fip_reference/core.py"
 spec = importlib.util.spec_from_file_location("fip_test", PY)
 fip = importlib.util.module_from_spec(spec)
@@ -9,7 +12,7 @@ spec.loader.exec_module(fip)
 
 class ReleaseTests(unittest.TestCase):
     def test_frozen_python_digest(self):
-        self.assertEqual(hashlib.sha256(PY.read_bytes()).hexdigest(), "c8bf2a3172d2572bbcc975b1831576a4da24edea59eda8f34f8362a25f19efec")
+        self.assertEqual(sha256_canonical_text(PY), "c8bf2a3172d2572bbcc975b1831576a4da24edea59eda8f34f8362a25f19efec")
 
     def test_vocabulary(self):
         vocab = json.loads((ROOT / "vocabulary/fip-0.1.jsonld").read_text())

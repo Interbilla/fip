@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fip:0.2:runtime-observation",
+  "title": "FIP 0.2 runtime observation",
+  "description": "A FIP-side observation of one runtime outcome. It is not an audit-correlation record and it does not show that the target provides correlated audit.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "recordType",
+    "correlationSource",
+    "traceId",
+    "policyId",
+    "exchangeId",
+    "authorizationId",
+    "requirementId",
+    "bindingId",
+    "substrateId",
+    "adapterId",
+    "targetPolicyHash",
+    "openshellEventId",
+    "observedOperation",
+    "observedPath",
+    "runtimeDisposition",
+    "authorityClass",
+    "fipGrant",
+    "observedAt",
+    "targetNativeEvidence"
+  ],
+  "properties": {
+    "recordType": {"const": "fip-runtime-correlation"},
+    "correlationSource": {"const": "fip-side"},
+    "traceId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "policyId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "exchangeId": {"$ref": "#/$defs/nullableId"},
+    "authorizationId": {"$ref": "#/$defs/nullableId"},
+    "requirementId": {"$ref": "#/$defs/nullableId"},
+    "bindingId": {"$ref": "#/$defs/nullableId"},
+    "substrateId": {"$ref": "#/$defs/nullableId"},
+    "adapterId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+    "targetPolicyHash": {"type": "string", "minLength": 1},
+    "targetEventId": {"$ref": "#/$defs/nullableId"},
+    "openshellEventId": {"$ref": "#/$defs/nullableId"},
+    "observedOperation": {"$ref": "urn:fip:0.2:common#/$defs/operation"},
+    "observedPath": {"type": "string", "minLength": 1},
+    "runtimeDisposition": {
+      "enum": [
+        "ENFORCED_ALLOW", "ENFORCED_DENY", "AUDIT_ONLY",
+        "APPROVAL_PENDING", "UNOBSERVED"
+      ]
+    },
+    "authorityClass": {
+      "enum": ["fip-grant", "unauthorized", "implicit-workdir", "execution-substrate"]
+    },
+    "fipGrant": {"type": "boolean"},
+    "observedAt": {"type": "string", "minLength": 1},
+    "targetNativeEvidence": {"$ref": "#/$defs/targetNativeEvidence"}
+  },
+  "$defs": {
+    "nullableId": {
+      "anyOf": [
+        {"type": "null"},
+        {"$ref": "urn:fip:0.2:common#/$defs/id"}
+      ]
+    },
+    "targetNativeEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "eventId", "workload"],
+      "properties": {
+        "source": {"const": "target-native"},
+        "eventId": {"$ref": "#/$defs/nullableId"},
+        "ocsfRecord": {"type": ["object", "null"]},
+        "workload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "path", "outcome"],
+          "properties": {
+            "probe": {"type": "string", "minLength": 1},
+            "operation": {"$ref": "urn:fip:0.2:common#/$defs/operation"},
+            "path": {"type": "string", "minLength": 1},
+            "observedAt": {"type": "string", "minLength": 1},
+            "outcome": {"enum": ["success", "failure"]},
+            "errno": {"type": ["integer", "null"]},
+            "errnoName": {"type": ["string", "null"]},
+            "detail": {"type": "string"}
+          }
+        },
+        "logLines": {"type": "array", "items": {"type": "string"}},
+        "landlock": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"fipGrant": {"const": true}},
+        "required": ["fipGrant"]
+      },
+      "then": {
+        "properties": {
+          "authorityClass": {"const": "fip-grant"},
+          "runtimeDisposition": {"const": "ENFORCED_ALLOW"},
+          "requirementId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "bindingId": {"$ref": "urn:fip:0.2:common#/$defs/id"},
+          "substrateId": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"authorityClass": {"enum": ["unauthorized", "implicit-workdir"]}},
+        "required": ["authorityClass"]
+      },
+      "then": {
+        "properties": {
+          "fipGrant": {"const": false},
+          "runtimeDisposition": {"const": "ENFORCED_DENY"}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"authorityClass": {"const": "execution-substrate"}},
+        "required": ["authorityClass"]
+      },
+      "then": {
+        "properties": {
+          "fipGrant": {"const": false},
+          "substrateId": {"$ref": "urn:fip:0.2:common#/$defs/id"}
+        },
+        "required": ["substrateId"]
+      }
+    },
+    {
+      "if": {
+        "properties": {"runtimeDisposition": {"const": "ENFORCED_DENY"}},
+        "required": ["runtimeDisposition"]
+      },
+      "then": {
+        "properties": {"fipGrant": {"const": false}}
+      }
+    }
+  ]
+}

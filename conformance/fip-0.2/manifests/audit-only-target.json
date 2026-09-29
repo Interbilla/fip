@@ -1,0 +1,57 @@
+{
+  "manifestVersion": "0",
+  "adapterId": "audit-only-target",
+  "targetType": "generic",
+  "targetVersion": "0",
+  "adapterVersion": "0",
+  "acceptsFipVersions": [
+    "0.2"
+  ],
+  "kinds": [
+    "filesystem"
+  ],
+  "operations": [
+    "read",
+    "write"
+  ],
+  "locatorForms": [
+    "path"
+  ],
+  "protocolFamilies": [],
+  "protocolConstraints": [],
+  "effects": [
+    "audit-only"
+  ],
+  "auditStrengths": [
+    "target-native"
+  ],
+  "compositions": [
+    "allOf"
+  ],
+  "approval": {
+    "actionGate": false,
+    "policyMutation": false
+  },
+  "precision": {
+    "filesystemOperations": "exact",
+    "networkHost": "exact",
+    "httpMethod": false,
+    "httpPath": false,
+    "modelId": false,
+    "credentialDisclosures": [],
+    "traceCorrelation": false
+  },
+  "substrate": [],
+  "dangerousDefaults": [],
+  "capabilities": [
+    {
+      "capabilityId": "filesystem",
+      "kinds": [
+        "filesystem"
+      ],
+      "lifetimes": [
+        "establishment-bound"
+      ]
+    }
+  ]
+}

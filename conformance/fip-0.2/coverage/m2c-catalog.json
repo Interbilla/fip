@@ -1,0 +1,16 @@
+{
+  "suite": "fip-0.2-m2c-capability-refinement",
+  "cases": [
+    {"id": "M2C-01", "situation": "revocable network does not imply revocable filesystem"},
+    {"id": "M2C-02", "situation": "establishment filesystem remains establishment-only"},
+    {"id": "M2C-03", "situation": "accepted execution substrate never becomes a fipGrant"},
+    {"id": "M2C-04", "situation": "undeclared baseline authority remains REJECTED"},
+    {"id": "M2C-05", "situation": "substrate that conflicts with a prohibition is REJECTED"},
+    {"id": "M2C-06", "situation": "a target cannot label an arbitrary mission path as trusted substrate"},
+    {"id": "M2C-07", "situation": "writable runtime substrate requires explicit profile acceptance"},
+    {"id": "M2C-08", "situation": "restrictive substrate does not become authority"},
+    {"id": "M2C-09", "situation": "proxy-mediated disclosure is independent of binding precision"},
+    {"id": "M2C-10", "situation": "an exact credential boundary may be enforced when both dimensions match"},
+    {"id": "M2C-11", "situation": "a broader credential boundary fails the subset invariant"}
+  ]
+}

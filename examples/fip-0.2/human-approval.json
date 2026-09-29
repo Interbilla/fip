@@ -1,0 +1,71 @@
+{
+  "fipVersion": "0.2",
+  "document": "AuthorityPolicy",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "policyId": "pol-approval",
+  "traceId": "trace-approval",
+  "actors": [
+    {"id": "agent-field", "identity": "id-agent-field"},
+    {"id": "approver-mission", "identity": "id-approver"}
+  ],
+  "resources": [
+    {"id": "mission:InspectionOutput"}
+  ],
+  "actions": [
+    {"id": "DeleteInspectionOutput", "resourceId": "mission:InspectionOutput"}
+  ],
+  "authorities": [
+    {"id": "auth-mission-control", "kind": "direct"}
+  ],
+  "conditions": [
+    {
+      "conditionId": "cond-approval",
+      "type": "approval-present",
+      "requirementId": "req-delete"
+    }
+  ],
+  "executionBindings": [
+    {
+      "bindingId": "out-delete",
+      "resourceId": "mission:InspectionOutput",
+      "actionId": "DeleteInspectionOutput",
+      "kind": "filesystem",
+      "operation": "delete",
+      "locator": {"path": "/mission/output"},
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "enforcementRequirements": [
+    {
+      "requirementId": "req-delete",
+      "effect": "require-approval",
+      "bindingIds": ["out-delete"],
+      "conditionIds": ["cond-approval"],
+      "approverIds": ["approver-mission"],
+      "composition": "allOf",
+      "groupId": "delete",
+      "audit": "correlated",
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "authorizations": [
+    {
+      "authorizationId": "az-delete",
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "actionIds": ["DeleteInspectionOutput"],
+      "resourceIds": ["mission:InspectionOutput"],
+      "purpose": "FieldInspection",
+      "requirementIds": ["req-delete"],
+      "validity": {"state": "valid"}
+    }
+  ],
+  "validity": {"state": "valid"},
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": ["trace-approval"],
+    "independent": true,
+    "traceId": "trace-approval"
+  }
+}

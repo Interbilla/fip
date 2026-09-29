@@ -1,0 +1,32 @@
+{
+  "suite": "fip-0.2-m2a-projection",
+  "compilationDisposition": "NOT_COMPILED",
+  "deployable": false,
+  "cases": [
+    {"id": "M2A-01", "situation": "filesystem read binding"},
+    {"id": "M2A-02", "situation": "filesystem write binding"},
+    {"id": "M2A-03", "situation": "REST GET method and path preserved"},
+    {"id": "M2A-04", "situation": "model invocation"},
+    {"id": "M2A-05", "situation": "proxy-mediated credential"},
+    {"id": "M2A-06", "situation": "model and credential allOf group"},
+    {"id": "M2A-07", "situation": "multi-binding action"},
+    {"id": "M2A-08", "situation": "explicit prohibition preserved"},
+    {"id": "M2A-09", "situation": "correlated audit preserved and unassessed"},
+    {"id": "M2A-10", "situation": "establishment-bound lifetime preserved"},
+    {"id": "M2A-11", "situation": "revocable lifetime preserved"},
+    {"id": "M2A-12", "situation": "validity-bound lifetime preserved"},
+    {"id": "M2A-13", "situation": "unknown binding kind fails closed"},
+    {"id": "M2A-14", "situation": "unknown operation fails closed"},
+    {"id": "M2A-15", "situation": "dangling binding reference fails closed"},
+    {"id": "M2A-16", "situation": "dangling requirement reference fails closed"},
+    {"id": "M2A-17", "situation": "DENIED produces no operational IR"},
+    {"id": "M2A-18", "situation": "INCOMPLETE produces no operational IR"},
+    {"id": "M2A-19", "situation": "REVIEW produces no operational IR"},
+    {"id": "M2A-20", "situation": "semantic-only AUTHORIZED produces no execution IR"},
+    {"id": "M2A-21", "situation": "author-stamped target fields rejected"},
+    {"id": "M2A-22", "situation": "semantic identifiers are not guessed into locators"},
+    {"id": "M2A-23", "situation": "allOf group survives intact"},
+    {"id": "M2A-24", "situation": "anyOf group survives intact"},
+    {"id": "M2A-25", "situation": "approval provenance survives and effect stays require-approval"}
+  ]
+}
