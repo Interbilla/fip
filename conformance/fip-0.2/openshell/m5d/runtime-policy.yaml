@@ -1,0 +1,47 @@
+# OpenShell policy schema 1
+# Base policy. This document is not an effective policy and does not observe a runtime.
+# The binary path is a target-side restriction from the compilation profile.
+# It is not a FIP executable grant. Descendant processes are not an exact identity.
+# Query precision is outside this compilation profile.
+version: 1
+filesystem_policy:
+  include_workdir: false
+  read_only:
+    # execution-substrate runtime-usr
+    - /usr
+    # execution-substrate runtime-lib
+    - /lib
+    # execution-substrate runtime-etc
+    - /etc
+    # execution-substrate runtime-app
+    - /app
+    # execution-substrate runtime-var-log
+    - /var/log
+    # execution-substrate runtime-proc
+    - /proc
+    # execution-substrate runtime-urandom
+    - /dev/urandom
+    # execution-substrate runtime-ca
+    - /run/openshell-supervisor-ca
+  read_write:
+    # execution-substrate runtime-tmp
+    - /tmp
+    # execution-substrate runtime-null
+    - /dev/null
+landlock:
+  compatibility: hard_requirement
+network_policies:
+  req-example-get:
+    endpoints:
+      # fip-grant req-example-get example-get
+      - host: example.com
+        port: 443
+        protocol: rest
+        enforcement: enforce
+        rules:
+          - allow:
+              method: GET
+              path: /
+    binaries:
+      # target-restriction openshell-v0.1.2-execution-substrate approximated
+      - path: /usr/bin/curl

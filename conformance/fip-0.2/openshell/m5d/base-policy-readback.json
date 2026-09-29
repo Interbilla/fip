@@ -1,0 +1,49 @@
+{
+  "filesystem_policy": {
+    "include_workdir": false,
+    "read_only": [
+      "/usr",
+      "/lib",
+      "/etc",
+      "/app",
+      "/var/log",
+      "/proc",
+      "/dev/urandom",
+      "/run/openshell-supervisor-ca"
+    ],
+    "read_write": [
+      "/tmp",
+      "/dev/null"
+    ]
+  },
+  "landlock": {
+    "compatibility": "hard_requirement"
+  },
+  "network_policies": {
+    "req-example-get": {
+      "binaries": [
+        {
+          "path": "/usr/bin/curl"
+        }
+      ],
+      "endpoints": [
+        {
+          "enforcement": "enforce",
+          "host": "example.com",
+          "port": 443,
+          "protocol": "rest",
+          "rules": [
+            {
+              "allow": {
+                "method": "GET",
+                "path": "/"
+              }
+            }
+          ]
+        }
+      ],
+      "name": "req-example-get"
+    }
+  },
+  "version": 1
+}

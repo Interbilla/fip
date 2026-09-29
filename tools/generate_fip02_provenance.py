@@ -25,6 +25,9 @@ HEADER = "# FIP 0.2 validated baseline provenance\n"
 EXCLUDED = {
     "conformance/fip-0.2/openshell/m4/m4-report.json",
     "conformance/fip-0.2/openshell/m4/openshell.log",
+    "conformance/fip-0.2/openshell/m5d/m5d-report.json",
+    "conformance/fip-0.2/openshell/m5d/openshell.log",
+    "conformance/fip-0.2/openshell/m5d/runtime-observations.json",
 }
 
 
@@ -35,6 +38,7 @@ def artifact_paths() -> list[Path]:
         ROOT / "reference/fip-0.2",
         ROOT / "conformance/fip-0.2",
         ROOT / "integration/openshell-m4",
+        ROOT / "integration/openshell-m5d",
     ]
     paths = []
     for root in roots:

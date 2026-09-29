@@ -13,5 +13,8 @@
     {"substrateClass": "writable-runtime", "substrateId": "runtime-tmp", "kind": "filesystem", "operation": "write", "locator": {"path": "/tmp"}},
     {"substrateClass": "writable-runtime", "substrateId": "runtime-null", "kind": "filesystem", "operation": "write", "locator": {"path": "/dev/null"}},
     {"substrateClass": "restrictive", "substrateId": "runtime-syscall-restriction", "kind": "process"}
+  ],
+  "targetExecutableRestrictions": [
+    {"path": "/usr/bin/curl"}
   ]
 }

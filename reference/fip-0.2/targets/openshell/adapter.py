@@ -1,13 +1,18 @@
-"""OpenShell v0.1.2 filesystem policy adapter.
+"""OpenShell v0.1.2 policy adapter.
 
-Compiles one FULL coverage assessment into policy schema 1. It does not
-invoke a runtime and it does not decide semantic authority.
+Compiles one FULL coverage assessment into policy schema 1. Filesystem
+assessments stay on the filesystem path. A qualified REST assessment is
+compiled by the sibling REST compiler. This module does not invoke a
+runtime and it does not decide semantic authority.
 
 Pin: NVIDIA OpenShell v0.1.2, commit 6648bd0c290efbc41ba131ee9831ee45cd431f94,
 policy schema 1.
 """
 
 from __future__ import annotations
+
+import importlib.util
+from pathlib import Path
 
 SOURCE_COMMIT = "6648bd0c290efbc41ba131ee9831ee45cd431f94"
 ADAPTER_ID = "openshell-v0.1.2"
@@ -27,10 +32,15 @@ def compile_policy(ir, assessment, manifest, profile):
     """Return an adapter result. A refused input has no generated policy."""
     refused = _gate(assessment)
     if refused:
-        return _empty(ir, assessment, refused[0], refused[1])
+        diagnostics = list(refused[1])
+        if _permit_requires_executable(ir):
+            diagnostics.append("executable_identity_not_exact")
+        return _empty(ir, assessment, refused[0], diagnostics)
     refused = _identities(assessment, manifest, profile)
     if refused:
         return _empty(ir, assessment, "REJECTED", refused)
+    if _rest_slice(ir, assessment):
+        return _rest_compiler().compile_slice(ir, assessment, manifest, profile, _compiler_host())
     prepared = _prepare(ir, assessment, manifest, profile)
     if prepared[0] is None:
         return _empty(ir, assessment, "REJECTED", prepared[1])
@@ -182,6 +192,100 @@ def parse_policy_yaml(text):
             raise ValueError("scalar outside a mapping")
         parent[key] = _scalar(value)
     return root
+
+
+def verify_network_policy(policy, grants, substrate, binaries):
+    """Check a generated REST base policy. Filesystem policies use verify_policy."""
+    return _rest_compiler().verify_network_policy(policy, grants, substrate, binaries)
+
+
+def verify_effective_policy(policy, grants, substrate, binaries):
+    """Check a policy get --full document. Compiler success does not call this."""
+    return _rest_compiler().verify_effective_policy(policy, grants, substrate, binaries)
+
+
+def admit_network_policy(policy, ir, assessment, grants, substrate, binaries, yaml_text=None, mappings=None, substrate_mappings=None):
+    """Re-check a REST base policy after a mutation."""
+    return _rest_compiler().admit_network_policy(
+        policy, ir, assessment, grants, substrate, binaries, _compiler_host(),
+        yaml_text, mappings, substrate_mappings,
+    )
+
+
+def _permit_requires_executable(ir):
+    """True when a permit lists an executable binding.
+
+    On pinned v0.1.2 that binding is an exact FIP identity the binary rule
+    widens to descendant processes. The adapter must not compile it.
+    """
+    if not isinstance(ir, dict):
+        return False
+    bindings = {
+        item.get("bindingId"): item
+        for item in ir.get("bindings") or []
+        if isinstance(item, dict)
+    }
+    for requirement in ir.get("requirements") or []:
+        if not isinstance(requirement, dict) or requirement.get("effect") != "permit":
+            continue
+        for binding_id in requirement.get("bindingIds") or []:
+            if (bindings.get(binding_id) or {}).get("kind") == "executable":
+                return True
+    return False
+
+
+def _rest_slice(ir, assessment):
+    if not isinstance(ir, dict) or not isinstance(assessment, dict):
+        return False
+    requirements = {
+        item.get("requirementId"): item
+        for item in ir.get("requirements") or []
+        if isinstance(item, dict)
+    }
+    bindings = {
+        item.get("bindingId"): item
+        for item in ir.get("bindings") or []
+        if isinstance(item, dict)
+    }
+    saw_network = False
+    for requirement_id in assessment.get("selectedRequirementIds") or []:
+        requirement = requirements.get(requirement_id) or {}
+        if requirement.get("effect") != "permit":
+            continue
+        kinds = [
+            (bindings.get(binding_id) or {}).get("kind")
+            for binding_id in requirement.get("bindingIds") or []
+        ]
+        if "filesystem" in kinds:
+            return False
+        if any(kind in ("api", "service") for kind in kinds):
+            saw_network = True
+    return saw_network
+
+
+class _CompilerHost:
+    def __init__(self):
+        self.empty = _empty
+        self.base = _base
+        self.substrate = _substrate
+
+
+def _compiler_host():
+    return _CompilerHost()
+
+
+_REST = None
+
+
+def _rest_compiler():
+    global _REST
+    if _REST is None:
+        path = Path(__file__).with_name("rest.py")
+        spec = importlib.util.spec_from_file_location("openshell_rest_compiler", path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _REST = module
+    return _REST
 
 
 def _gate(assessment):

@@ -1,0 +1,189 @@
+{
+  "milestone": "M5D",
+  "sandbox": "fip-m5d-rest",
+  "image": "fip-m5d-fixture:local",
+  "m5d": "PASS",
+  "failureClass": null,
+  "authorityDecision": "AUTHORIZED",
+  "projectionDisposition": "NOT_COMPILED",
+  "coverageDisposition": "FULL",
+  "coverageDeployable": true,
+  "adapterDisposition": "FULL",
+  "adapterDeployable": true,
+  "runtimeDispositionBeforeObservation": "UNOBSERVED",
+  "monotonicity": "demonstrated",
+  "fixture": {
+    "host": "example.com",
+    "port": 443,
+    "method": "GET",
+    "path": "/",
+    "note": "Runtime fixture host and path. The conformance probe remains weather.example.com GET /weather."
+  },
+  "generatedPolicyHash": "a39abe060ca48841838cd082a7383c44d95057b2ad6a2a73108aff536b6e1bcf",
+  "secondCompilationHash": "a39abe060ca48841838cd082a7383c44d95057b2ad6a2a73108aff536b6e1bcf",
+  "hashStable": true,
+  "conformanceHashUnchanged": "487cf5c82708397a7a45e48d6d7f2b97d7d948715f235dba215ca2ab53c8b504",
+  "environment": {
+    "cliVersionText": "openshell 0.1.2",
+    "gatewayVersionText": "openshell-gateway 0.1.2",
+    "gatewayStatus": "Server Status\n\n  Gateway: fip-m4\n  Server: https://127.0.0.1:17670\n  Status: Connected\n  Authentication: Authenticated (mTLS transport)\n  Version: 0.1.2",
+    "gatewayStartedForRun": false,
+    "reportedVersion": "0.1.2",
+    "accepted": true,
+    "kernel": "Linux 6.18.33.2-microsoft-standard-WSL2",
+    "dockerServer": "29.8.0",
+    "policySchemaVersion": 1,
+    "pinnedCommit": "6648bd0c290efbc41ba131ee9831ee45cd431f94",
+    "environmentPlumbing": "WSL/Docker TCP forwarding is used only when the sandbox cannot reach the gateway. It is not FIP authority."
+  },
+  "sandboxCreate": {
+    "code": 0,
+    "phase": "Ready",
+    "openshellPolicyLoadHash": "1cd0c65156ed316f09662ee19f05414f2f38b527775c9a84998d7c68cec7e030",
+    "gatewayTokenId": "[redacted]",
+    "sandboxId": "[redacted]",
+    "runtimeGeneration": "[redacted]"
+  },
+  "basePolicyReadbackHash": "b00ce1d27fda060f5125972d5fd9ac5544deea40135f023ee81e288da975e9cb",
+  "fullPolicyReadbackHash": "b00ce1d27fda060f5125972d5fd9ac5544deea40135f023ee81e288da975e9cb",
+  "basePolicyMatch": true,
+  "basePolicyReadbackNormalization": [
+    "req-example-get"
+  ],
+  "openshellPolicyLoadHash": "1cd0c65156ed316f09662ee19f05414f2f38b527775c9a84998d7c68cec7e030",
+  "effectivePolicy": "PASS",
+  "effectivePolicyDiagnostics": [],
+  "fullPolicyKeys": [
+    "filesystem_policy",
+    "landlock",
+    "network_policies",
+    "version"
+  ],
+  "observedNetworkRuleNames": [
+    "req-example-get"
+  ],
+  "providerRules": [],
+  "sandboxClients": "/usr/bin/curl\n",
+  "queryProbe": {
+    "probe": "query-bearing",
+    "execCode": 0,
+    "httpCode": "200",
+    "originPage": true,
+    "policyMarker": false,
+    "text": "HTTP/1.1 200 OK\nDate: Tue, 29 Sep 2026 18:28:45 GMT\nContent-Type: text/html; charset=utf-8\nTransfer-Encoding: chunked\nConnection: keep-alive\nServer: cloudflare\nlast-modified: Mon, 28 Sep 2026 16:19:32 GMT\nallow: GET, HEAD\nAccept-Ranges: bytes\nAge: 6314\ncf-cache-status: HIT\nCF-RAY: a42d0ca64bddf0b2-DFW\n\n\n\n713\n<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:,><meta name=viewport content=\"width=device-width,initial-scale=1\"><title>Example Domain</title><style>html{color-scheme:light dark;background:light-dark(#eee,#222)}body{font:16px/1.6 system-ui,sans-serif;max-width:30em;min-height:100vh;margin:auto;padding:4.75em 2em 20vh;box-sizing:border-box;display:grid;place-conten\n",
+    "bodyBytes": "713",
+    "claim": "not a FIP query authorization"
+  },
+  "queryAcceptedByExactPathRule": true,
+  "unlistedBinary": {
+    "probe": "unlisted-binary",
+    "performed": false,
+    "classification": "target-restriction",
+    "reason": "The fixture image provides /usr/bin/curl. wget and python3 are not installed, and no extra client was installed for this probe."
+  },
+  "observationSchemaErrors": [],
+  "probes": [
+    {
+      "probe": "authorized-get",
+      "execCode": 0,
+      "httpCode": "200",
+      "originPage": true,
+      "policyMarker": false,
+      "runtimeDisposition": "ENFORCED_ALLOW",
+      "fipGrant": true,
+      "passed": true,
+      "text": "HTTP/1.1 200 OK\nDate: Tue, 29 Sep 2026 18:28:42 GMT\nContent-Type: text/html; charset=utf-8\nTransfer-Encoding: chunked\nConnection: keep-alive\nServer: cloudflare\nlast-modified: Mon, 28 Sep 2026 16:19:23 GMT\nallow: GET, HEAD\nAccept-Ranges: bytes\nAge: 6\ncf-cache-status: HIT\nCF-RAY: a42d0c950a8fea02-DFW\n\n\n\n713\n<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:,><meta name=viewport content=\"width=device-width,initial-scale=1\"><title>Example Domain</title><style>html{color-scheme:light dark;background:light-dark(#eee,#222)}body{font:16px/1.6 system-ui,sans-serif;max-width:30em;min-height:100vh;margin:auto;padding:4.75em 2em 20vh;box-sizing:border-box;display:grid;place-conten\n"
+    },
+    {
+      "probe": "wrong-path",
+      "execCode": 0,
+      "httpCode": "403",
+      "originPage": false,
+      "policyMarker": true,
+      "runtimeDisposition": "ENFORCED_DENY",
+      "fipGrant": false,
+      "passed": true,
+      "text": "HTTP/1.1 403 Forbidden\nContent-Type: application/json\nContent-Length: 455\nX-OpenShell-Policy: req-example-get\nConnection: close\n\n\n\n455\n{\"binary\":\"/usr/bin/curl\",\"detail\":\"GET /fip-unauthorized-path not permitted by policy\",\"error\":\"policy_denied\",\"host\":\"example.com\",\"layer\":\"l7\",\"method\":\"GET\",\"next_steps\":[],\"path\":\"/fip-unauthorized-path\",\"policy\":\"req-example-get\",\"port\":443,\"protocol\":\"rest\",\"rule\":\"GET /fip-unauthorized-path\",\"rule_missing\":{\"binary\":\"/usr/bin/curl\",\"host\":\"example.com\",\"layer\":\"l7\",\"method\":\"GET\",\"path\":\"/\n"
+    },
+    {
+      "probe": "wrong-method",
+      "execCode": 0,
+      "httpCode": "403",
+      "originPage": false,
+      "policyMarker": true,
+      "runtimeDisposition": "ENFORCED_DENY",
+      "fipGrant": false,
+      "passed": true,
+      "text": "HTTP/1.1 403 Forbidden\nContent-Type: application/json\nContent-Length: 375\nX-OpenShell-Policy: req-example-get\nConnection: close\n\n\n\n375\n{\"binary\":\"/usr/bin/curl\",\"detail\":\"POST / not permitted by policy\",\"error\":\"policy_denied\",\"host\":\"example.com\",\"layer\":\"l7\",\"method\":\"POST\",\"next_steps\":[],\"path\":\"/\",\"policy\":\"req-example-get\",\"port\":443,\"protocol\":\"rest\",\"rule\":\"POST /\",\"rule_missing\":{\"binary\":\"/usr/bin/curl\",\"host\":\"example.com\",\"layer\":\"l7\",\"method\":\"POST\",\"path\":\"/\",\"port\":443,\"type\":\"rest_allow\"}}\n"
+    },
+    {
+      "probe": "wrong-host",
+      "execCode": 7,
+      "httpCode": null,
+      "originPage": false,
+      "policyMarker": true,
+      "runtimeDisposition": "ENFORCED_DENY",
+      "fipGrant": false,
+      "passed": true,
+      "text": "\ncurl: (7) Failed to connect to example.org port 443 after 1 ms: Couldn't connect to server\n\n0\n\n"
+    },
+    {
+      "probe": "wrong-port",
+      "execCode": 7,
+      "httpCode": null,
+      "originPage": false,
+      "policyMarker": true,
+      "runtimeDisposition": "ENFORCED_DENY",
+      "fipGrant": false,
+      "passed": true,
+      "text": "\ncurl: (7) Failed to connect to example.com port 8443 after 3 ms: Couldn't connect to server\n\n0\n\n"
+    }
+  ],
+  "probeSummary": [
+    {
+      "probe": "authorized-get",
+      "passed": true,
+      "runtimeDisposition": "ENFORCED_ALLOW",
+      "fipGrant": true,
+      "httpCode": "200"
+    },
+    {
+      "probe": "wrong-path",
+      "passed": true,
+      "runtimeDisposition": "ENFORCED_DENY",
+      "fipGrant": false,
+      "httpCode": "403"
+    },
+    {
+      "probe": "wrong-method",
+      "passed": true,
+      "runtimeDisposition": "ENFORCED_DENY",
+      "fipGrant": false,
+      "httpCode": "403"
+    },
+    {
+      "probe": "wrong-host",
+      "passed": true,
+      "runtimeDisposition": "ENFORCED_DENY",
+      "fipGrant": false,
+      "httpCode": null
+    },
+    {
+      "probe": "wrong-port",
+      "passed": true,
+      "runtimeDisposition": "ENFORCED_DENY",
+      "fipGrant": false,
+      "httpCode": null
+    }
+  ],
+  "runtimeMonotonicity": false,
+  "recommendation": "REST_RUNTIME_PASS_WITH_LIMITATIONS",
+  "environmentCleanup": {
+    "classification": "environment cleanup",
+    "sandbox": "fip-m5d-rest",
+    "sandboxDeleted": true,
+    "gatewayShutdown": "clean",
+    "gatewayExitCode": 0,
+    "note": "Cleanup is not FIP enforcement evidence, monotonicity evidence, or target-native audit evidence."
+  }
+}

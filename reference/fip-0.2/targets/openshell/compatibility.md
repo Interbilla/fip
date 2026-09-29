@@ -32,7 +32,7 @@ The manifest uses only the generic Capability Manifest schema.
 - Filesystem read and write are separate lists of absolute paths. `filesystemOperations` is `exact`.
 - Network hosts can be an exact hostname. `networkHost` is `exact`.
 - REST method and path can be enforced when an endpoint sets `protocol: rest` and `enforcement: enforce`. `httpMethod` and `httpPath` are true for that mode.
-- Calling binaries are a network-rule field. The `executable` kind with a path is the FIP shape for that constraint.
+- Calling binaries are a network-rule field. A FIP `executable` binding is an executable identity. On v0.1.2 the same rule also applies to processes that binary starts, so the identity is not exact.
 - Effects that the engine can apply as a control are `permit` and `deny`.
 - OCSF v1.8.0 sandbox logs are `target-native` audit. `traceCorrelation` is false. `correlated` is absent from `auditStrengths`.
 - Lifetimes are scoped. Filesystem and process are `establishment-bound`. Network and credential are `establishment-bound` and `revocable`.
@@ -168,4 +168,22 @@ Exact `modelId` remains unsupported. Kind `model` is absent, `modelId` is false,
 
 The seven architectural examples above are not inputs to the policy adapter. The compilable slice is [openshell-filesystem-read-write.json](../../../../examples/fip-0.2/openshell-filesystem-read-write.json): read `/mission/input`, write `/mission/output`, lifetime `establishment-bound`, audit `target-native`. With this manifest and `execution-profile.json`, coverage is `FULL`. The adapter emits policy schema 1 with `include_workdir: false` and `landlock.compatibility: hard_requirement`. Runtime disposition stays `UNOBSERVED`.
 
-REST, provider, model, credential, action approval, correlated audit, and GPU paths are not compiled.
+The architectural REST example and the strict executable probe are not compiled. Provider, model, credential, action approval, correlated audit, and GPU paths are not compiled. A REST permit with no executable binding can be compiled when this profile's `targetExecutableRestrictions` lists the binary path. That path is a target-side restriction, not a FIP grant.
+
+## REST qualification
+
+Three REST documents stay distinct. [rest-get.json](../../../../examples/fip-0.2/rest-get.json) is the architectural probe and stays `PARTIAL` because its permit requires correlated audit. [openshell-rest-get.json](../../../../examples/fip-0.2/openshell-rest-get.json) is the strict executable-identity probe and stays `REJECTED`. [openshell-rest-target-restricted.json](../../../../examples/fip-0.2/openshell-rest-target-restricted.json) is the API-only probe and can be `FULL`. None of these results is a substitute for the others.
+
+[openshell-rest-get.json](../../../../examples/fip-0.2/openshell-rest-get.json) is case A. Its permit is `allOf` over the API binding and `weather-curl`. Kind `executable` is an executable identity, and authorizing an action does not authorize a proper subset of that group. Pinned v0.1.2 applies a binary rule to descendant processes, which is wider than that identity. Coverage is `REJECTED` with `subset_not_demonstrated`. The adapter diagnostic is `executable_identity_not_exact`. No deployable network policy is emitted. The example is not rewritten to drop the executable binding.
+
+`access: read-only` is not an exact `GET`. An exact endpoint would need `protocol: rest`, `enforcement: enforce`, and one allow rule for that method and path. Query-string precision is outside the initial FIP 0.2 OpenShell REST compilation profile. A locator URI with no query component can satisfy that profile. A locator URI that contains `?` fails closed with adapter diagnostic `query_precision_unsupported` and coverage `REJECTED` / `subset_not_demonstrated`. The compiler does not ignore the query, strip it, or emit a query matcher. That rejection is not FIP query authorization. The M5D runtime observation that `GET /?x=1` returned HTTP 200 is a target limitation. It prevents a claim of complete runtime monotonicity for this REST slice.
+
+## Target-restricted REST
+
+[openshell-rest-target-restricted.json](../../../../examples/fip-0.2/openshell-rest-target-restricted.json) authorizes one exact host, port, `GET`, and path. It has no executable ExecutionBinding. `/usr/bin/curl` is declared only in `execution-profile.json`. The compiler copies that path into `binaries` and records `executableIdentity: approximated`, `descendantInheritance: true`, and `authorityRole: target-side restriction`. Descendant inheritance is a target limitation. It is not FIP authority, and it is not an exact identity claim. The strict probe remains `REJECTED` even though the profile names the same path, because that probe requires the identity in the permit.
+
+## REST compilation
+
+Successful base-policy compilation is not a runtime enforcement claim. `runtimeDisposition` stays `UNOBSERVED` until a live observation. Before a runtime allow is accepted, `openshell policy get --full` must pass `verify_effective_policy` on the whole tuple: host, port, protocol, enforcement, HTTP method, HTTP path, binary scope, access preset, and TLS inspection. The same host is not enough. A provider rule whose name starts with `_provider_`, or a global policy that replaces the authored rules, fails closed.
+
+`openshell policy get --base` shows the saved user policy. `openshell policy get --full` shows the composed effective policy, including provider rules. While a gateway global policy is active, both commands show the global policy and provider layers are suppressed. Neither view includes runtime-only paths such as the supervisor CA. A readback may add `name` on a network policy when that value is the map key. The verifier accepts that echo. A different name, or any other extra field, is rejected. The OpenShell policy-load hash is a separate native value and is not the FIP canonical policy hash.

@@ -1,0 +1,101 @@
+{
+  "fipVersion": "0.2",
+  "document": "AuthorityPolicy",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "policyId": "pol-openshell-weather",
+  "traceId": "trace-openshell-weather",
+  "actors": [
+    {"id": "agent-field", "identity": "id-agent-field"}
+  ],
+  "resources": [
+    {"id": "service:Weather"},
+    {"id": "executable:curl"}
+  ],
+  "actions": [
+    {"id": "GetWeather", "resourceId": "service:Weather"}
+  ],
+  "authorities": [
+    {"id": "auth-mission-control", "kind": "direct"}
+  ],
+  "executionBindings": [
+    {
+      "bindingId": "weather-get",
+      "resourceId": "service:Weather",
+      "actionId": "GetWeather",
+      "kind": "api",
+      "operation": "query",
+      "locator": {
+        "host": "weather.example.com",
+        "port": 443,
+        "uri": "https://weather.example.com/weather"
+      },
+      "protocol": {
+        "family": "http",
+        "transport": "https",
+        "http": {"method": "GET", "path": "/weather"}
+      },
+      "lifetime": "establishment-bound"
+    },
+    {
+      "bindingId": "weather-curl",
+      "resourceId": "executable:curl",
+      "actionId": "GetWeather",
+      "kind": "executable",
+      "operation": "execute",
+      "locator": {"path": "/usr/bin/curl"},
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "enforcementRequirements": [
+    {
+      "requirementId": "req-weather-get",
+      "effect": "permit",
+      "bindingIds": ["weather-get", "weather-curl"],
+      "composition": "allOf",
+      "groupId": "weather",
+      "audit": "target-native",
+      "lifetime": "establishment-bound"
+    },
+    {
+      "requirementId": "req-no-other-network",
+      "effect": "deny",
+      "bindingPattern": {
+        "kinds": ["service", "api", "inference-provider"],
+        "exceptBindingIds": ["weather-get"]
+      },
+      "composition": "allOf",
+      "groupId": "weather-deny",
+      "audit": "target-native"
+    }
+  ],
+  "prohibitions": [
+    {
+      "prohibitionId": "proh-open-network",
+      "requirementIds": ["req-no-other-network"],
+      "bindingPattern": {
+        "kinds": ["service", "api", "inference-provider"],
+        "exceptBindingIds": ["weather-get"]
+      }
+    }
+  ],
+  "authorizations": [
+    {
+      "authorizationId": "az-openshell-weather",
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "actionIds": ["GetWeather"],
+      "resourceIds": ["service:Weather"],
+      "purpose": "FieldInspection",
+      "requirementIds": ["req-weather-get"],
+      "validity": {"state": "valid"}
+    }
+  ],
+  "validity": {"state": "valid"},
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": ["trace-openshell-weather"],
+    "independent": true,
+    "traceId": "trace-openshell-weather"
+  }
+}

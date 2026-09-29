@@ -11,7 +11,7 @@ is not a conforming document.
 | [exchange.schema.json](exchange.schema.json) | Exchange |
 | [enforcement-ir.schema.json](enforcement-ir.schema.json) | Enforcement IR, a compiler output |
 | [capability-manifest.schema.json](capability-manifest.schema.json) | Adapter Capability Manifest |
-| [compilation-profile.schema.json](compilation-profile.schema.json) | FIP compilation profile. Accepts execution substrate. Not a target policy. |
+| [compilation-profile.schema.json](compilation-profile.schema.json) | FIP compilation profile. Accepts execution substrate and may declare a target executable restriction. Not a target policy and not a FIP grant. |
 | [coverage-assessment.schema.json](coverage-assessment.schema.json) | Coverage assessment. Not a target policy. |
 | [audit-correlation.schema.json](audit-correlation.schema.json) | Audit correlation record. This is the only record that can satisfy `audit` `correlated`. |
 | [runtime-observation.schema.json](runtime-observation.schema.json) | FIP-side runtime observation. Not an audit-correlation record. |

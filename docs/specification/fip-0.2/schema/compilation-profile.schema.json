@@ -24,6 +24,17 @@
           "locator": {"$ref": "urn:fip:0.2:common#/$defs/locator"}
         }
       }
+    },
+    "targetExecutableRestrictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1}
+        }
+      }
     }
   }
 }

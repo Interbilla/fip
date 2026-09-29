@@ -307,6 +307,9 @@ def _binding(binding, requirement, manifest):
     )
     if locator.get("host") and host_limited:
         return "rejected", ["subset_not_demonstrated"]
+    exactness = _network_exactness(binding, manifest)
+    if exactness is not None:
+        return exactness
     if _needs_http(binding, requirement) and not (precision.get("httpMethod") and precision.get("httpPath")):
         return "rejected", ["subset_not_demonstrated"]
     if kind == "model" and locator.get("modelId") and not precision.get("modelId"):
@@ -377,6 +380,76 @@ def _lifetime_matches(lifetime, kinds, manifest):
         for kind in capability.get("kinds") or []:
             index.setdefault(kind, set()).update(capability.get("lifetimes") or [])
     return all(lifetime in index.get(kind, ()) for kind in kinds)
+
+
+def _network_exactness(binding, manifest):
+    """Reject a locator the pinned target would have to widen to express."""
+    if manifest.get("precision", {}).get("networkHost") != "exact":
+        return None
+    kind = binding.get("kind")
+    locator = binding.get("locator") or {}
+    if kind == "executable":
+        # OpenShell v0.1.2 applies a binary rule to processes that binary starts.
+        # That is wider than the FIP executable identity, so the subset is not shown.
+        if manifest.get("adapterId") == "openshell-v0.1.2":
+            return "rejected", ["subset_not_demonstrated"]
+        path = locator.get("path")
+        if isinstance(path, str) and _glob_widens(path):
+            return "rejected", ["subset_not_demonstrated"]
+        return None
+    if kind not in ("service", "api", "inference-provider"):
+        return None
+    if isinstance(locator.get("uri"), str) and "?" in locator["uri"]:
+        return "rejected", ["subset_not_demonstrated"]
+    host = locator.get("host")
+    if isinstance(host, str) and _glob_widens(host):
+        return "rejected", ["subset_not_demonstrated"]
+    if host and locator.get("port") is None:
+        return "rejected", ["subset_not_demonstrated"]
+    http = ((binding.get("protocol") or {}).get("http") or {})
+    method = http.get("method")
+    path = http.get("path")
+    if isinstance(method, str) and (method == "*" or _glob_widens(method)):
+        return "rejected", ["subset_not_demonstrated"]
+    if isinstance(path, str) and _glob_widens(path):
+        return "rejected", ["subset_not_demonstrated"]
+    if isinstance(locator.get("uri"), str) and isinstance(host, str) and locator.get("port") is not None:
+        if _uri_disagrees(locator["uri"], host, locator["port"], path if isinstance(path, str) else None):
+            return "rejected", ["subset_not_demonstrated"]
+    return None
+
+
+def _glob_widens(value):
+    return any(char in value for char in "*?[]")
+
+
+def _uri_disagrees(uri, host, port, http_path):
+    if "://" not in uri:
+        return True
+    scheme, rest = uri.split("://", 1)
+    authority, separator, tail = rest.partition("/")
+    if "@" in authority:
+        authority = authority.rsplit("@", 1)[1]
+    uri_port = None
+    if authority.startswith("["):
+        return True
+    if ":" in authority:
+        uri_host, raw_port = authority.rsplit(":", 1)
+        if not raw_port.isdigit():
+            return True
+        uri_port = int(raw_port)
+    else:
+        uri_host = authority
+        implied = {"https": 443, "http": 80}.get(scheme.lower())
+        if implied is not None:
+            uri_port = implied
+    if uri_host != host or uri_port != port:
+        return True
+    if http_path and separator:
+        observed = "/" + tail.split("?", 1)[0].split("#", 1)[0]
+        if observed != http_path:
+            return True
+    return False
 
 
 def _needs_http(binding, requirement):
@@ -631,9 +704,24 @@ def _baseline_exceeds(entry, grants):
             and (item.get("locator") or {}).get("path") == path
             for item in grants
         )
-    if kind in ("service", "api", "inference-provider") and not (entry.get("locator") or {}).get("host"):
-        return True
+    if kind in ("service", "api", "inference-provider"):
+        host = (entry.get("locator") or {}).get("host")
+        if not host:
+            return True
+        return not any(_network_grant_covers(item, entry) for item in grants)
     return False
+
+
+def _network_grant_covers(grant, entry):
+    if grant.get("kind") not in ("service", "api", "inference-provider"):
+        return False
+    grant_locator = grant.get("locator") or {}
+    entry_locator = entry.get("locator") or {}
+    if grant_locator.get("host") != entry_locator.get("host"):
+        return False
+    if entry_locator.get("port") is not None and grant_locator.get("port") != entry_locator.get("port"):
+        return False
+    return True
 
 
 def _grants_unrestricted_network(grants):

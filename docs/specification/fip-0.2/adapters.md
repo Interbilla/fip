@@ -172,6 +172,32 @@ actor an operation the grants do not include, compilation is `REJECTED` with
 `baseline_exceeds_grant`. There is no implicit exemption for a path, a device,
 an operating system, or a product.
 
+A compilation profile MAY list `targetExecutableRestrictions`. Each entry is
+a path the deployment configures for a target that needs a non-empty binary
+list. That path is deployment configuration. It is not an ExecutionBinding,
+it is not copied into `fipGrants`, and it does not make executable identity
+part of the semantic grant. A compiler that needs such a path MUST read it
+from this list. It MUST NOT infer the path from a FIP document. On a target
+whose binary rule also applies to descendant processes, the restriction
+narrows which program may start the operation and does not prove exact
+process identity.
+
+The initial OpenShell REST compilation profile does not support a query
+component. A locator URI that contains `?` MUST fail closed. Coverage is
+`REJECTED` with `subset_not_demonstrated`. The adapter diagnostic is
+`query_precision_unsupported`. The compiler MUST NOT ignore the query, strip
+it, or emit a query matcher. That rejection is not FIP query authorization.
+A target that accepts a query-bearing request on an otherwise exact path,
+such as `GET /?x=1`, does not authorize a FIP query. That observation
+prevents a claim of complete runtime monotonicity for this REST slice.
+
+A successful base-policy compilation leaves `runtimeDisposition` at
+`UNOBSERVED`. It is not a runtime enforcement claim. Before a runtime allow is
+accepted, the live `policy get --full` document MUST pass effective-policy
+verification on host, port, protocol, enforcement, HTTP method, HTTP path,
+binary restriction, access preset, and TLS inspection. Provider or global
+widening fails closed.
+
 An undisclosed dangerous default is treated as an inability to demonstrate the
 subset invariant. Compilation is `REJECTED`.
 

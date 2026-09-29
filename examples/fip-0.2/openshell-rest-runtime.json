@@ -1,0 +1,91 @@
+{
+  "fipVersion": "0.2",
+  "document": "AuthorityPolicy",
+  "status": "ENFORCEMENT CANDIDATE",
+  "mode": "operational",
+  "policyId": "pol-openshell-example",
+  "traceId": "trace-openshell-example",
+  "actors": [
+    {"id": "agent-field", "identity": "id-agent-field"}
+  ],
+  "resources": [
+    {"id": "service:Example"}
+  ],
+  "actions": [
+    {"id": "GetExample", "resourceId": "service:Example"}
+  ],
+  "authorities": [
+    {"id": "auth-mission-control", "kind": "direct"}
+  ],
+  "executionBindings": [
+    {
+      "bindingId": "example-get",
+      "resourceId": "service:Example",
+      "actionId": "GetExample",
+      "kind": "api",
+      "operation": "query",
+      "locator": {
+        "host": "example.com",
+        "port": 443,
+        "uri": "https://example.com/"
+      },
+      "protocol": {
+        "family": "http",
+        "transport": "https",
+        "http": {"method": "GET", "path": "/"}
+      },
+      "lifetime": "establishment-bound"
+    }
+  ],
+  "enforcementRequirements": [
+    {
+      "requirementId": "req-example-get",
+      "effect": "permit",
+      "bindingIds": ["example-get"],
+      "composition": "allOf",
+      "groupId": "example",
+      "audit": "target-native",
+      "lifetime": "establishment-bound"
+    },
+    {
+      "requirementId": "req-no-other-network",
+      "effect": "deny",
+      "bindingPattern": {
+        "kinds": ["service", "api", "inference-provider"],
+        "exceptBindingIds": ["example-get"]
+      },
+      "composition": "allOf",
+      "groupId": "example-deny",
+      "audit": "target-native"
+    }
+  ],
+  "prohibitions": [
+    {
+      "prohibitionId": "proh-open-network",
+      "requirementIds": ["req-no-other-network"],
+      "bindingPattern": {
+        "kinds": ["service", "api", "inference-provider"],
+        "exceptBindingIds": ["example-get"]
+      }
+    }
+  ],
+  "authorizations": [
+    {
+      "authorizationId": "az-openshell-example",
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "actionIds": ["GetExample"],
+      "resourceIds": ["service:Example"],
+      "purpose": "FieldInspection",
+      "requirementIds": ["req-example-get"],
+      "validity": {"state": "valid"}
+    }
+  ],
+  "validity": {"state": "valid"},
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": ["trace-openshell-example"],
+    "independent": true,
+    "traceId": "trace-openshell-example"
+  }
+}
