@@ -75,10 +75,12 @@ class OpenShellProfileTest(unittest.TestCase):
         cls.validator.validate(cls.manifest)
         cls.profile_validator.validate(cls.profile)
 
-    def assess(self, ir):
+    def assess(self, ir, document=None, policy=None, approvals=None):
         before_ir = copy.deepcopy(ir)
         before_manifest = copy.deepcopy(self.manifest)
-        result = assess_coverage(ir, self.manifest, self.profile)
+        result = assess_coverage(
+            ir, self.manifest, self.profile, document=document, policy=policy, approvals=approvals
+        )
         self.assertEqual(ir, before_ir)
         self.assertEqual(self.manifest, before_manifest)
         self.assertFalse(keys_of(result) & FORBIDDEN)
@@ -131,7 +133,8 @@ class OpenShellProfileTest(unittest.TestCase):
         self.assertNotIn("/tmp", json.dumps(result["coverage"]["fipGrants"]))
 
     def test_rest_get_is_rejected_for_lifetime_and_baseline(self):
-        result = self.assess(project(load_json(EXAMPLES / "rest-get.json"))["operationalIr"])
+        document = load_json(EXAMPLES / "rest-get.json")
+        result = self.assess(project(document)["operationalIr"], document=document)
         self.assertEqual(result["compilationDisposition"], "PARTIAL")
         self.assertEqual(result["codes"], ["unsupported_requirement"])
         self.assertNotIn("lifetime_mismatch", result["codes"])
@@ -176,7 +179,7 @@ class OpenShellProfileTest(unittest.TestCase):
         whole = project(policy)
         self.assertIsNone(whole["operationalIr"])
         allowed = exchange_for(policy, "ReadInspectionInput", "mission:InspectionInput")
-        result = self.assess(project(allowed, policy=policy)["operationalIr"])
+        result = self.assess(project(allowed, policy=policy)["operationalIr"], document=allowed, policy=policy)
         self.assertEqual(result["compilationDisposition"], "PARTIAL")
         self.assertEqual(result["codes"], ["unsupported_requirement"])
         self.assertNotIn("baseline_exceeds_grant", result["codes"])
@@ -192,7 +195,7 @@ class OpenShellProfileTest(unittest.TestCase):
         self.assertEqual(unassessed["compilationDisposition"], "NOT_COMPILED")
         self.assertEqual(unassessed["codes"], ["not_compiled"])
         decision = load_json(EXAMPLES / "human-approval-decision.json")
-        result = self.assess(project(policy, approvals=[decision])["operationalIr"])
+        result = self.assess(project(policy, approvals=[decision])["operationalIr"], document=policy, approvals=[decision])
         self.assertEqual(result["compilationDisposition"], "REJECTED")
         self.assertEqual(result["codes"], ["subset_not_demonstrated"])
         self.assertNotIn("baseline_exceeds_grant", result["codes"])

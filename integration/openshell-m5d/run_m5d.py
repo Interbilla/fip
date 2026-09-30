@@ -78,9 +78,9 @@ def compile_twice():
     profile = load(ROOT / "reference" / "fip-0.2" / "targets" / "openshell" / "execution-profile.json")
     authority = assess(document)
     projected = project(document)
-    coverage = assess_coverage(projected["operationalIr"], manifest, profile)
-    first = adapter.compile_policy(projected["operationalIr"], coverage, manifest, profile)
-    second = adapter.compile_policy(projected["operationalIr"], coverage, manifest, profile)
+    coverage = assess_coverage(projected["operationalIr"], manifest, profile, document=document)
+    first = adapter.compile_policy(projected["operationalIr"], coverage, manifest, profile, document=document)
+    second = adapter.compile_policy(projected["operationalIr"], coverage, manifest, profile, document=document)
     return document, authority, projected, coverage, first, second
 
 

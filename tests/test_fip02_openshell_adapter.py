@@ -38,8 +38,8 @@ class OpenShellAdapterTest(unittest.TestCase):
         cls.authority = assess(cls.policy)
         cls.projection = project(cls.policy)
         cls.ir = cls.projection["operationalIr"]
-        cls.coverage = assess_coverage(cls.ir, cls.manifest, cls.profile)
-        cls.result = cls.adapter.compile_policy(cls.ir, cls.coverage, cls.manifest, cls.profile)
+        cls.coverage = assess_coverage(cls.ir, cls.manifest, cls.profile, document=cls.policy)
+        cls.result = cls.adapter.compile_policy(cls.ir, cls.coverage, cls.manifest, cls.profile, document=cls.policy)
 
     def test_slice_is_authorized_projected_and_full_before_compilation(self):
         self.assertEqual(self.authority["authorityDecision"], "AUTHORIZED")
@@ -84,12 +84,14 @@ class OpenShellAdapterTest(unittest.TestCase):
         self.assertNotIn("network_policies", result["generatedPolicy"])
 
     def test_gate_refuses_partial_rejected_and_not_compiled(self):
-        rest = project(load(EXAMPLES / "rest-get.json"))
-        partial = assess_coverage(rest["operationalIr"], self.manifest, self.profile)
+        rest_policy = load(EXAMPLES / "rest-get.json")
+        rest = project(rest_policy)
+        partial = assess_coverage(rest["operationalIr"], self.manifest, self.profile, document=rest_policy)
         self.assertEqual(partial["compilationDisposition"], "PARTIAL")
         self.assertIsNone(self.adapter.compile_policy(rest["operationalIr"], partial, self.manifest, self.profile)["generatedPolicy"])
-        rejected_ir = project(load(EXAMPLES / "filesystem-read-write.json"))["operationalIr"]
-        rejected = assess_coverage(rejected_ir, self.manifest, self.profile)
+        rejected_policy = load(EXAMPLES / "filesystem-read-write.json")
+        rejected_ir = project(rejected_policy)["operationalIr"]
+        rejected = assess_coverage(rejected_ir, self.manifest, self.profile, document=rejected_policy)
         self.assertEqual(rejected["compilationDisposition"], "REJECTED")
         self.assertIsNone(self.adapter.compile_policy(rejected_ir, rejected, self.manifest, self.profile)["generatedPolicy"])
         uncompiled = assess_coverage({"projection": "semantic"}, self.manifest, self.profile)
@@ -105,13 +107,13 @@ class OpenShellAdapterTest(unittest.TestCase):
             stamped["authorityDecision"] = authority
             stamped["compilationDisposition"] = "FULL"
             stamped["deployable"] = True
-            result = self.adapter.compile_policy(self.ir, stamped, self.manifest, self.profile)
+            result = self.adapter.compile_policy(self.ir, stamped, self.manifest, self.profile, document=self.policy)
             self.assertIsNone(result["generatedPolicy"])
             self.assertNotEqual(result["compilationDisposition"], "FULL")
             self.assertFalse(result["deployable"])
         withheld = copy.deepcopy(self.coverage)
         withheld["deployable"] = False
-        result = self.adapter.compile_policy(self.ir, withheld, self.manifest, self.profile)
+        result = self.adapter.compile_policy(self.ir, withheld, self.manifest, self.profile, document=self.policy)
         self.assertIsNone(result["generatedPolicy"])
         self.assertNotEqual(result["compilationDisposition"], "FULL")
 
@@ -124,36 +126,36 @@ class OpenShellAdapterTest(unittest.TestCase):
         for field, value, diagnostic in cases:
             manifest = copy.deepcopy(self.manifest)
             manifest[field] = value
-            result = self.adapter.compile_policy(self.ir, self.coverage, manifest, self.profile)
+            result = self.adapter.compile_policy(self.ir, self.coverage, manifest, self.profile, document=self.policy)
             self.assertIsNone(result["generatedPolicy"])
             self.assertIn(diagnostic, result["diagnostics"])
         profile = copy.deepcopy(self.profile)
         profile["profileId"] = "other-profile"
-        result = self.adapter.compile_policy(self.ir, self.coverage, self.manifest, profile)
+        result = self.adapter.compile_policy(self.ir, self.coverage, self.manifest, profile, document=self.policy)
         self.assertIsNone(result["generatedPolicy"])
         self.assertIn("execution_profile_mismatch", result["diagnostics"])
 
     def test_missing_path_unsupported_operation_and_omitted_members_emit_no_policy(self):
         missing_path = copy.deepcopy(self.ir)
         next(item for item in missing_path["bindings"] if item["bindingId"] == "in-read")["locator"] = {}
-        self.assertIsNone(self.adapter.compile_policy(missing_path, self.coverage, self.manifest, self.profile)["generatedPolicy"])
+        missing = self.adapter.compile_policy(missing_path, self.coverage, self.manifest, self.profile, document=self.policy)
+        self.assertIsNone(missing["generatedPolicy"])
+        self.assertIn("subset_not_demonstrated", missing["diagnostics"])
         unsupported = copy.deepcopy(self.ir)
         next(item for item in unsupported["bindings"] if item["bindingId"] == "out-write")["operation"] = "delete"
-        self.assertIn(
-            "unsupported_binding_operation",
-            self.adapter.compile_policy(unsupported, self.coverage, self.manifest, self.profile)["diagnostics"],
-        )
+        widened = self.adapter.compile_policy(unsupported, self.coverage, self.manifest, self.profile, document=self.policy)
+        self.assertIsNone(widened["generatedPolicy"])
+        self.assertIn("subset_not_demonstrated", widened["diagnostics"])
         omitted = copy.deepcopy(self.ir)
         omitted["requirements"] = [item for item in omitted["requirements"] if item["requirementId"] != "req-write"]
-        self.assertIn(
-            "requirement_omitted",
-            self.adapter.compile_policy(omitted, self.coverage, self.manifest, self.profile)["diagnostics"],
-        )
+        deleted = self.adapter.compile_policy(omitted, self.coverage, self.manifest, self.profile, document=self.policy)
+        self.assertIsNone(deleted["generatedPolicy"])
+        self.assertIn("subset_not_demonstrated", deleted["diagnostics"])
         dropped = copy.deepcopy(self.coverage)
         dropped["selectedRequirementIds"] = ["req-read"]
         self.assertIn(
             "allof_member_omitted",
-            self.adapter.compile_policy(self.ir, dropped, self.manifest, self.profile)["diagnostics"],
+            self.adapter.compile_policy(self.ir, dropped, self.manifest, self.profile, document=self.policy)["diagnostics"],
         )
 
     def test_post_generation_widening_emits_no_policy(self):

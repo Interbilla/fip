@@ -30,9 +30,11 @@ implement them.
 4. **Enforcement requirements.** Security obligations: effect, constraints,
    lifetime, approval, and audit. These travel with the authority. They MUST
    NOT name a vendor control.
-5. **Enforcement IR.** A target-neutral compilation form produced from an
-   authorized policy slice. Adapters consume the IR. They MUST NOT re-decide
-   authority.
+5. **Enforcement IR.** A target-neutral projection of an authorized evaluation.
+   It is not an independent grant. Adapters consume a verified projection.
+   They MUST NOT re-decide authority, and they MUST NOT treat an unverified
+   or substituted IR as the decision. Derivation is specified in
+   [enforcement-ir.md](enforcement-ir.md).
 6. **Target adapter.** Publishes a Capability Manifest, compiles the IR, and
    reports coverage. The first reference target is identified in
    [boundaries.md](boundaries.md). Its vocabulary is not part of FIP.
@@ -103,6 +105,15 @@ Execution is authorized only when all of the following are true:
   compiled rule.
 
 A runtime allow does not rewrite a FIP denial.
+
+`compilationDisposition` `FULL` additionally requires the derivation check in
+[enforcement-ir.md](enforcement-ir.md): the security-relevant content of the
+IR equals a fresh projection of the current semantic evaluation. An external
+technical-boundary proof of a target policy does not replace that check. The
+deployment order is semantic evaluation, projection, derivation verification,
+coverage, adapter compilation, an optional target technical-boundary proof,
+effective target-policy verification, then deployment. Product names for
+targets and provers are not FIP vocabulary.
 
 ## Closed world
 

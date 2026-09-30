@@ -62,6 +62,12 @@ not an Authorization. The receiver's Semantic Micro-Firewall MUST
 re-evaluate the exchange under the receiver's policy. A foreign decision MUST
 NOT manufacture authority.
 
+A received foreign Enforcement IR is not a local Authorization. It MAY be
+treated as Evidence, as a proposal, or as a requested enforcement shape. The
+receiver MUST derive any locally deployable projection from its own applicable
+AuthorityPolicy, Exchange, Decisions, governed context, and local bindings, as
+specified in [enforcement-ir.md](enforcement-ir.md).
+
 The receiver compiles with its own adapter and its own Capability Manifest.
 Coverage is not transitive. One enterprise's `ENFORCED_ALLOW` does not satisfy
 another enterprise's obligation and does not establish the other enterprise's

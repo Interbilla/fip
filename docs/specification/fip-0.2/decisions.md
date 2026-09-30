@@ -118,4 +118,5 @@ than these rules.
 | Operational, authorized, every requirement enforced, subset shown | `AUTHORIZED` | `FULL` | Yes |
 | Operational, authorized, some requirements unenforced | `AUTHORIZED` | `PARTIAL` | No |
 | Subset cannot be shown, or a constraint would be widened | `AUTHORIZED` may still hold | `REJECTED` | No |
+| Consumed IR security content differs from the fresh projection, or derivation cannot be shown | The source decision is unchanged | `REJECTED` (`subset_not_demonstrated`) | No |
 | Approval not yet decided | `AUTHORIZED` may hold for the surrounding grant | not `FULL` for that requirement | No |

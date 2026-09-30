@@ -61,8 +61,8 @@ class OpenShellRemainingSurfacesTest(unittest.TestCase):
         document = load(EXAMPLES / name)
         authority = assess(document)
         ir = project(document)["operationalIr"]
-        coverage = assess_coverage(ir, self.manifest, self.profile)
-        result = self.adapter.compile_policy(ir, coverage, self.manifest, self.profile)
+        coverage = assess_coverage(ir, self.manifest, self.profile, document=document)
+        result = self.adapter.compile_policy(ir, coverage, self.manifest, self.profile, document=document)
         return authority, ir, coverage, result
 
     def test_tcp_connect_compiles_without_application_fields(self):
@@ -168,18 +168,18 @@ class OpenShellRemainingSurfacesTest(unittest.TestCase):
 
     def test_credential_with_host_and_port_stays_rejected(self):
         document = load(EXAMPLES / "proxy-mediated-credential.json")
-        ir = project(document)["operationalIr"]
-        for binding in ir["bindings"]:
+        for binding in document["executionBindings"]:
             if binding.get("kind") == "credential":
                 binding["locator"] = {"host": "api.example.com", "port": 443, "serviceId": binding["locator"]["serviceId"]}
-        coverage = assess_coverage(ir, self.manifest, self.profile)
+        ir = project(document)["operationalIr"]
+        coverage = assess_coverage(ir, self.manifest, self.profile, document=document)
         self.assertEqual(coverage["compilationDisposition"], "REJECTED")
         self.assertIn("subset_not_demonstrated", coverage["codes"])
         stamped = copy.deepcopy(coverage)
         stamped["authorityDecision"] = "AUTHORIZED"
         stamped["compilationDisposition"] = "FULL"
         stamped["deployable"] = True
-        forced = self.adapter.compile_policy(ir, stamped, self.manifest, self.profile)
+        forced = self.adapter.compile_policy(ir, stamped, self.manifest, self.profile, document=document)
         self.assertIsNone(forced["generatedPolicy"])
         self.assertIn("credential_use_not_independent", forced["diagnostics"])
 
@@ -193,7 +193,9 @@ class OpenShellRemainingSurfacesTest(unittest.TestCase):
         stamped["authorityDecision"] = "AUTHORIZED"
         stamped["compilationDisposition"] = "FULL"
         stamped["deployable"] = True
-        forced = self.adapter.compile_policy(ir, stamped, self.manifest, self.profile)
+        forced = self.adapter.compile_policy(
+            ir, stamped, self.manifest, self.profile, document=load(EXAMPLES / "model-inference.json")
+        )
         self.assertIsNone(forced["generatedPolicy"])
         self.assertIn("model_identity_unsupported", forced["diagnostics"])
 

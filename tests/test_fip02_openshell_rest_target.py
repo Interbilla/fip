@@ -57,8 +57,8 @@ class TargetRestrictedRestTest(unittest.TestCase):
         cls.authority = assess(cls.document)
         cls.projection = project(cls.document)
         cls.ir = cls.projection["operationalIr"]
-        cls.coverage = assess_coverage(cls.ir, cls.manifest, cls.profile)
-        cls.result = cls.adapter.compile_policy(cls.ir, cls.coverage, cls.manifest, cls.profile)
+        cls.coverage = assess_coverage(cls.ir, cls.manifest, cls.profile, document=cls.document)
+        cls.result = cls.adapter.compile_policy(cls.ir, cls.coverage, cls.manifest, cls.profile, document=cls.document)
 
     def test_semantic_grant_has_no_executable_binding(self):
         text = (EXAMPLES / "openshell-rest-target-restricted.json").read_text(encoding="utf-8")
@@ -139,11 +139,11 @@ class TargetRestrictedRestTest(unittest.TestCase):
 
     def test_strict_executable_probe_stays_rejected(self):
         ir = project(self.strict)["operationalIr"]
-        coverage = assess_coverage(ir, self.manifest, self.profile)
+        coverage = assess_coverage(ir, self.manifest, self.profile, document=self.strict)
         self.assertEqual(coverage["compilationDisposition"], "REJECTED")
         self.assertIn("subset_not_demonstrated", coverage["codes"])
         self.assertFalse(coverage["deployable"])
-        result = self.adapter.compile_policy(ir, coverage, self.manifest, self.profile)
+        result = self.adapter.compile_policy(ir, coverage, self.manifest, self.profile, document=self.strict)
         self.assertIsNone(result["generatedPolicy"])
         self.assertIn("executable_identity_not_exact", result["diagnostics"])
         self.assertEqual(result["runtimeDisposition"], "UNOBSERVED")
@@ -153,20 +153,20 @@ class TargetRestrictedRestTest(unittest.TestCase):
         stamped["selectedRequirementIds"] = ["req-weather-get", "req-no-other-network"]
         for item in stamped["requirements"]:
             item["status"] = "enforced"
-        forced = self.adapter.compile_policy(ir, stamped, self.manifest, self.profile)
+        forced = self.adapter.compile_policy(ir, stamped, self.manifest, self.profile, document=self.strict)
         self.assertIsNone(forced["generatedPolicy"])
         self.assertIn("executable_identity_not_exact", forced["diagnostics"])
 
     def test_missing_or_inferred_profile_binary_is_not_compiled(self):
         missing = copy.deepcopy(self.profile)
         missing.pop("targetExecutableRestrictions")
-        result = self.adapter.compile_policy(self.ir, self.coverage, self.manifest, missing)
+        result = self.adapter.compile_policy(self.ir, self.coverage, self.manifest, missing, document=self.document)
         self.assertIsNone(result["generatedPolicy"])
         self.assertFalse(result["deployable"])
         self.assertIn("target_binary_not_configured", result["diagnostics"])
         inferred = copy.deepcopy(missing)
         inferred["inferredBinary"] = "/usr/bin/curl"
-        result = self.adapter.compile_policy(self.ir, self.coverage, self.manifest, inferred)
+        result = self.adapter.compile_policy(self.ir, self.coverage, self.manifest, inferred, document=self.document)
         self.assertIsNone(result["generatedPolicy"])
         self.assertIn("target_binary_not_configured", result["diagnostics"])
         self.assertNotIn("/usr/bin/curl", json.dumps(result["generatedPolicy"]))
@@ -174,17 +174,17 @@ class TargetRestrictedRestTest(unittest.TestCase):
     def test_query_host_port_method_and_path_widening_are_rejected(self):
         stamped = copy.deepcopy(self.coverage)
         cases = {
-            "host_not_exact": self._set_locator(host="*.example.com", uri="https://*.example.com/weather"),
-            "uri_disagrees": self._set_locator(port=8443),
-            "method_not_exact": self._set_http(method="*"),
-            "path_not_exact": self._set_http(path="/weather/*"),
-            "query_precision_unsupported": self._set_locator(uri="https://weather.example.com/weather?station=LAX"),
+            "host_not_exact": self._faithful(locator={"host": "*.example.com", "uri": "https://*.example.com/weather"}),
+            "uri_disagrees": self._faithful(locator={"port": 8443}),
+            "method_not_exact": self._faithful(http={"method": "*"}),
+            "path_not_exact": self._faithful(http={"path": "/weather/*"}),
+            "query_precision_unsupported": self._faithful(locator={"uri": "https://weather.example.com/weather?station=LAX"}),
         }
-        for diagnostic, ir in cases.items():
-            coverage = assess_coverage(ir, self.manifest, self.profile)
+        for diagnostic, (document, ir) in cases.items():
+            coverage = assess_coverage(ir, self.manifest, self.profile, document=document)
             self.assertNotEqual(coverage["compilationDisposition"], "FULL", diagnostic)
             self.assertFalse(coverage["deployable"], diagnostic)
-            result = self.adapter.compile_policy(ir, stamped, self.manifest, self.profile)
+            result = self.adapter.compile_policy(ir, stamped, self.manifest, self.profile, document=document)
             self.assertIsNone(result["generatedPolicy"], diagnostic)
             self.assertFalse(result["deployable"], diagnostic)
             self.assertIn(diagnostic, result["diagnostics"], diagnostic)
@@ -220,14 +220,23 @@ class TargetRestrictedRestTest(unittest.TestCase):
     def test_filesystem_hash_is_unchanged(self):
         document = load(EXAMPLES / "openshell-filesystem-read-write.json")
         ir = project(document)["operationalIr"]
-        coverage = assess_coverage(ir, self.manifest, self.profile)
-        result = self.adapter.compile_policy(ir, coverage, self.manifest, self.profile)
+        coverage = assess_coverage(ir, self.manifest, self.profile, document=document)
+        result = self.adapter.compile_policy(ir, coverage, self.manifest, self.profile, document=document)
         self.assertEqual(result["compilationDisposition"], "FULL")
         self.assertNotIn("network_policies", result["generatedPolicy"])
         self.assertEqual(self.runtime.canonical_policy_hash(result["generatedPolicy"]), FILESYSTEM_HASH)
 
     def _binding(self, ir):
         return next(item for item in ir["bindings"] if item["bindingId"] == "weather-get")
+
+    def _faithful(self, locator=None, http=None):
+        document = copy.deepcopy(self.document)
+        binding = next(item for item in document["executionBindings"] if item["bindingId"] == "weather-get")
+        if locator:
+            binding["locator"].update(locator)
+        if http:
+            binding["protocol"]["http"].update(http)
+        return document, project(document)["operationalIr"]
 
     def _set_locator(self, host=None, port=None, uri=None):
         ir = copy.deepcopy(self.ir)

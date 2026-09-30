@@ -7,6 +7,7 @@ that IR with a Capability Manifest. It does not emit a target policy.
 
 from .authority import assess
 from .coverage import assess_coverage
+from .derivation import verify_derivation
 from .project import project
 
-__all__ = ["assess", "assess_coverage", "project"]
+__all__ = ["assess", "assess_coverage", "project", "verify_derivation"]

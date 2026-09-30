@@ -29,6 +29,12 @@ does not satisfy it. Coverage does not substitute one lifetime for another.
 ## Subset invariant
 
 Emitted target authority MUST be a subset of FIP-authorized authority.
+FIP-authorized authority for a deployable result is the fresh projection
+defined in [enforcement-ir.md](enforcement-ir.md). A proof that a target
+policy is a subset of an arbitrary supplied IR does not establish that
+invariant. An external proof that a target policy lies inside a technical
+boundary does not establish it either. Derivation is verified before coverage
+reports deployable `FULL` and before the adapter emits a deployable policy.
 
 FIP-authorized authority is the set of operations that remain after:
 
@@ -89,7 +95,7 @@ requirement status and it is not added to `fipGrants`.
 
 | Disposition | When | `deployable` |
 | --- | --- | --- |
-| `FULL` | Every required `allOf` group is enforced, every `anyOf` group has one exact enforced alternative, every prohibition is enforced, and baseline does not exceed the grants. | `true`. Eligible for a later compilation. No target policy has been produced. |
+| `FULL` | Derivation has been demonstrated, every required `allOf` group in that verified projection is enforced, every `anyOf` group has one exact enforced alternative, every prohibition is enforced, and baseline does not exceed the grants. | `true`. Eligible for a later compilation. No target policy has been produced. |
 | `PARTIAL` | At least one requirement is enforced and a required group is only unenforced, with no widening and no baseline excess. | `false`. Diagnostic. Not installable. |
 | `REJECTED` | A required requirement would widen, weaken, or outlive the grant, a prohibition cannot be enforced, or baseline exceeds the grants. | `false`. |
 | `NOT_COMPILED` | The input is not an operational IR, or the manifest cannot be assessed. | `false`. |
@@ -99,6 +105,21 @@ An unselected `anyOf` alternative keeps its own status. It does not remove
 
 `deployable` true does not mean runtime execution is allowed. `AUTHORIZED`,
 `FULL`, and `ENFORCED_ALLOW` remain different facts.
+
+Coverage answers whether this target and profile can enforce the requirements
+in a verified authorized projection. It does not answer whether a requirement
+is authorized. `FULL` means the required enforcement dimensions of that
+verified projection are enforceable here, including lifetime and audit, with
+accepted substrate not exceeding the grants and not overriding a prohibition.
+`FULL` does not mean that every requirement found in an arbitrary supplied IR
+is authorized. A failed derivation check happens before deployable `FULL`.
+
+An adapter consumes that verified projection. It MUST NOT create semantic
+authority, re-decide semantic authority, treat supplied IR bytes as an
+independent grant, or compile a security-content mismatch as a deployable
+policy. The target policy MUST remain a subset of the verified current
+projection plus explicitly accepted execution substrate. Substrate never
+overrides a FIP prohibition.
 
 M0 does not define a total order among `establishment-bound`, `revocable`,
 and `validity-bound` beyond this: a control that lasts for the whole

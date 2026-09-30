@@ -47,6 +47,12 @@ The manifest uses only the generic Capability Manifest schema.
 
 Unlisted paths are inaccessible. `read_only` and `read_write` are separate. A path is absolute, contains no `..`, and the policy holds at most 256 paths. `/` as read-write is rejected. Filesystem, Landlock, and process fields take effect at startup. Replacing them recreates the sandbox context, which is `establishment-bound`.
 
+Pinned v0.1.2 does not glob a filesystem path. `PathFd` opens the string literally, and Landlock `PathBeneath` then applies to that inode. If the inode is a directory, the rule covers the hierarchy beneath it. If it is a file, the rule uses file rights only. The static adapter cannot see the inode, so it does not treat every absolute path as a directory grant and it does not reject `/mission/input`.
+
+`normalize_path` is lexical. It collapses repeated separators, drops `.`, and drops a trailing slash. It keeps `..` for a separate validation error. It does not resolve symlinks. This profile does not rewrite a locator into that normalized form. A locator that would change under that normalization is not an exact representable path.
+
+`*`, `?`, and `[` are pattern syntax in this product's path globs. They are ordinary filename bytes to `open`, and this profile still refuses them. `filesystemOperations: exact` may be `FULL` only for an absolute path whose segments are nonempty and are not `.`, `..`, or that pattern syntax. A refused locator stays `AUTHORIZED` at semantics and is `REJECTED` at coverage with `unsupported_requirement` and diagnostic `filesystem_locator_not_exact`. That is not `subset_not_demonstrated`. A missing path fails `hard_requirement` startup instead of being skipped into a wider ruleset. Symlink targets are followed by `open` and are not proved by this static check.
+
 `include_workdir` defaults to false when `filesystem_policy` is present, and to true when that section is omitted. A faithful adapter that emits the section can leave the workdir out of `read_write`. The usual workdir `/sandbox` is therefore not an always-on substrate entry.
 
 Landlock `compatibility` defaults to `best_effort`. If no listed path can be applied, `best_effort` runs the sandbox without the filesystem rules and logs a finding. `hard_requirement` fails startup in that case. Both modes skip an individual missing path, and both require Landlock ABI v3. A faithful translation sets `hard_requirement`. `best_effort` is not exact enforcement.

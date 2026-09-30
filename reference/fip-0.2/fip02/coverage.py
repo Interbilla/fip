@@ -59,8 +59,20 @@ SUBSTRATE_CLASSES = EXECUTION_CLASSES | {"operational-authority"}
 CREDENTIAL_DIMENSIONS = {"provider", "host", "port", "path", "protocol"}
 
 
-def assess_coverage(ir, manifest, profile=None):
-    """Return a coverage assessment. The IR, manifest, and profile are not modified."""
+def assess_coverage(ir, manifest, profile=None, document=None, policy=None, approvals=None):
+    """Return a coverage assessment. The IR, manifest, and profile are not modified.
+
+    document and policy are the current semantic sources. Deployable FULL or
+    PARTIAL requires those sources to regenerate this IR. A mismatch is REJECTED
+    and is not given a deployable disposition.
+    """
+    from .derivation import verify_derivation
+
+    sources_given = document is not None or policy is not None
+    if sources_given:
+        verdict = verify_derivation(ir, document, policy=policy, approvals=approvals)
+        if not verdict["matched"]:
+            return _derivation_rejected(ir, manifest, verdict)
     if not _operational_ir(ir):
         return _unassessed(ir, manifest, "not_an_operational_ir")
     failure = _manifest_failure(manifest)
@@ -129,6 +141,16 @@ def assess_coverage(ir, manifest, profile=None):
         assessment["policyId"] = ir["policyId"]
     if ir.get("exchangeId"):
         assessment["exchangeId"] = ir["exchangeId"]
+    if not sources_given and assessment["compilationDisposition"] in ("FULL", "PARTIAL"):
+        assessment["compilationDisposition"] = "REJECTED"
+        assessment["deployable"] = False
+        if "subset_not_demonstrated" not in assessment["codes"]:
+            assessment["codes"] = ["subset_not_demonstrated"] + list(assessment["codes"])
+        if "subset_not_demonstrated" not in assessment["diagnostics"]:
+            assessment["diagnostics"] = ["subset_not_demonstrated"] + list(assessment["diagnostics"])
+    for note in _filesystem_representability_notes(ir, manifest):
+        if note not in assessment["diagnostics"] and assessment["compilationDisposition"] != "FULL":
+            assessment["diagnostics"].append(note)
     return assessment
 
 
@@ -143,6 +165,55 @@ def _operational_ir(ir):
         and isinstance(ir.get("requirements"), list)
         and isinstance(ir.get("bindings"), list)
     )
+
+
+def _filesystem_representability_notes(ir, manifest):
+    if not isinstance(manifest, dict) or manifest.get("adapterId") != "openshell-v0.1.2":
+        return []
+    if (manifest.get("precision") or {}).get("filesystemOperations") != "exact":
+        return []
+    notes = []
+    for binding in (ir or {}).get("bindings") or []:
+        if not isinstance(binding, dict) or binding.get("kind") != "filesystem":
+            continue
+        issue = filesystem_locator_issue((binding.get("locator") or {}).get("path"))
+        if issue and issue not in notes:
+            notes.append(issue)
+    return notes
+
+
+def _derivation_rejected(ir, manifest, verdict):
+    source = ir if isinstance(ir, dict) else {}
+    manifest = manifest if isinstance(manifest, dict) else {}
+    result = {
+        "assessmentVersion": "0",
+        "fipVersion": "0.2",
+        "traceId": source.get("traceId") or "trace-unspecified",
+        "authorityDecision": verdict.get("authorityDecision") or source.get("authorityDecision") or "INCOMPLETE",
+        "compilationDisposition": "REJECTED",
+        "deployable": False,
+        "manifestId": manifest.get("adapterId") or "unknown-manifest",
+        "codes": ["subset_not_demonstrated"],
+        "requirements": [],
+        "bindings": [],
+        "groups": [],
+        "prohibitions": [],
+        "audit": [],
+        "coverage": {"fipGrants": [], "targetEnforcement": [], "targetBaseline": []},
+        "selectedRequirementIds": [],
+        "diagnostics": ["subset_not_demonstrated"],
+    }
+    if source.get("policyId"):
+        result["policyId"] = source["policyId"]
+    if source.get("exchangeId"):
+        result["exchangeId"] = source["exchangeId"]
+    if manifest.get("targetType"):
+        result["targetType"] = manifest["targetType"]
+    if manifest.get("targetVersion"):
+        result["targetVersion"] = manifest["targetVersion"]
+    if manifest.get("adapterVersion"):
+        result["adapterVersion"] = manifest["adapterVersion"]
+    return result
 
 
 def _unassessed(ir, manifest, reason):
@@ -302,6 +373,12 @@ def _binding(binding, requirement, manifest):
         return "unenforced", ["unsupported_requirement"]
     locator = binding.get("locator") or {}
     if kind == "filesystem":
+        if (
+            manifest.get("adapterId") == "openshell-v0.1.2"
+            and precision.get("filesystemOperations") == "exact"
+            and filesystem_locator_issue(locator.get("path"))
+        ):
+            return "rejected", ["unsupported_requirement"]
         offered = set(manifest.get("operations") or []) & {"read", "write", "create", "modify", "delete"}
         if precision.get("filesystemOperations") == "bundle" and offered - {operation}:
             return "rejected", ["subset_not_demonstrated"]
@@ -436,6 +513,28 @@ def _network_exactness(binding, manifest):
     if isinstance(locator.get("uri"), str) and isinstance(host, str) and locator.get("port") is not None:
         if _uri_disagrees(locator["uri"], host, locator["port"], path if isinstance(path, str) else None):
             return "rejected", ["subset_not_demonstrated"]
+    return None
+
+
+def filesystem_locator_issue(path):
+    """OpenShell v0.1.2 exact filesystem locator check.
+
+    Pinned Landlock opens the path string literally. This profile still
+    refuses a locator that is relative, a traversal, a form normalize_path
+    would rewrite, or pattern syntax from the same product's path globs.
+    """
+    if not isinstance(path, str) or not path.startswith("/") or path == "/":
+        return "filesystem_locator_not_exact"
+    segments = path.split("/")
+    if any(segment == "" for segment in segments[1:]):
+        return "filesystem_locator_not_exact"
+    for segment in segments[1:]:
+        if segment in {".", ".."}:
+            return "filesystem_locator_not_exact"
+        if any(character in segment for character in "*?"):
+            return "filesystem_locator_not_exact"
+        if "[" in segment:
+            return "filesystem_locator_not_exact"
     return None
 
 
@@ -778,6 +877,8 @@ def _disposition(requirements, groups, prohibitions, baseline_exceeds):
         item["status"] == "enforced" for item in prohibitions
     ):
         return "FULL", []
+    if any(item["status"] == "rejected" for item in requirements) or any(item["status"] == "rejected" for item in groups):
+        return "REJECTED", ordered or ["unsupported_requirement"]
     if not required_groups and requirements and all(item["status"] == "enforced" for item in requirements):
         return "FULL", []
     return "REJECTED", ordered or ["compilation_rejected"]

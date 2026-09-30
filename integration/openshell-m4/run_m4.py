@@ -67,8 +67,8 @@ def compile_slice():
     profile = load(ROOT / "reference" / "fip-0.2" / "targets" / "openshell" / "execution-profile.json")
     authority = assess(document)
     projected = project(document)
-    coverage = assess_coverage(projected["operationalIr"], manifest, profile)
-    result = adapter.compile_policy(projected["operationalIr"], coverage, manifest, profile)
+    coverage = assess_coverage(projected["operationalIr"], manifest, profile, document=document)
+    result = adapter.compile_policy(projected["operationalIr"], coverage, manifest, profile, document=document)
     return authority, projected, coverage, result
 
 

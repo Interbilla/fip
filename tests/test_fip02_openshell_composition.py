@@ -38,8 +38,8 @@ class OpenShellCompositionTest(unittest.TestCase):
     def compiled(self, name):
         document = load(EXAMPLES / name)
         ir = project(document)["operationalIr"]
-        coverage = assess_coverage(ir, self.manifest, self.profile)
-        return ir, coverage, self.adapter.compile_policy(ir, coverage, self.manifest, self.profile)
+        coverage = assess_coverage(ir, self.manifest, self.profile, document=document)
+        return ir, coverage, self.adapter.compile_policy(ir, coverage, self.manifest, self.profile, document=document)
 
     def test_rest_authority_is_not_laundered_through_tcp(self):
         ir, _coverage, result = self.compiled("openshell-rest-target-restricted.json")
@@ -94,7 +94,9 @@ class OpenShellCompositionTest(unittest.TestCase):
         stamped["authorityDecision"] = "AUTHORIZED"
         stamped["compilationDisposition"] = "FULL"
         stamped["deployable"] = True
-        forced = self.adapter.compile_policy(ir, stamped, self.manifest, self.profile)
+        forced = self.adapter.compile_policy(
+            ir, stamped, self.manifest, self.profile, document=load(EXAMPLES / "model-inference.json")
+        )
         self.assertIsNone(forced["generatedPolicy"])
 
     def test_mcp_server_is_not_a_generic_network_escape(self):
@@ -116,13 +118,15 @@ class OpenShellCompositionTest(unittest.TestCase):
 
     def test_credential_does_not_authorize_another_endpoint(self):
         document = load(EXAMPLES / "proxy-mediated-credential.json")
-        ir = project(document)["operationalIr"]
-        for binding in ir["bindings"]:
+        for binding in document["executionBindings"]:
             if binding.get("kind") == "credential":
-                binding["locator"] = {"host": "other.example.com", "port": 443}
-        coverage = assess_coverage(ir, self.manifest, self.profile)
+                binding["locator"] = {"host": "other.example.com", "port": 443, "serviceId": binding["locator"].get("serviceId")}
+        ir = project(document)["operationalIr"]
+        coverage = assess_coverage(ir, self.manifest, self.profile, document=document)
         self.assertNotEqual(coverage["compilationDisposition"], "FULL")
-        self.assertIsNone(self.adapter.compile_policy(ir, coverage, self.manifest, self.profile)["generatedPolicy"])
+        self.assertIsNone(
+            self.adapter.compile_policy(ir, coverage, self.manifest, self.profile, document=document)["generatedPolicy"]
+        )
 
     def test_policy_after_verification_is_a_different_document(self):
         _ir, _coverage, result = self.compiled("openshell-rest-target-restricted.json")

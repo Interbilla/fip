@@ -45,8 +45,15 @@ def scoped_manifest():
     return manifest
 
 
+_SOURCES = {}
+
+
 def ir_for(name):
-    return project(load(EXAMPLES / name))["operationalIr"]
+    document = load(EXAMPLES / name)
+    ir = project(document)["operationalIr"]
+    if isinstance(ir, dict):
+        _SOURCES[id(ir)] = document
+    return ir
 
 
 def profile_for(path, substrate_class="writable-runtime"):
@@ -66,9 +73,11 @@ def profile_for(path, substrate_class="writable-runtime"):
 
 
 class CapabilityRefinementTest(unittest.TestCase):
-    def assess(self, ir, manifest, profile=None):
+    def assess(self, ir, manifest, profile=None, document=None):
         before = copy.deepcopy(ir)
-        result = assess_coverage(ir, manifest, profile)
+        if document is None and isinstance(ir, dict):
+            document = _SOURCES.get(id(ir))
+        result = assess_coverage(ir, manifest, profile, document=document)
         self.assertEqual(ir, before)
         return result
 
@@ -78,12 +87,12 @@ class CapabilityRefinementTest(unittest.TestCase):
         weather = next(item for item in rest["requirements"] if item["requirementId"] == "req-weather")
         self.assertEqual(weather["status"], "enforced")
         self.assertNotIn("lifetime_mismatch", rest["codes"])
-        files = ir_for("filesystem-read-write.json")
-        for requirement in files["requirements"]:
+        document = load(EXAMPLES / "filesystem-read-write.json")
+        for requirement in document["enforcementRequirements"]:
             requirement["lifetime"] = "revocable"
-        for binding in files["bindings"]:
+        for binding in document["executionBindings"]:
             binding["lifetime"] = "revocable"
-        rejected = self.assess(files, manifest)
+        rejected = self.assess(project(document)["operationalIr"], manifest, document=document)
         self.assertEqual(rejected["compilationDisposition"], "REJECTED")
         self.assertIn("lifetime_mismatch", rejected["codes"])
         self.assertTrue(all(item["status"] == "rejected" for item in rejected["requirements"]))
@@ -161,8 +170,8 @@ class CapabilityRefinementTest(unittest.TestCase):
         })
         result = self.assess(ir, manifest, profile_for("/tmp"))
         self.assertEqual(result["compilationDisposition"], "REJECTED")
-        self.assertIn("baseline_exceeds_grant", result["codes"])
-        self.assertEqual(result["coverage"]["targetBaseline"][0]["acceptance"], "unaccepted")
+        self.assertIn("subset_not_demonstrated", result["codes"])
+        self.assertFalse(result["deployable"])
         self.assertNotIn("/tmp", result["coverage"]["fipGrants"])
 
     def test_target_cannot_label_a_mission_path_as_trusted_substrate(self):

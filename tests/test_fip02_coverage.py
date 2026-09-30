@@ -28,8 +28,15 @@ def load_manifest(name):
     return json.loads((MANIFESTS / name).read_text(encoding="utf-8"))
 
 
+_SOURCES = {}
+
+
 def ir_for(name):
-    return project(load_example(name))["operationalIr"]
+    document = load_example(name)
+    ir = project(document)["operationalIr"]
+    if isinstance(ir, dict):
+        _SOURCES[id(ir)] = document
+    return ir
 
 
 def keys_of(value, found=None):
@@ -64,9 +71,11 @@ class CoverageTest(unittest.TestCase):
         for path in MANIFESTS.glob("*.json"):
             cls.manifest_validator.validate(json.loads(path.read_text(encoding="utf-8")))
 
-    def assess(self, ir, manifest):
+    def assess(self, ir, manifest, document=None, policy=None, approvals=None):
         before = copy.deepcopy(ir)
-        result = assess_coverage(ir, manifest)
+        if document is None and policy is None and isinstance(ir, dict):
+            document = _SOURCES.get(id(ir))
+        result = assess_coverage(ir, manifest, document=document, policy=policy, approvals=approvals)
         self.assertEqual(ir, before)
         self.assertFalse(keys_of(result) & FORBIDDEN)
         if result["compilationDisposition"] != "NOT_COMPILED":
@@ -168,7 +177,7 @@ class CoverageTest(unittest.TestCase):
         manifest["kinds"] = ["api"]
         manifest["operations"] = ["query"]
         manifest["compositions"] = ["anyOf"]
-        result = self.assess(ir, manifest)
+        result = self.assess(ir, manifest, document=policy)
         self.assertEqual(result["groups"][0]["composition"], "anyOf")
         self.assertEqual(result["groups"][0]["status"], "enforced")
         self.assertEqual(result["compilationDisposition"], "FULL")
@@ -198,12 +207,12 @@ class CoverageTest(unittest.TestCase):
             "provenance": policy["provenance"],
         }
         ir = project(exchange, policy=policy)["operationalIr"]
-        covered = self.assess(ir, load_manifest("full-capability-test-target.json"))
+        covered = self.assess(ir, load_manifest("full-capability-test-target.json"), document=exchange, policy=policy)
         self.assertEqual(covered["prohibitions"][0]["status"], "enforced")
         self.assertEqual(covered["compilationDisposition"], "FULL")
         no_deny = load_manifest("full-capability-test-target.json")
         no_deny["effects"] = ["permit"]
-        uncovered = self.assess(ir, no_deny)
+        uncovered = self.assess(ir, no_deny, document=exchange, policy=policy)
         self.assertNotEqual(uncovered["compilationDisposition"], "FULL")
         self.assertEqual(uncovered["prohibitions"][0]["status"], "unenforced")
         self.assertFalse(uncovered["deployable"])

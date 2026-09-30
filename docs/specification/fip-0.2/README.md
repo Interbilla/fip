@@ -42,7 +42,7 @@ more execution.
 | [enforcement-requirement.md](enforcement-requirement.md) | Requirements, composition, lifetime, approval, audit |
 | [authority-objects.md](authority-objects.md) | Condition, Constraint, Scope, Validity, grants, delegation |
 | [decisions.md](decisions.md) | Decision domains, fail-closed rules, initial reason codes |
-| [enforcement-ir.md](enforcement-ir.md) | Enforcement IR contract |
+| [enforcement-ir.md](enforcement-ir.md) | Enforcement IR contract and derivation |
 | [adapters.md](adapters.md) | Capability Manifest, subset invariant, coverage, substrate |
 | [audit-and-federation.md](audit-and-federation.md) | Audit correlation, FIP-side runtime observation, and cross-enterprise behavior |
 | [compatibility.md](compatibility.md) | 0.1 preservation, lifting, version negotiation |

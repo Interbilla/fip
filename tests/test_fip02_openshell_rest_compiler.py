@@ -39,8 +39,8 @@ class OpenShellRestCompilerTest(unittest.TestCase):
         cls.authority = assess(cls.policy)
         cls.projection = project(cls.policy)
         cls.ir = cls.projection["operationalIr"]
-        cls.coverage = assess_coverage(cls.ir, cls.manifest, cls.profile)
-        cls.result = cls.adapter.compile_policy(cls.ir, cls.coverage, cls.manifest, cls.profile)
+        cls.coverage = assess_coverage(cls.ir, cls.manifest, cls.profile, document=cls.policy)
+        cls.result = cls.adapter.compile_policy(cls.ir, cls.coverage, cls.manifest, cls.profile, document=cls.policy)
         cls.grants = [{
             "requirementId": "req-weather-get",
             "bindingId": "weather-get",
@@ -75,7 +75,7 @@ class OpenShellRestCompilerTest(unittest.TestCase):
         self.assertEqual(self.result["runtimeDisposition"], "UNOBSERVED")
         self.assertIn("executable_identity_not_exact", self.result["diagnostics"])
         self.assertNotEqual(self.result["monotonicity"], "demonstrated")
-        forced = self.adapter.compile_policy(self.ir, self._stamp_full(), self.manifest, self.profile)
+        forced = self.adapter.compile_policy(self.ir, self._stamp_full(), self.manifest, self.profile, document=self.policy)
         self.assertIsNone(forced["generatedPolicy"])
         self.assertFalse(forced["deployable"])
         self.assertIn("executable_identity_not_exact", forced["diagnostics"])
@@ -83,12 +83,13 @@ class OpenShellRestCompilerTest(unittest.TestCase):
 
     def test_query_component_fails_closed(self):
         stamped = self._stamp_full()
-        clean = self.adapter.compile_policy(self.ir, stamped, self.manifest, self.profile)
+        clean = self.adapter.compile_policy(self.ir, stamped, self.manifest, self.profile, document=self.policy)
         self.assertNotIn("query_precision_unsupported", clean["diagnostics"])
-        queried = copy.deepcopy(self.ir)
-        binding = next(item for item in queried["bindings"] if item["bindingId"] == "weather-get")
-        binding["locator"]["uri"] = "https://weather.example.com/weather?station=LAX"
-        result = self.adapter.compile_policy(queried, stamped, self.manifest, self.profile)
+        queried_policy = copy.deepcopy(self.policy)
+        source = next(item for item in queried_policy["executionBindings"] if item["bindingId"] == "weather-get")
+        source["locator"]["uri"] = "https://weather.example.com/weather?station=LAX"
+        queried = project(queried_policy)["operationalIr"]
+        result = self.adapter.compile_policy(queried, stamped, self.manifest, self.profile, document=queried_policy)
         self.assertIsNone(result["generatedPolicy"])
         self.assertFalse(result["deployable"])
         self.assertEqual(result["compilationDisposition"], "REJECTED")
@@ -97,17 +98,19 @@ class OpenShellRestCompilerTest(unittest.TestCase):
         self.assertIn("executable_identity_not_exact", result["diagnostics"])
 
     def test_gate_refuses_partial_rejected_and_not_compiled(self):
-        rest = project(load(EXAMPLES / "rest-get.json"))
-        partial = assess_coverage(rest["operationalIr"], self.manifest, self.profile)
+        rest_policy = load(EXAMPLES / "rest-get.json")
+        rest = project(rest_policy)
+        partial = assess_coverage(rest["operationalIr"], self.manifest, self.profile, document=rest_policy)
         self.assertEqual(partial["compilationDisposition"], "PARTIAL")
-        refused = self.adapter.compile_policy(rest["operationalIr"], partial, self.manifest, self.profile)
+        refused = self.adapter.compile_policy(rest["operationalIr"], partial, self.manifest, self.profile, document=rest_policy)
         self.assertIsNone(refused["generatedPolicy"])
         self.assertEqual(refused["compilationDisposition"], "PARTIAL")
         self.assertEqual(refused["runtimeDisposition"], "UNOBSERVED")
-        rejected_ir = project(load(EXAMPLES / "filesystem-read-write.json"))["operationalIr"]
-        rejected = assess_coverage(rejected_ir, self.manifest, self.profile)
+        rejected_policy = load(EXAMPLES / "filesystem-read-write.json")
+        rejected_ir = project(rejected_policy)["operationalIr"]
+        rejected = assess_coverage(rejected_ir, self.manifest, self.profile, document=rejected_policy)
         self.assertEqual(rejected["compilationDisposition"], "REJECTED")
-        refused = self.adapter.compile_policy(rejected_ir, rejected, self.manifest, self.profile)
+        refused = self.adapter.compile_policy(rejected_ir, rejected, self.manifest, self.profile, document=rejected_policy)
         self.assertIsNone(refused["generatedPolicy"])
         self.assertEqual(refused["compilationDisposition"], "REJECTED")
         uncompiled = assess_coverage({"projection": "semantic"}, self.manifest, self.profile)
@@ -146,8 +149,8 @@ class OpenShellRestCompilerTest(unittest.TestCase):
         filesystem = load_module("openshell_adapter_filesystem_guard", TARGET / "adapter.py")
         document = load(EXAMPLES / "openshell-filesystem-read-write.json")
         ir = project(document)["operationalIr"]
-        coverage = assess_coverage(ir, self.manifest, self.profile)
-        result = filesystem.compile_policy(ir, coverage, self.manifest, self.profile)
+        coverage = assess_coverage(ir, self.manifest, self.profile, document=document)
+        result = filesystem.compile_policy(ir, coverage, self.manifest, self.profile, document=document)
         self.assertEqual(result["compilationDisposition"], "FULL")
         self.assertNotIn("network_policies", result["generatedPolicy"])
         self.assertEqual(self.runtime.canonical_policy_hash(result["generatedPolicy"]), FILESYSTEM_HASH)

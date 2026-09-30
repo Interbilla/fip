@@ -28,8 +28,24 @@ _READ = "read"
 _WRITE = "write"
 
 
-def compile_policy(ir, assessment, manifest, profile):
-    """Return an adapter result. A refused input has no generated policy."""
+def _filesystem_locator_issue(path):
+    from fip02.coverage import filesystem_locator_issue
+
+    return filesystem_locator_issue(path)
+
+
+def compile_policy(ir, assessment, manifest, profile, document=None, policy=None, approvals=None):
+    """Return an adapter result. A refused input has no generated policy.
+
+    document and policy are the current semantic sources. A deployable policy
+    requires the consumed IR to match a fresh projection of those sources.
+    """
+    from fip02.derivation import verify_derivation
+
+    if isinstance(ir, dict):
+        verdict = verify_derivation(ir, document, policy=policy, approvals=approvals)
+        if not verdict["matched"]:
+            return _empty(ir, assessment, "REJECTED", ["subset_not_demonstrated"])
     refused = _gate(assessment)
     if refused:
         diagnostics = list(refused[1])
@@ -468,8 +484,10 @@ def _filesystem_grant(binding):
     if operation not in (_READ, _WRITE):
         return None, "unsupported_binding_operation"
     path = (binding.get("locator") or {}).get("path")
-    if not _exact_path(path):
+    if not isinstance(path, str) or not path:
         return None, "binding_path_missing"
+    if _filesystem_locator_issue(path):
+        return None, "filesystem_locator_not_exact"
     return operation, path
 
 
@@ -511,7 +529,7 @@ def _substrate(assessment, manifest, profile, ir):
                 "source": "execution-substrate",
             })
             continue
-        if not _exact_path(path) or operation not in (_READ, _WRITE):
+        if _filesystem_locator_issue(path) or operation not in (_READ, _WRITE):
             reasons.append("substrate_access_widened")
             continue
         if declared.get("kind") != "filesystem":

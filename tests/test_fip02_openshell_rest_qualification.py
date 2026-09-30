@@ -44,7 +44,9 @@ class OpenShellRestQualificationTest(unittest.TestCase):
         projected = project(document)
         coverage = None
         if projected["operationalIr"] is not None:
-            coverage = assess_coverage(projected["operationalIr"], manifest or self.manifest, self.profile)
+            coverage = assess_coverage(
+                projected["operationalIr"], manifest or self.manifest, self.profile, document=document
+            )
         return authority, projected, coverage
 
     def test_architectural_rest_probe_stays_partial(self):

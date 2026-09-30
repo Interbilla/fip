@@ -38,9 +38,11 @@ class RestRuntimeFixtureTest(unittest.TestCase):
         cls.document = load(EXAMPLES / "openshell-rest-runtime.json")
         cls.authority = assess(cls.document)
         cls.projection = project(cls.document)
-        cls.coverage = assess_coverage(cls.projection["operationalIr"], cls.manifest, cls.profile)
+        cls.coverage = assess_coverage(
+            cls.projection["operationalIr"], cls.manifest, cls.profile, document=cls.document
+        )
         cls.result = cls.adapter.compile_policy(
-            cls.projection["operationalIr"], cls.coverage, cls.manifest, cls.profile
+            cls.projection["operationalIr"], cls.coverage, cls.manifest, cls.profile, document=cls.document
         )
 
     def test_fixture_is_authorized_full_and_unobserved(self):
@@ -57,7 +59,9 @@ class RestRuntimeFixtureTest(unittest.TestCase):
         self.assertNotIn("/usr/bin/curl", json.dumps(self.document))
         digest = self.runtime.canonical_policy_hash(self.result["generatedPolicy"])
         again = self.runtime.canonical_policy_hash(
-            self.adapter.compile_policy(self.projection["operationalIr"], self.coverage, self.manifest, self.profile)["generatedPolicy"]
+            self.adapter.compile_policy(
+                self.projection["operationalIr"], self.coverage, self.manifest, self.profile, document=self.document
+            )["generatedPolicy"]
         )
         self.assertEqual(digest, again)
         self.assertNotEqual(digest, CONFORMANCE_HASH)
@@ -84,20 +88,25 @@ class RestRuntimeFixtureTest(unittest.TestCase):
     def test_conformance_and_strict_probes_stay_in_place(self):
         conformance = load(EXAMPLES / "openshell-rest-target-restricted.json")
         ir = project(conformance)["operationalIr"]
-        coverage = assess_coverage(ir, self.manifest, self.profile)
-        compiled = self.adapter.compile_policy(ir, coverage, self.manifest, self.profile)
+        coverage = assess_coverage(ir, self.manifest, self.profile, document=conformance)
+        compiled = self.adapter.compile_policy(ir, coverage, self.manifest, self.profile, document=conformance)
         self.assertEqual(self.runtime.canonical_policy_hash(compiled["generatedPolicy"]), CONFORMANCE_HASH)
         strict = load(EXAMPLES / "openshell-rest-get.json")
         strict_ir = project(strict)["operationalIr"]
-        strict_coverage = assess_coverage(strict_ir, self.manifest, self.profile)
+        strict_coverage = assess_coverage(strict_ir, self.manifest, self.profile, document=strict)
         self.assertEqual(strict_coverage["compilationDisposition"], "REJECTED")
-        architectural = project(load(EXAMPLES / "rest-get.json"))
-        architectural_coverage = assess_coverage(architectural["operationalIr"], self.manifest, self.profile)
+        architectural_policy = load(EXAMPLES / "rest-get.json")
+        architectural = project(architectural_policy)
+        architectural_coverage = assess_coverage(
+            architectural["operationalIr"], self.manifest, self.profile, document=architectural_policy
+        )
         self.assertEqual(architectural_coverage["compilationDisposition"], "PARTIAL")
         files = load(EXAMPLES / "openshell-filesystem-read-write.json")
         files_ir = project(files)["operationalIr"]
-        files_coverage = assess_coverage(files_ir, self.manifest, self.profile)
-        files_compiled = self.adapter.compile_policy(files_ir, files_coverage, self.manifest, self.profile)
+        files_coverage = assess_coverage(files_ir, self.manifest, self.profile, document=files)
+        files_compiled = self.adapter.compile_policy(
+            files_ir, files_coverage, self.manifest, self.profile, document=files
+        )
         self.assertEqual(self.runtime.canonical_policy_hash(files_compiled["generatedPolicy"]), FILESYSTEM_HASH)
 
 
