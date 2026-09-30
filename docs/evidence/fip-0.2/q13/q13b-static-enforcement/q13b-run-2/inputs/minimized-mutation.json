@@ -1,0 +1,18 @@
+{
+  "source": "single filesystem read",
+  "mutationPoint": "semantic",
+  "change": "authorized locator path set to /mission/* before evaluation",
+  "compilationDisposition": "FULL",
+  "deployable": true,
+  "read_only": [
+    "/mission/*",
+    "/usr",
+    "/lib",
+    "/etc",
+    "/app",
+    "/var/log",
+    "/proc",
+    "/dev/urandom",
+    "/run/openshell-supervisor-ca"
+  ]
+}

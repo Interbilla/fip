@@ -1,0 +1,13 @@
+{
+  "semantic": "AUTHORIZED",
+  "codes": [
+    "approval_required",
+    "not_compiled"
+  ],
+  "reasons": [],
+  "ir": null,
+  "derivationMatched": null,
+  "compilation": "NOT_COMPILED",
+  "deployable": false,
+  "coverageDisposition": null
+}

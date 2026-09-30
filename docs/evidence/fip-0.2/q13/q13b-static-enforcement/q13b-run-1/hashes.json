@@ -1,0 +1,8 @@
+{
+  "inputs/source.json": "7b7338d9a26a1b131c0529db9f7ef8a34656a4fe6677b695abc71f319d272454",
+  "inputs/minimized-mutation.json": "def50c72778dd157ea298ea6913522f8ed6645e822516f2a56bea9cf46701e2b",
+  "ir/original.json": "8d3adfb3a8077bd89a6f18564f955b41464a66dbd986d03b12e996b6f59affee",
+  "ir/mutated.json": "85bb487233470635cfb2225a2efbf14132cde2bded3a60eb4102d8f0f1262d89",
+  "coverage/assessment.json": "75d4af30e11a16aec5ce4041688f7e3f875cb7e77fc1d33496497ea82498859c",
+  "policies/generated.json": "41436318e67655fe3582bd08ac7a8bae399cd2dcf1c6e4399e90cbdea06e0900"
+}

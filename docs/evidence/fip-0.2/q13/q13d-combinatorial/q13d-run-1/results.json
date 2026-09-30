@@ -1,0 +1,49 @@
+{
+  "aggregateGeneratedExposure": 1,
+  "completed": false,
+  "deployablePolicies": 1,
+  "generatedCases": 1,
+  "generator": "q13d-generator-1",
+  "operationalIrs": 1,
+  "primaryCounts": {
+    "UNAUTHORIZED_DEPLOYABLE_AUTHORITY": 1
+  },
+  "rows": [
+    {
+      "caseId": "q13d-seed-0001-0001-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "UNAUTHORIZED_DEPLOYABLE_AUTHORITY",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": true
+    }
+  ],
+  "run": "q13d-run-1",
+  "runtimeOperationalOpportunities": 0,
+  "runtimeUOER": null,
+  "seeds": [
+    "q13d-seed-0001",
+    "q13d-seed-0002",
+    "q13d-seed-0003",
+    "q13d-seed-0004",
+    "q13d-seed-0005",
+    "q13d-seed-0006"
+  ],
+  "semanticCounts": {
+    "AUTHORIZED": 1
+  },
+  "unauthorizedDeployableEmissions": 1,
+  "unauthorizedOperationalEffects": 0
+}

@@ -1,0 +1,967 @@
+{
+  "runId": "q13b-run-3",
+  "startedAt": "2026-09-29T23:56:21Z",
+  "baselineCommit": "6435895898dd089ad545941fa226eb1c0a6860a9",
+  "prospectiveSource": "uncommitted working tree including derivation verification and exact filesystem locator rejection",
+  "openshellVersion": "0.1.2",
+  "openshellCommit": "6648bd0c290efbc41ba131ee9831ee45cd431f94",
+  "python": "3.13.12",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "generator": "q13b-2",
+  "seed": "q13b-ordered-0",
+  "runtimeExecuted": false,
+  "gate": "PASS",
+  "stoppedAt": null,
+  "countsByClass": {
+    "positive-control": {
+      "attempts": 4,
+      "unauthorized": 0,
+      "pass": 4,
+      "fail": 0
+    },
+    "process-executable": {
+      "attempts": 1,
+      "unauthorized": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    "credential": {
+      "attempts": 1,
+      "unauthorized": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    "inference-model": {
+      "attempts": 1,
+      "unauthorized": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    "coverage": {
+      "attempts": 2,
+      "unauthorized": 0,
+      "pass": 2,
+      "fail": 0
+    },
+    "lifetime": {
+      "attempts": 3,
+      "unauthorized": 0,
+      "pass": 3,
+      "fail": 0
+    },
+    "filesystem-widening": {
+      "attempts": 4,
+      "unauthorized": 0,
+      "pass": 4,
+      "fail": 0
+    },
+    "rest-widening": {
+      "attempts": 3,
+      "unauthorized": 0,
+      "pass": 3,
+      "fail": 0
+    },
+    "semantic-to-binding": {
+      "attempts": 5,
+      "unauthorized": 0,
+      "pass": 5,
+      "fail": 0
+    },
+    "composition": {
+      "attempts": 1,
+      "unauthorized": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    "substrate-laundering": {
+      "attempts": 2,
+      "unauthorized": 0,
+      "pass": 2,
+      "fail": 0
+    },
+    "tcp-widening": {
+      "attempts": 2,
+      "unauthorized": 0,
+      "pass": 2,
+      "fail": 0
+    },
+    "mcp": {
+      "attempts": 1,
+      "unauthorized": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    "representability": {
+      "attempts": 4,
+      "unauthorized": 0,
+      "pass": 4,
+      "fail": 0
+    },
+    "prohibition": {
+      "attempts": 1,
+      "unauthorized": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    "approval": {
+      "attempts": 2,
+      "unauthorized": 0,
+      "pass": 2,
+      "fail": 0
+    },
+    "capability-manifest": {
+      "attempts": 1,
+      "unauthorized": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    "target-policy-mutation": {
+      "attempts": 3,
+      "unauthorized": 0,
+      "pass": 3,
+      "fail": 0
+    },
+    "cross-surface": {
+      "attempts": 2,
+      "unauthorized": 0,
+      "pass": 2,
+      "fail": 0
+    }
+  },
+  "cases": [
+    {
+      "id": "filesystem-exact-read",
+      "class": "positive-control",
+      "surface": "filesystem",
+      "point": "baseline",
+      "semantic": "AUTHORIZED",
+      "compilation": "FULL",
+      "deployable": true,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "adapter",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Exact read /mission/input compiles FULL. Substrate paths stay out of fipGrants.",
+      "diagnostics": [],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "rest-exact-get",
+      "class": "positive-control",
+      "surface": "rest",
+      "point": "baseline",
+      "semantic": "AUTHORIZED",
+      "compilation": "FULL",
+      "deployable": true,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "adapter",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "M5 target-restricted GET /weather remains FULL. Query enforcement is not claimed by this grant.",
+      "diagnostics": [],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "tcp-exact-connect",
+      "class": "positive-control",
+      "surface": "tcp",
+      "point": "baseline",
+      "semantic": "AUTHORIZED",
+      "compilation": "FULL",
+      "deployable": true,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "adapter",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Exact host and port compile. Runtime remains UNOBSERVED. Classification stays SUPPORTED_UNOBSERVED.",
+      "diagnostics": [],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "mcp-exact-tool",
+      "class": "positive-control",
+      "surface": "mcp",
+      "point": "baseline",
+      "semantic": "AUTHORIZED",
+      "compilation": "FULL",
+      "deployable": true,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "adapter",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Exact tools/call list_issues compiles. Runtime remains UNOBSERVED. Classification stays SUPPORTED_UNOBSERVED.",
+      "diagnostics": [],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "process-exact-executable",
+      "class": "process-executable",
+      "surface": "process",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "coverage",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Kind process stays unenforced. No descendant or generic process grant is compiled.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "credential-use",
+      "class": "credential",
+      "surface": "credential",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "coverage",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Credential use stays rejected. Provider attachment is not emitted as credential authority.",
+      "diagnostics": [
+        "assessment_not_deployable",
+        "credential_use_not_independent"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "model-exact-identity",
+      "class": "inference-model",
+      "surface": "inference",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "coverage",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Exact model identity stays rejected. Provider access is not emitted as model authority.",
+      "diagnostics": [
+        "assessment_not_deployable",
+        "model_identity_unsupported"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "strict-executable-rest",
+      "class": "coverage",
+      "surface": "rest",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "coverage",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "An executable ExecutionBinding stays non-deployable.",
+      "diagnostics": [
+        "assessment_not_deployable",
+        "executable_identity_not_exact"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "expired-policy-not-compiled",
+      "class": "lifetime",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "DENIED",
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "semantic",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A non-valid AuthorityPolicy Validity produces no deployable target policy.",
+      "diagnostics": [],
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "filesystem-relative-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "representability",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A relative path is not an exact filesystem grant and must not compile FULL.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "filesystem-dotdot-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "representability",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A dotdot path is not an exact filesystem grant and must not compile FULL.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "filesystem-read-to-delete",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "coverage",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Delete is not compiled as a read or write grant.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "rest-query-not-enforced",
+      "class": "rest-widening",
+      "surface": "rest",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "coverage",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A query-bearing URI is rejected. The compiler does not drop the query and stamp FULL.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "filesystem-policy-add-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "policy",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "verifier",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Adding /mission/sibling after compile must fail verify_policy. Reasons: read_authority_mismatch,path_broader_or_unaccepted,path_broader_or_unaccepted",
+      "diagnostics": [
+        "read_authority_mismatch",
+        "path_broader_or_unaccepted",
+        "path_broader_or_unaccepted"
+      ],
+      "codes": []
+    },
+    {
+      "id": "filesystem-ir-ancestor-after-decision",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "The evaluated grant is read /mission/input. The IR locator was changed to /mission before coverage and compilation. Excess paths: none.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": []
+    },
+    {
+      "id": "filesystem-ir-operation-write",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Consumed read binding operation changed to write.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "filesystem-ir-requirement-deleted",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "One consumed requirement was deleted after projection.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "filesystem-ir-allof-to-anyof",
+      "class": "composition",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Consumed composition changed from allOf to anyOf.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "filesystem-ir-lifetime-revocable",
+      "class": "lifetime",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Consumed lifetime changed from establishment-bound to revocable.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "filesystem-ir-resource-substituted",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Consumed binding resourceId was substituted.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "filesystem-ir-action-substituted",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Consumed binding actionId was substituted.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "filesystem-ir-substrate-in-grants",
+      "class": "substrate-laundering",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A substrate path was inserted into coverage.fipGrants.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "rest-ir-host-widened",
+      "class": "rest-widening",
+      "surface": "rest",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Consumed REST host changed after projection.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "tcp-ir-port-widened",
+      "class": "tcp-widening",
+      "surface": "tcp",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Consumed TCP port changed after projection.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "mcp-ir-tool-widened",
+      "class": "mcp",
+      "surface": "mcp",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Consumed MCP tool name changed after projection.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "filesystem-glob-path",
+      "class": "representability",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "representability",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A star locator is pattern syntax and is not an exact filesystem grant.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "filesystem-question-path",
+      "class": "representability",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "representability",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A question-mark locator is pattern syntax and is not an exact filesystem grant.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "filesystem-bracket-path",
+      "class": "representability",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "representability",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A bracket locator is pattern syntax and is not an exact filesystem grant.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "filesystem-range-path",
+      "class": "representability",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "representability",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A character-range locator is pattern syntax and is not an exact filesystem grant.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "rest-method-star",
+      "class": "rest-widening",
+      "surface": "rest",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "coverage",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A wildcard HTTP method is not compiled FULL.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "tcp-any-host",
+      "class": "tcp-widening",
+      "surface": "tcp",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "coverage",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A wildcard TCP host is not compiled FULL.",
+      "diagnostics": [
+        "assessment_not_deployable"
+      ],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "prohibition-dropped-from-ir",
+      "class": "prohibition",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A consumed prohibition was removed after projection.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "approval-without-decision",
+      "class": "approval",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "AUTHORIZED",
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "projection",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Require-approval without a completed approval has no operational IR.",
+      "diagnostics": [],
+      "codes": [
+        "approval_required",
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "approval-supplied-ir-without-projection",
+      "class": "approval",
+      "surface": "filesystem",
+      "point": "ir",
+      "semantic": "REVIEW",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "derivation",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A supplied IR cannot revive a decision that currently has no operational projection.",
+      "diagnostics": [
+        "subset_not_demonstrated"
+      ],
+      "codes": [
+        "subset_not_demonstrated"
+      ]
+    },
+    {
+      "id": "lifetime-not-yet-valid",
+      "class": "lifetime",
+      "surface": "filesystem",
+      "point": "semantic",
+      "semantic": "DENIED",
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "semantic",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A not-yet-valid AuthorityPolicy produces no deployable policy.",
+      "diagnostics": [],
+      "codes": [
+        "validity_not_yet_valid",
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "coverage-stamped-full-credential",
+      "class": "coverage",
+      "surface": "credential",
+      "point": "coverage",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "adapter",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Stamping FULL on a credential assessment does not emit a deployable policy.",
+      "diagnostics": [
+        "credential_use_not_independent"
+      ],
+      "codes": []
+    },
+    {
+      "id": "capability-manifest-identity-swap",
+      "class": "capability-manifest",
+      "surface": "rest",
+      "point": "manifest",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "adapter",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A substituted capability manifest does not make the REST grant deployable.",
+      "diagnostics": [
+        "manifest_identity_mismatch"
+      ],
+      "codes": []
+    },
+    {
+      "id": "substrate-not-in-fip-grants",
+      "class": "substrate-laundering",
+      "surface": "filesystem",
+      "point": "baseline",
+      "semantic": "AUTHORIZED",
+      "compilation": "FULL",
+      "deployable": true,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "coverage",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "Accepted substrate paths are absent from fipGrants: ",
+      "diagnostics": [],
+      "codes": [
+        "not_compiled"
+      ]
+    },
+    {
+      "id": "rest-policy-host-widened",
+      "class": "target-policy-mutation",
+      "surface": "rest",
+      "point": "policy",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "verifier",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "REST host changed after compilation. Reasons: host_widened",
+      "diagnostics": [
+        "host_widened"
+      ],
+      "codes": []
+    },
+    {
+      "id": "rest-policy-downgraded-to-tcp",
+      "class": "cross-surface",
+      "surface": "rest",
+      "point": "policy",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "verifier",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "A REST rule was rewritten as unrestricted TCP. Reasons: protocol_downgraded",
+      "diagnostics": [
+        "protocol_downgraded"
+      ],
+      "codes": []
+    },
+    {
+      "id": "tcp-policy-port-widened",
+      "class": "target-policy-mutation",
+      "surface": "tcp",
+      "point": "policy",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "verifier",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "TCP port changed after compilation. Reasons: port_widened",
+      "diagnostics": [
+        "port_widened"
+      ],
+      "codes": []
+    },
+    {
+      "id": "mcp-policy-tool-widened",
+      "class": "target-policy-mutation",
+      "surface": "mcp",
+      "point": "policy",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "verifier",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "MCP tool changed after compilation. Reasons: tool_widened",
+      "diagnostics": [
+        "tool_widened"
+      ],
+      "codes": []
+    },
+    {
+      "id": "mcp-policy-downgraded-to-tcp",
+      "class": "cross-surface",
+      "surface": "mcp",
+      "point": "policy",
+      "semantic": "AUTHORIZED",
+      "compilation": "REJECTED",
+      "deployable": false,
+      "runtime": "UNOBSERVED",
+      "caughtBy": "verifier",
+      "unauthorizedEmission": false,
+      "experimental": "PASS",
+      "note": "An MCP rule was rewritten as unrestricted TCP. Reasons: protocol_not_mcp",
+      "diagnostics": [
+        "protocol_not_mcp"
+      ],
+      "codes": []
+    }
+  ]
+}

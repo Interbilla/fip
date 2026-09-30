@@ -1,0 +1,215 @@
+{
+  "environment": {
+    "runId": "q13-run-1",
+    "startedAt": "2026-09-29T20:49:01Z",
+    "baselineCommit": "6435895898dd089ad545941fa226eb1c0a6860a9",
+    "openshellVersion": "0.1.2",
+    "openshellCommit": "6648bd0c290efbc41ba131ee9831ee45cd431f94",
+    "python": "3.13.12",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "proverCli": "not-executed",
+    "advisorCli": "not-executed",
+    "sentry": "FUTURE_TARGET_CANDIDATE",
+    "liveSandbox": "not-started"
+  },
+  "gate": {
+    "gate": "FAIL",
+    "failedCaseIds": [
+      "substrate-is-not-a-fip-grant",
+      "expired-policy-validity",
+      "expired-delegation-exchange"
+    ],
+    "passCount": 14,
+    "failCount": 3
+  },
+  "cases": [
+    {
+      "id": "primitive-count",
+      "expected": "28",
+      "actual": "28",
+      "experimental": "PASS",
+      "semantic": "AUTHORIZED",
+      "compilation": null,
+      "runtime": "UNOBSERVED",
+      "note": "FIP 0.2 adds ExecutionBinding and EnforcementRequirement after the frozen 26."
+    },
+    {
+      "id": "relationship-count",
+      "expected": "26",
+      "actual": "26",
+      "experimental": "PASS",
+      "semantic": null,
+      "compilation": null,
+      "runtime": "UNOBSERVED",
+      "note": "FIP 0.2 adds hasExecutionBinding and requiresEnforcement after the frozen 24."
+    },
+    {
+      "id": "frozen-conformance-vectors",
+      "expected": "47",
+      "actual": "47",
+      "experimental": "PASS",
+      "semantic": null,
+      "compilation": null,
+      "runtime": "UNOBSERVED",
+      "note": "FIP 0.1 vector files are counted, not relabeled as FIP 0.2 evidence."
+    },
+    {
+      "id": "prohibition-dominance",
+      "expected": "DENIED",
+      "actual": "DENIED",
+      "experimental": "PASS",
+      "semantic": "DENIED",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "A permit and a prohibition on the same action resolve to DENIED."
+    },
+    {
+      "id": "missing-authority",
+      "expected": "INCOMPLETE",
+      "actual": "INCOMPLETE",
+      "experimental": "PASS",
+      "semantic": "INCOMPLETE",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "An empty authority list is not permission and does not project an operational IR."
+    },
+    {
+      "id": "missing-binding",
+      "expected": "INCOMPLETE",
+      "actual": "INCOMPLETE",
+      "experimental": "PASS",
+      "semantic": "INCOMPLETE",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "A permit that names a missing binding is not execution authorization."
+    },
+    {
+      "id": "obligation-is-not-authority",
+      "expected": "INCOMPLETE",
+      "actual": "INCOMPLETE",
+      "experimental": "PASS",
+      "semantic": "INCOMPLETE",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "An obligation without an authorization does not project an operational IR."
+    },
+    {
+      "id": "require-approval-blocks-projection",
+      "expected": "no operational IR",
+      "actual": "no operational IR",
+      "experimental": "PASS",
+      "semantic": "AUTHORIZED",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "require-approval may record AUTHORIZED with approval_required, and projection stops until a valid Decision exists."
+    },
+    {
+      "id": "foreign-decision-is-not-local-authorization",
+      "expected": "no operational IR",
+      "actual": "no operational IR",
+      "experimental": "PASS",
+      "semantic": "AUTHORIZED",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "A Decision whose actor is outside approverIds does not satisfy require-approval. The Decision object is synthetic."
+    },
+    {
+      "id": "substrate-is-not-a-fip-grant",
+      "expected": "substrate source execution-substrate",
+      "actual": "sources=execution-substrate",
+      "experimental": "FAIL",
+      "semantic": "AUTHORIZED",
+      "compilation": "FULL",
+      "runtime": "UNOBSERVED",
+      "note": "Accepted substrate is compiled beside the grant and is not recorded as a fipGrant path."
+    },
+    {
+      "id": "target-policy-is-not-a-fip-grant",
+      "expected": "no operational IR",
+      "actual": "no operational IR",
+      "experimental": "PASS",
+      "semantic": "AUTHORIZED",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "An embedded filesystem policy does not become an operational projection."
+    },
+    {
+      "id": "prover-pass-is-not-a-fip-grant",
+      "expected": "DENIED",
+      "actual": "DENIED",
+      "experimental": "PASS",
+      "semantic": "DENIED",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "Synthetic PROVER_PASS evidence in a protected extension is not a FIP authorization. No prover CLI was executed."
+    },
+    {
+      "id": "automatic-target-approval-is-not-a-fip-grant",
+      "expected": "DENIED",
+      "actual": "DENIED",
+      "experimental": "PASS",
+      "semantic": "DENIED",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "Synthetic NVIDIA_AUTO_APPROVED evidence is not a FIP Decision. No Advisor CLI was executed."
+    },
+    {
+      "id": "target-approval-is-not-a-fip-grant",
+      "expected": "DENIED",
+      "actual": "DENIED",
+      "experimental": "PASS",
+      "semantic": "DENIED",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "Synthetic OPENSHELL_APPROVED evidence is not a FIP Decision."
+    },
+    {
+      "id": "expired-authorization-validity",
+      "expected": "DENIED",
+      "actual": "DENIED",
+      "experimental": "PASS",
+      "semantic": "DENIED",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "Authorization validity expired denies the grant and blocks projection. This is the working validity control."
+    },
+    {
+      "id": "expired-policy-validity",
+      "expected": "DENIED",
+      "actual": "AUTHORIZED",
+      "experimental": "FAIL",
+      "semantic": "AUTHORIZED",
+      "compilation": "FULL",
+      "runtime": "UNOBSERVED",
+      "note": "AuthorityPolicy.validity expired remains AUTHORIZED and still projects an operational IR. Deployable target policy emitted: yes. primitives.md says a non-valid Validity denies use of the object that carries it."
+    },
+    {
+      "id": "expired-delegation-exchange",
+      "expected": "DENIED",
+      "actual": "AUTHORIZED",
+      "experimental": "FAIL",
+      "semantic": "AUTHORIZED",
+      "compilation": "NOT_COMPILED",
+      "runtime": "UNOBSERVED",
+      "note": "A Delegation exchange carrying validity expired is AUTHORIZED. authority-objects.md says a non-valid state denies use of the delegation that carries it. No target policy is emitted because the exchange is semantic-only."
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "conformance/runners/python_runner.py"
+      ],
+      "exitCode": 0,
+      "stdoutTail": "Python conformance: 47/47",
+      "stderrTail": ""
+    },
+    {
+      "command": [
+        "conformance/runners/javascript-runner.js"
+      ],
+      "exitCode": 0,
+      "stdoutTail": "JavaScript conformance: 47/47",
+      "stderrTail": ""
+    }
+  ]
+}

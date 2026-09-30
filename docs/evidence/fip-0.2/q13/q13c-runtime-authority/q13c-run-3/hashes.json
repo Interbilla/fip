@@ -1,0 +1,12 @@
+{
+  "failure/before.json": "80bc73df0f888515c3b929fc0d06035ceecef8b54c671925cd56c12bb4bfea6a",
+  "failure/companion-policy.json": "a33bff45d3df7bd30483e09f16caf759adff368ecdc8746ed9db9bbe3526a4e2",
+  "failure/observed.json": "638eba5254d98414ab80c5b40e1348d24bc02fd3902b8721d3f57ba183295af9",
+  "failure/prior-ir.json": "adcf7245439a246ff239c677ce9008f4e92b9e4a8dbd3f9ddf91739e927a276f",
+  "failure/prior-target-policy.json": "85754a9ce0d120fa80b1f8d260907021146dc7d898b820da8434ad989f2f41a2",
+  "failure/record.json": "4173610a2eaa658625a8a0be3a3203866031913548c9ff78907da897664d1324",
+  "failure/source.json": "9aa823b3045a07e85b71ad74adc631fad9ec7b8684b7035451ca9fbdb6911c7c",
+  "report.md": "0a89bc92af75ec365311234b1ae086903245be03c065b80d1e7701de8e245c0e",
+  "results.json": "208a4d5c340838988aa5a34c58cf798c4f36b5c47b41d389fea92bf5bda1a3e9",
+  "transition-sequence.json": "674c4794e3a5ce0b446c04445c2de7620d8f243686e88ebb34e1f804e3e7ed46"
+}

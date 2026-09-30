@@ -1,0 +1,21 @@
+{
+  "attack": "G",
+  "classification": "SEMANTIC_AUTHORITY_ACCEPTED",
+  "codes": [
+    "approval_required",
+    "not_compiled"
+  ],
+  "compilation": "NOT_COMPILED",
+  "deployable": false,
+  "derivationMatched": null,
+  "eventType": "semantic-authority-update",
+  "gateFailure": true,
+  "id": "G-expired-approval",
+  "observedAt": "2026-09-30T00:10:44.261989+00:00",
+  "operationalIr": false,
+  "order": 17,
+  "reasons": [],
+  "semantic": "AUTHORIZED",
+  "sourceDigest": "29fca7efe184447a8307ed6d5a1dd8b86dfaf5df58a263d1245193f6f801a802",
+  "transition": null
+}

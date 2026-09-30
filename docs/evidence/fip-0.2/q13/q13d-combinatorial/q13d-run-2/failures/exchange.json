@@ -1,0 +1,38 @@
+{
+  "action": "ReadInspectionInput",
+  "actor": {
+    "id": "agent-field",
+    "identity": "id-agent-field"
+  },
+  "authority": {
+    "id": "auth-mission-control",
+    "kind": "delegable"
+  },
+  "authorization": {
+    "id": "az-openshell-files",
+    "validity": {
+      "state": "valid"
+    }
+  },
+  "delegation": {
+    "authorityId": "auth-mission-control",
+    "canDelegate": true
+  },
+  "document": "Exchange",
+  "exchangeId": "ex-q13d",
+  "exchangeType": "Delegation",
+  "fipVersion": "0.2",
+  "mode": "operational",
+  "policyId": "pol-openshell-files",
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": [
+      "trace-openshell-files"
+    ],
+    "independent": true,
+    "traceId": "trace-openshell-files"
+  },
+  "purpose": "FieldInspection",
+  "status": "ENFORCEMENT CANDIDATE",
+  "traceId": "trace-q13d"
+}

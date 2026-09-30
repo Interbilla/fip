@@ -1,0 +1,214 @@
+{
+  "assessmentVersion": "0",
+  "fipVersion": "0.2",
+  "traceId": "trace-openshell-files",
+  "authorityDecision": "AUTHORIZED",
+  "compilationDisposition": "FULL",
+  "deployable": true,
+  "manifestId": "openshell-v0.1.2",
+  "targetType": "sandbox",
+  "targetVersion": "0.1.2",
+  "adapterVersion": "0",
+  "codes": [],
+  "requirements": [
+    {
+      "requirementId": "req-read",
+      "effect": "permit",
+      "status": "enforced",
+      "codes": []
+    }
+  ],
+  "bindings": [
+    {
+      "bindingId": "in-read",
+      "status": "enforced",
+      "codes": []
+    }
+  ],
+  "groups": [
+    {
+      "groupId": "read-only",
+      "composition": "allOf",
+      "status": "enforced",
+      "requirementIds": [
+        "req-read"
+      ]
+    }
+  ],
+  "prohibitions": [],
+  "audit": [
+    {
+      "requirementId": "req-read",
+      "required": "target-native",
+      "status": "enforced"
+    }
+  ],
+  "coverage": {
+    "fipGrants": [
+      "req-read"
+    ],
+    "targetEnforcement": [
+      {
+        "requirementId": "req-read",
+        "status": "enforced"
+      }
+    ],
+    "targetBaseline": [
+      {
+        "description": "Runtime library path /usr",
+        "substrateClass": "read-only-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-usr",
+        "kind": "filesystem",
+        "operation": "read",
+        "locator": {
+          "path": "/usr"
+        }
+      },
+      {
+        "description": "Runtime library path /lib",
+        "substrateClass": "read-only-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-lib",
+        "kind": "filesystem",
+        "operation": "read",
+        "locator": {
+          "path": "/lib"
+        }
+      },
+      {
+        "description": "Runtime configuration path /etc",
+        "substrateClass": "read-only-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-etc",
+        "kind": "filesystem",
+        "operation": "read",
+        "locator": {
+          "path": "/etc"
+        }
+      },
+      {
+        "description": "Runtime application path /app",
+        "substrateClass": "read-only-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-app",
+        "kind": "filesystem",
+        "operation": "read",
+        "locator": {
+          "path": "/app"
+        }
+      },
+      {
+        "description": "Runtime log path /var/log",
+        "substrateClass": "read-only-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-var-log",
+        "kind": "filesystem",
+        "operation": "read",
+        "locator": {
+          "path": "/var/log"
+        }
+      },
+      {
+        "description": "Runtime process information path /proc",
+        "substrateClass": "read-only-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-proc",
+        "kind": "filesystem",
+        "operation": "read",
+        "locator": {
+          "path": "/proc"
+        }
+      },
+      {
+        "description": "Runtime randomness path /dev/urandom",
+        "substrateClass": "read-only-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-urandom",
+        "kind": "filesystem",
+        "operation": "read",
+        "locator": {
+          "path": "/dev/urandom"
+        }
+      },
+      {
+        "description": "Runtime CA material at /run/openshell-supervisor-ca",
+        "substrateClass": "read-only-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-ca",
+        "kind": "filesystem",
+        "operation": "read",
+        "locator": {
+          "path": "/run/openshell-supervisor-ca"
+        }
+      },
+      {
+        "description": "Runtime temporary workspace /tmp",
+        "substrateClass": "writable-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-tmp",
+        "kind": "filesystem",
+        "operation": "write",
+        "locator": {
+          "path": "/tmp"
+        }
+      },
+      {
+        "description": "Runtime null device /dev/null",
+        "substrateClass": "writable-runtime",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-null",
+        "kind": "filesystem",
+        "operation": "write",
+        "locator": {
+          "path": "/dev/null"
+        }
+      },
+      {
+        "description": "Runtime syscall restriction applied by the supervisor. It is not a process grant.",
+        "substrateClass": "restrictive",
+        "acceptance": "accepted",
+        "declaredBy": "openshell-v0.1.2",
+        "authorityBearing": false,
+        "status": "baseline",
+        "substrateId": "runtime-syscall-restriction",
+        "kind": "process"
+      }
+    ]
+  },
+  "selectedRequirementIds": [
+    "req-read"
+  ],
+  "diagnostics": [],
+  "policyId": "pol-q13b-read"
+}

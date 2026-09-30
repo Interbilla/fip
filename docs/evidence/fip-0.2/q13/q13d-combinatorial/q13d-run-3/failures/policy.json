@@ -1,0 +1,105 @@
+{
+  "actions": [
+    {
+      "id": "DeleteInspectionOutput",
+      "resourceId": "mission:InspectionOutput"
+    }
+  ],
+  "actors": [
+    {
+      "id": "agent-field",
+      "identity": "id-agent-field"
+    },
+    {
+      "id": "approver-mission",
+      "identity": "id-approver"
+    }
+  ],
+  "authorities": [
+    {
+      "id": "auth-mission-control",
+      "kind": "direct"
+    }
+  ],
+  "authorizations": [
+    {
+      "actionIds": [
+        "DeleteInspectionOutput"
+      ],
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "authorizationId": "az-delete",
+      "purpose": "FieldInspection",
+      "requirementIds": [
+        "req-delete"
+      ],
+      "resourceIds": [
+        "mission:InspectionOutput"
+      ],
+      "validity": {
+        "state": "valid"
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "conditionId": "cond-approval",
+      "requirementId": "req-delete",
+      "type": "approval-present"
+    }
+  ],
+  "document": "AuthorityPolicy",
+  "enforcementRequirements": [
+    {
+      "approverIds": [
+        "approver-mission"
+      ],
+      "audit": "correlated",
+      "bindingIds": [
+        "out-delete"
+      ],
+      "composition": "allOf",
+      "conditionIds": [
+        "cond-approval"
+      ],
+      "effect": "require-approval",
+      "groupId": "delete",
+      "lifetime": "establishment-bound",
+      "requirementId": "req-delete"
+    }
+  ],
+  "executionBindings": [
+    {
+      "actionId": "DeleteInspectionOutput",
+      "bindingId": "out-delete",
+      "kind": "filesystem",
+      "lifetime": "establishment-bound",
+      "locator": {
+        "path": "/mission/output"
+      },
+      "operation": "delete",
+      "resourceId": "mission:InspectionOutput"
+    }
+  ],
+  "fipVersion": "0.2",
+  "mode": "operational",
+  "policyId": "pol-approval",
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": [
+      "trace-approval"
+    ],
+    "independent": true,
+    "traceId": "trace-approval"
+  },
+  "resources": [
+    {
+      "id": "mission:InspectionOutput"
+    }
+  ],
+  "status": "ENFORCEMENT CANDIDATE",
+  "traceId": "trace-approval",
+  "validity": {
+    "state": "valid"
+  }
+}

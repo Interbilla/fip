@@ -1,0 +1,189 @@
+[
+  {
+    "order": 1,
+    "id": "T0",
+    "transition": "T0",
+    "attack": null,
+    "eventType": "semantic-authority-update",
+    "semantic": "REVIEW",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 2,
+    "id": "T1",
+    "transition": "T1",
+    "attack": null,
+    "eventType": "semantic-authority-update",
+    "semantic": "AUTHORIZED",
+    "deployable": true,
+    "classification": "positive-authorized",
+    "gateFailure": false
+  },
+  {
+    "order": 3,
+    "id": "T2",
+    "transition": "T2",
+    "attack": null,
+    "eventType": "interaction-decision",
+    "semantic": "AUTHORIZED",
+    "deployable": true,
+    "classification": "positive-authorized",
+    "gateFailure": false
+  },
+  {
+    "order": 4,
+    "id": "T3",
+    "transition": "T3",
+    "attack": "J",
+    "eventType": "interaction-decision",
+    "semantic": "DENIED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 5,
+    "id": "T4",
+    "transition": "T4",
+    "attack": null,
+    "eventType": "semantic-authority-update",
+    "semantic": "AUTHORIZED",
+    "deployable": true,
+    "classification": "positive-authorized",
+    "gateFailure": false
+  },
+  {
+    "order": 6,
+    "id": "T5",
+    "transition": "T5",
+    "attack": "D",
+    "eventType": "semantic-authority-update",
+    "semantic": "DENIED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 7,
+    "id": "T6",
+    "transition": "T6",
+    "attack": null,
+    "eventType": "semantic-authority-update",
+    "semantic": "AUTHORIZED",
+    "deployable": true,
+    "classification": "positive-authorized",
+    "gateFailure": false
+  },
+  {
+    "order": 8,
+    "id": "T7",
+    "transition": "T7",
+    "attack": "A",
+    "eventType": "semantic-authority-update",
+    "semantic": "DENIED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 9,
+    "id": "A-stale-emergency",
+    "transition": null,
+    "attack": "A",
+    "eventType": "semantic-authority-update",
+    "semantic": "DENIED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 10,
+    "id": "B-stale-context",
+    "transition": null,
+    "attack": "B",
+    "eventType": "interaction-decision",
+    "semantic": "DENIED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 11,
+    "id": "C-stale-state-label",
+    "transition": null,
+    "attack": "C",
+    "eventType": "interaction-decision",
+    "semantic": "DENIED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 12,
+    "id": "E-revoked-delegation",
+    "transition": null,
+    "attack": "E",
+    "eventType": "semantic-authority-update",
+    "semantic": "DENIED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 13,
+    "id": "F-forged-delegation",
+    "transition": null,
+    "attack": "F",
+    "eventType": "interaction-decision",
+    "semantic": "DENIED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 14,
+    "id": "approval-before",
+    "transition": null,
+    "attack": "G",
+    "eventType": "interaction-decision",
+    "semantic": "AUTHORIZED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 15,
+    "id": "approval-after",
+    "transition": null,
+    "attack": "G",
+    "eventType": "semantic-authority-update",
+    "semantic": "AUTHORIZED",
+    "deployable": false,
+    "classification": "positive-authorized",
+    "gateFailure": false
+  },
+  {
+    "order": 16,
+    "id": "G-replay-purpose",
+    "transition": null,
+    "attack": "G",
+    "eventType": "interaction-decision",
+    "semantic": "DENIED",
+    "deployable": false,
+    "classification": "SEMANTICALLY_PREVENTED",
+    "gateFailure": false
+  },
+  {
+    "order": 17,
+    "id": "G-expired-approval",
+    "transition": null,
+    "attack": "G",
+    "eventType": "semantic-authority-update",
+    "semantic": "AUTHORIZED",
+    "deployable": false,
+    "classification": "SEMANTIC_AUTHORITY_ACCEPTED",
+    "gateFailure": true
+  }
+]

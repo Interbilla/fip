@@ -1,0 +1,21 @@
+{
+  "attack": "L",
+  "classification": "SEMANTIC_AUTHORITY_ACCEPTED",
+  "codes": [
+    "not_compiled"
+  ],
+  "compilation": "FULL",
+  "deployable": true,
+  "derivationMatched": true,
+  "eventType": "interaction-decision",
+  "failure": "current facts do not authorize this interaction, but the decision or projection did",
+  "gateFailure": true,
+  "id": "L-resource-substitution",
+  "observedAt": "2026-09-30T00:11:19.203140+00:00",
+  "operationalIr": true,
+  "order": 20,
+  "reasons": [],
+  "semantic": "AUTHORIZED",
+  "sourceDigest": "f465a3cfb6f28ad19467a72658bce07077111e004971067ebc76275c9f9b3168",
+  "transition": null
+}

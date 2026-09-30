@@ -1,0 +1,241 @@
+{
+  "generator": "q13b-1",
+  "seed": "q13b-ordered-0",
+  "stoppedAt": "filesystem-glob-path",
+  "cases": [
+    {
+      "id": "filesystem-exact-read",
+      "class": "positive-control",
+      "surface": "filesystem",
+      "point": "baseline",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "rest-exact-get",
+      "class": "positive-control",
+      "surface": "rest",
+      "point": "baseline",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "tcp-exact-connect",
+      "class": "positive-control",
+      "surface": "tcp",
+      "point": "baseline",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "mcp-exact-tool",
+      "class": "positive-control",
+      "surface": "mcp",
+      "point": "baseline",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "process-exact-executable",
+      "class": "process-executable",
+      "surface": "process",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "credential-use",
+      "class": "credential",
+      "surface": "credential",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "model-exact-identity",
+      "class": "inference-model",
+      "surface": "inference",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "strict-executable-rest",
+      "class": "coverage",
+      "surface": "rest",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "expired-policy-not-compiled",
+      "class": "lifetime",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "semantic"
+    },
+    {
+      "id": "filesystem-relative-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "filesystem-dotdot-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "filesystem-read-to-delete",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "rest-query-not-enforced",
+      "class": "rest-widening",
+      "surface": "rest",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "filesystem-policy-add-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "policy",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "verifier"
+    },
+    {
+      "id": "filesystem-ir-ancestor-after-decision",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-operation-write",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-requirement-deleted",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-allof-to-anyof",
+      "class": "composition",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-lifetime-revocable",
+      "class": "lifetime",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-resource-substituted",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-action-substituted",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-substrate-in-grants",
+      "class": "substrate-laundering",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "rest-ir-host-widened",
+      "class": "rest-widening",
+      "surface": "rest",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "tcp-ir-port-widened",
+      "class": "tcp-widening",
+      "surface": "tcp",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "mcp-ir-tool-widened",
+      "class": "mcp",
+      "surface": "mcp",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-glob-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "FAIL",
+      "unauthorizedEmission": true,
+      "caughtBy": "none"
+    }
+  ]
+}

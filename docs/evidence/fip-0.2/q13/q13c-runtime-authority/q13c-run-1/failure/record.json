@@ -1,0 +1,21 @@
+{
+  "attack": "F",
+  "classification": "SEMANTIC_AUTHORITY_ACCEPTED",
+  "codes": [
+    "not_compiled"
+  ],
+  "compilation": "FULL",
+  "deployable": true,
+  "derivationMatched": true,
+  "eventType": "interaction-decision",
+  "failure": "current facts do not authorize this interaction, but the decision or projection did",
+  "gateFailure": true,
+  "id": "F-forged-delegation",
+  "observedAt": "2026-09-30T00:02:10.252608+00:00",
+  "operationalIr": true,
+  "order": 13,
+  "reasons": [],
+  "semantic": "AUTHORIZED",
+  "sourceDigest": "8e002c64a8e7b2ae78bd2b195bb233b03e667ddc2db7f7b76e8eea5f7c03d085",
+  "transition": null
+}

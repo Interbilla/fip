@@ -1,0 +1,37 @@
+{
+  "action": "DeleteInspectionOutput",
+  "actor": {
+    "id": "agent-field",
+    "identity": "id-agent-field"
+  },
+  "authority": {
+    "id": "auth-mission-control",
+    "kind": "direct"
+  },
+  "authorization": {
+    "id": "az-delete",
+    "validity": {
+      "state": "valid"
+    }
+  },
+  "document": "Exchange",
+  "exchangeId": "ex-q13d",
+  "exchangeType": "Request",
+  "fipVersion": "0.2",
+  "mode": "operational",
+  "policyId": "pol-approval",
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": [
+      "trace-approval"
+    ],
+    "independent": true,
+    "traceId": "trace-approval"
+  },
+  "purpose": "FieldInspection",
+  "resource": {
+    "id": "mission:InspectionOutput"
+  },
+  "status": "ENFORCEMENT CANDIDATE",
+  "traceId": "trace-q13d"
+}

@@ -1,0 +1,20 @@
+{
+  "caseId": "q13d-seed-0001-0001-positive",
+  "codes": [
+    "not_compiled"
+  ],
+  "coverageDisposition": null,
+  "deployable": true,
+  "derivationMatched": true,
+  "expect": "positive_deploy",
+  "historical": null,
+  "operationalIr": true,
+  "positive": true,
+  "primary": "UNAUTHORIZED_DEPLOYABLE_AUTHORITY",
+  "reasons": [],
+  "seed": "q13d-seed-0001",
+  "semantic": "AUTHORIZED",
+  "sequence": null,
+  "surface": "filesystem",
+  "violation": true
+}

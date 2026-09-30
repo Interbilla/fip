@@ -1,0 +1,879 @@
+{
+  "gateFailure": false,
+  "generator": "q13c-4",
+  "rows": [
+    {
+      "attack": null,
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "absence_is_not_permission",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "T0",
+      "observedAt": "2026-09-30T00:47:45.042400+00:00",
+      "operationalIr": false,
+      "order": 1,
+      "reasons": [],
+      "semantic": "REVIEW",
+      "sourceDigest": "157c8bf6f8ca91c371b84ed6b734456abf7fd9c094a13d0ea43c95e845bcf8c0",
+      "transition": "T0"
+    },
+    {
+      "attack": null,
+      "classification": "positive-authorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "T1",
+      "observedAt": "2026-09-30T00:47:45.043205+00:00",
+      "operationalIr": true,
+      "order": 2,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "188f54379722c45365eb75bdab8a4e8a89aa7a3603ed44a3e745edf92b71394a",
+      "transition": "T1"
+    },
+    {
+      "attack": null,
+      "classification": "positive-authorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "FULL",
+      "coverage": null,
+      "deployable": true,
+      "derivationMatched": true,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "T2",
+      "observedAt": "2026-09-30T00:47:45.043230+00:00",
+      "operationalIr": true,
+      "order": 3,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "188f54379722c45365eb75bdab8a4e8a89aa7a3603ed44a3e745edf92b71394a",
+      "transition": "T2"
+    },
+    {
+      "attack": "J",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "T3",
+      "observedAt": "2026-09-30T00:47:45.043303+00:00",
+      "operationalIr": false,
+      "order": 4,
+      "reasons": [
+        "purpose_mismatch"
+      ],
+      "semantic": "DENIED",
+      "sourceDigest": "6bb2329a77f4f077b22b7282490e85a25a1e46caaf0b2389eb93b55537ba1368",
+      "transition": "T3"
+    },
+    {
+      "attack": null,
+      "classification": "positive-authorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "T4",
+      "observedAt": "2026-09-30T00:47:45.044061+00:00",
+      "operationalIr": true,
+      "order": 5,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "188f54379722c45365eb75bdab8a4e8a89aa7a3603ed44a3e745edf92b71394a",
+      "transition": "T4"
+    },
+    {
+      "attack": "D",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "T5",
+      "observedAt": "2026-09-30T00:47:45.044152+00:00",
+      "operationalIr": false,
+      "order": 6,
+      "reasons": [],
+      "semantic": "DENIED",
+      "sourceDigest": "c8483abd464fb397811c5dd30e56923ed6134051dfe5ab9bd9d344935d676cb2",
+      "transition": "T5"
+    },
+    {
+      "attack": null,
+      "classification": "positive-authorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "FULL",
+      "delegationPredicate": "canDelegate true authorized; canDelegate false denied before the action grant",
+      "deployable": true,
+      "derivationMatched": true,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "T6",
+      "observedAt": "2026-09-30T00:47:45.045097+00:00",
+      "operationalIr": true,
+      "order": 7,
+      "reasons": [],
+      "refusedCodes": [
+        "delegation_requires_explicit_authority",
+        "not_compiled"
+      ],
+      "refusedDecision": "DENIED",
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "167332651fbee69f3265dcb332f2d8a3f5dc96b559533c49b95c4f0452cfa250",
+      "transition": "T6"
+    },
+    {
+      "attack": "A",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "T7",
+      "observedAt": "2026-09-30T00:47:45.045247+00:00",
+      "operationalIr": false,
+      "order": 8,
+      "reasons": [],
+      "semantic": "DENIED",
+      "sourceDigest": "157c8bf6f8ca91c371b84ed6b734456abf7fd9c094a13d0ea43c95e845bcf8c0",
+      "transition": "T7"
+    },
+    {
+      "attack": "A",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "A-stale-emergency",
+      "observedAt": "2026-09-30T00:47:45.045341+00:00",
+      "operationalIr": false,
+      "order": 9,
+      "reasons": [],
+      "semantic": "DENIED",
+      "sourceDigest": "03e86ba88b8c5146311091da7335d28ad78718a360ce10cd24ed91586fe09de7",
+      "transition": null
+    },
+    {
+      "attack": "B",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "B-stale-context",
+      "observedAt": "2026-09-30T00:47:45.045399+00:00",
+      "operationalIr": false,
+      "order": 10,
+      "reasons": [
+        "purpose_mismatch"
+      ],
+      "semantic": "DENIED",
+      "sourceDigest": "c90225d042898190f3dc6092d36dcf20178f4ac1fbd26f55b740232e78f0c0ef",
+      "transition": null
+    },
+    {
+      "attack": "C",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "C-stale-state-label",
+      "observedAt": "2026-09-30T00:47:45.045459+00:00",
+      "operationalIr": false,
+      "order": 11,
+      "reasons": [],
+      "semantic": "DENIED",
+      "sourceDigest": "63f24d3e3804bb4dd5f05ce64d2521a8b878452a6baea8f1f085b8052de2b1c9",
+      "transition": null
+    },
+    {
+      "attack": "E",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "validity_revoked",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "E-revoked-delegation",
+      "observedAt": "2026-09-30T00:47:45.045498+00:00",
+      "operationalIr": false,
+      "order": 12,
+      "reasons": [],
+      "semantic": "DENIED",
+      "sourceDigest": "fb17cdec9fab4ca9897ebfa2e2b9cc08eb3224d440080396a2065a1a85ab8614",
+      "transition": null
+    },
+    {
+      "attack": "F",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "delegation_requires_explicit_authority",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "F-forged-delegation",
+      "observedAt": "2026-09-30T00:47:45.045533+00:00",
+      "operationalIr": false,
+      "order": 13,
+      "reasons": [],
+      "semantic": "DENIED",
+      "sourceDigest": "8e002c64a8e7b2ae78bd2b195bb233b03e667ddc2db7f7b76e8eea5f7c03d085",
+      "transition": null
+    },
+    {
+      "attack": "G",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "approval_required",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "approval-before",
+      "observedAt": "2026-09-30T00:47:45.045939+00:00",
+      "operationalIr": false,
+      "order": 14,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "ac7bb2ad0657a7febaebdf6f38ab8025ef929fa7b9144c659fbfb47b7a937072",
+      "transition": null
+    },
+    {
+      "attack": "G",
+      "classification": "positive-authorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "REJECTED",
+      "deployable": false,
+      "deployableNote": "delete is not an OpenShell filesystem compile target",
+      "derivationMatched": true,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "approval-after",
+      "observedAt": "2026-09-30T00:47:45.046648+00:00",
+      "operationalIr": true,
+      "order": 15,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "24e3877cf004d6d83f3008d4caca9e36328bccdd397b96a40e84e097e08b7de1",
+      "transition": null
+    },
+    {
+      "attack": "G",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "G-replay-purpose",
+      "observedAt": "2026-09-30T00:47:45.046728+00:00",
+      "operationalIr": false,
+      "order": 16,
+      "reasons": [
+        "authorization_mismatch"
+      ],
+      "semantic": "DENIED",
+      "sourceDigest": "ad93d4f8ac270eef0e0e47f5696d20c18d0f361739e0438d14e422af45bfea1f",
+      "transition": null
+    },
+    {
+      "attack": "G",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "approval_required",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "G-expired-approval",
+      "observedAt": "2026-09-30T00:47:45.046791+00:00",
+      "operationalIr": false,
+      "order": 17,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "29fca7efe184447a8307ed6d5a1dd8b86dfaf5df58a263d1245193f6f801a802",
+      "transition": null
+    },
+    {
+      "attack": "K",
+      "classification": "positive-authorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "K-scope-match",
+      "observedAt": "2026-09-30T00:47:45.047587+00:00",
+      "operationalIr": true,
+      "order": 18,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "be7102b9485739c455dfcfb7aab8ec0a3cf58240b4fd8a464a0fd8a3a1a978db",
+      "transition": null
+    },
+    {
+      "attack": "K",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "K-scope-substitution",
+      "observedAt": "2026-09-30T00:47:45.047664+00:00",
+      "operationalIr": false,
+      "order": 19,
+      "reasons": [],
+      "semantic": "DENIED",
+      "sourceDigest": "16b357366e93d724e0a185469af9638d5e1910d710c54835b2db38ff411de1b1",
+      "transition": null
+    },
+    {
+      "attack": "L",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "L-resource-substitution",
+      "observedAt": "2026-09-30T00:47:45.047726+00:00",
+      "operationalIr": false,
+      "order": 20,
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "semantic": "DENIED",
+      "sourceDigest": "f465a3cfb6f28ad19467a72658bce07077111e004971067ebc76275c9f9b3168",
+      "transition": null
+    },
+    {
+      "attack": "M",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "M-actor-substitution",
+      "observedAt": "2026-09-30T00:47:45.047783+00:00",
+      "operationalIr": false,
+      "order": 21,
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "semantic": "DENIED",
+      "sourceDigest": "e35369d84ddf763720c56ec00d49036b83334390333075332d71c8ff1786d593",
+      "transition": null
+    },
+    {
+      "attack": "N",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "N-role-substitution",
+      "note": "role is not a consistency field on this authorization; the authorized action is unchanged",
+      "observedAt": "2026-09-30T00:47:45.048520+00:00",
+      "operationalIr": true,
+      "order": 22,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "1069d4b8ffc1d14f60cda2070363281b38b1933a3dc7de49522f95d44c1c25b9",
+      "transition": null
+    },
+    {
+      "attack": "O",
+      "classification": "DERIVATION_REJECTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "O-binding-substitution",
+      "observedAt": "2026-09-30T00:47:45.049384+00:00",
+      "operationalIr": true,
+      "order": 23,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "e38689ce4638b80a12193e2245f3c75700ed62ef15cdaec6a2e8f1fb44992f82",
+      "staleDerivationMatched": false,
+      "transition": null
+    },
+    {
+      "attack": "Q",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "approval_required",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "Q-foreign-decision",
+      "observedAt": "2026-09-30T00:47:45.049456+00:00",
+      "operationalIr": false,
+      "order": 24,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "dc5425eff70963ad930e166076cc3324c9bcb244789f9406ee885c4c3d9daae4",
+      "transition": null
+    },
+    {
+      "attack": "R",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "R-foreign-emergency",
+      "observedAt": "2026-09-30T00:47:45.049534+00:00",
+      "operationalIr": false,
+      "order": 25,
+      "reasons": [],
+      "semantic": "DENIED",
+      "sourceDigest": "48ce665ce3aaaf5c7bf031460a5ccd541e329018fb2b489c46e9cd6779803d74",
+      "transition": null
+    },
+    {
+      "attack": "S",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "technical-policy-update",
+      "gateFailure": false,
+      "id": "S-T-approval-and-prover",
+      "observedAt": "2026-09-30T00:47:45.049596+00:00",
+      "operationalIr": false,
+      "order": 26,
+      "reasons": [
+        "purpose_mismatch"
+      ],
+      "semantic": "DENIED",
+      "sourceDigest": "114472214a2af8e4d7b6752fc35043dec6f262934e8bf466cfc5543994a6e580",
+      "transition": null
+    },
+    {
+      "attack": "U",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "U-contraction",
+      "observedAt": "2026-09-30T00:47:45.049686+00:00",
+      "operationalIr": false,
+      "order": 27,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "transition": null
+    },
+    {
+      "attack": "U",
+      "classification": "TARGET_STALE_DETECTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "technical-policy-update",
+      "gateFailure": false,
+      "id": "U-stale-target-policy",
+      "observedAt": "2026-09-30T00:47:45.049734+00:00",
+      "operationalIr": false,
+      "order": 28,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "retracted": false,
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "staleReasons": [
+        "read_authority_mismatch",
+        "path_broader_or_unaccepted",
+        "path_broader_or_unaccepted"
+      ],
+      "targetLifetime": "REQUIRES_CONTEXT_RESTART",
+      "transition": null
+    },
+    {
+      "attack": "V",
+      "classification": "DERIVATION_REJECTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "technical-policy-update",
+      "gateFailure": false,
+      "id": "V-older-verified-policy",
+      "observedAt": "2026-09-30T00:47:45.049785+00:00",
+      "operationalIr": false,
+      "order": 29,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "staleDerivationMatched": false,
+      "transition": null
+    },
+    {
+      "attack": "Q",
+      "classification": "DERIVATION_REJECTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "REJECTED",
+      "deployable": false,
+      "derivationMatched": true,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "foreign-ir",
+      "observedAt": "2026-09-30T00:47:45.050457+00:00",
+      "operationalIr": true,
+      "order": 30,
+      "reasons": [],
+      "semantic": "AUTHORIZED",
+      "sourceDigest": "ac7bb2ad0657a7febaebdf6f38ab8025ef929fa7b9144c659fbfb47b7a937072",
+      "staleDerivationMatched": false,
+      "transition": null
+    },
+    {
+      "attack": "M-federation",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "semantic-authority-update",
+      "gateFailure": false,
+      "id": "mediated-federation",
+      "observedAt": "2026-09-30T00:47:45.050520+00:00",
+      "operationalIr": false,
+      "order": 31,
+      "outerGatewayIsNotFipAuthority": true,
+      "outerGatewayTechnicallyOpen": true,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "runtimeEffect": "UNOBSERVED",
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "transition": null
+    },
+    {
+      "attack": "Q",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "foreign-delegation",
+      "observedAt": "2026-09-30T00:47:45.050569+00:00",
+      "operationalIr": false,
+      "order": 32,
+      "reasons": [
+        "policy_mismatch"
+      ],
+      "semantic": "INCOMPLETE",
+      "sourceDigest": "f832eb381ebc4756737a6e7bae4dfe75aff997f8b746772edb2f598983d377b8",
+      "transition": null
+    },
+    {
+      "attack": "I",
+      "classification": "SEMANTICALLY_PREVENTED",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "interaction-decision",
+      "gateFailure": false,
+      "id": "I-decision-after-delegation-expiry",
+      "observedAt": "2026-09-30T00:47:45.050611+00:00",
+      "operationalIr": false,
+      "order": 33,
+      "reasons": [],
+      "semantic": "DENIED",
+      "sourceDigest": "c8483abd464fb397811c5dd30e56923ed6134051dfe5ab9bd9d344935d676cb2",
+      "transition": null
+    },
+    {
+      "attack": "TOCTOU-C",
+      "classification": "TARGET_STALE_DETECTED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "technical-policy-update",
+      "gateFailure": false,
+      "id": "toctou-target-expanded",
+      "observedAt": "2026-09-30T00:47:45.050661+00:00",
+      "operationalIr": false,
+      "order": 34,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "staleReasons": [
+        "read_authority_mismatch",
+        "path_broader_or_unaccepted",
+        "path_broader_or_unaccepted"
+      ],
+      "transition": null
+    },
+    {
+      "attack": "toctou-mid-operation",
+      "classification": "UNOBSERVED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "technical-policy-update",
+      "gateFailure": false,
+      "id": "toctou-mid-operation",
+      "note": "delegation expiry during an operation is a fresh denial; no live operation was running",
+      "observedAt": "2026-09-30T00:47:45.050679+00:00",
+      "operationalIr": false,
+      "order": 35,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "runtimeEffect": "UNOBSERVED",
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "transition": null
+    },
+    {
+      "attack": "long-running-action",
+      "classification": "UNOBSERVED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "technical-policy-update",
+      "gateFailure": false,
+      "id": "long-running-action",
+      "note": "no action was started under authority and left running after revocation",
+      "observedAt": "2026-09-30T00:47:45.050696+00:00",
+      "operationalIr": false,
+      "order": 36,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "runtimeEffect": "UNOBSERVED",
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "transition": null
+    },
+    {
+      "attack": "session-persistence",
+      "classification": "TARGET_LIMITED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "technical-policy-update",
+      "gateFailure": false,
+      "id": "session-persistence",
+      "note": "no TCP or service session was established; filesystem policy replacement requires context restart",
+      "observedAt": "2026-09-30T00:47:45.050711+00:00",
+      "operationalIr": false,
+      "order": 37,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "runtimeEffect": "UNOBSERVED",
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "transition": null
+    },
+    {
+      "attack": "credential-persistence",
+      "classification": "TARGET_LIMITED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "technical-policy-update",
+      "gateFailure": false,
+      "id": "credential-persistence",
+      "note": "no provider credential was used; independent credential-use authority stays outside this run",
+      "observedAt": "2026-09-30T00:47:45.050727+00:00",
+      "operationalIr": false,
+      "order": 38,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "runtimeEffect": "UNOBSERVED",
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "transition": null
+    },
+    {
+      "attack": "alternate-route",
+      "classification": "UNOBSERVED",
+      "codes": [
+        "not_compiled"
+      ],
+      "compilation": "NOT_COMPILED",
+      "deployable": false,
+      "derivationMatched": null,
+      "eventType": "technical-policy-update",
+      "gateFailure": false,
+      "id": "alternate-route",
+      "note": "outer connectivity was not executed; the semantic gateway denial is the mediated-federation row",
+      "observedAt": "2026-09-30T00:47:45.050742+00:00",
+      "operationalIr": false,
+      "order": 39,
+      "reasons": [
+        "action_mismatch"
+      ],
+      "runtimeEffect": "UNOBSERVED",
+      "semantic": "DENIED",
+      "sourceDigest": "a4ef987b3c67dd379555479cdce27d3a82402a1a67d1edd33a3e5e499cdfa5ce",
+      "transition": null
+    }
+  ],
+  "run": "q13c-run-4",
+  "runtimeExecuted": false,
+  "runtimeOperationalOpportunities": 0,
+  "runtimeUOER": null,
+  "targetLifetime": {
+    "basis": "pinned OpenShell v0.1.2 policy update semantics; this run did not update a live sandbox",
+    "filesystem": "REQUIRES_CONTEXT_RESTART",
+    "network_policies": "LIVE_UPDATE_SUPPORTED"
+  },
+  "unauthorizedOperationalEffects": 0
+}

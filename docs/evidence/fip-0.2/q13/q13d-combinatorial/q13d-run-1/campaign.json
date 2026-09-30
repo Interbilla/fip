@@ -1,0 +1,22 @@
+{
+  "baseline": "6435895898dd089ad545941fa226eb1c0a6860a9",
+  "generatedAt": "2026-09-30T00:55:48.960503+00:00",
+  "generator": "q13d-generator-1",
+  "generatorSourceHash": "1c2fe7707b4b15114925154a0091c727b226bcd22c51878302b72633a13c1d42",
+  "manifestHash": "99add7baf7f248f54492ca2cf4f805b52208b0dd32a3f307a1c59b67319079f6",
+  "pinnedCommit": "6648bd0c290efbc41ba131ee9831ee45cd431f94",
+  "pinnedOpenShell": "v0.1.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "profileHash": "9a174d3b2c29132febfbdf84fde72067041de6a7064d0d5239c9ed1683fba884",
+  "python": "3.13.12",
+  "run": "q13d-run-1",
+  "runtimeExecuted": false,
+  "seeds": [
+    "q13d-seed-0001",
+    "q13d-seed-0002",
+    "q13d-seed-0003",
+    "q13d-seed-0004",
+    "q13d-seed-0005",
+    "q13d-seed-0006"
+  ]
+}

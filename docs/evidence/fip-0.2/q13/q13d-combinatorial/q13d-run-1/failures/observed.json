@@ -1,0 +1,11 @@
+{
+  "semantic": "AUTHORIZED",
+  "codes": [
+    "not_compiled"
+  ],
+  "reasons": [],
+  "derivationMatched": true,
+  "coverageDisposition": null,
+  "compilation": "FULL",
+  "deployable": true
+}

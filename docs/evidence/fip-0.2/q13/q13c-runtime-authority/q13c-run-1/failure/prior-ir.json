@@ -1,0 +1,75 @@
+{
+  "authorityDecision": "AUTHORIZED",
+  "authorityIds": [
+    "auth-mission-control"
+  ],
+  "authorizationIds": [
+    "az-openshell-files"
+  ],
+  "bindings": [
+    {
+      "actionId": "ReadInspectionInput",
+      "bindingId": "in-read",
+      "kind": "filesystem",
+      "lifetime": "establishment-bound",
+      "locator": {
+        "path": "/mission/input"
+      },
+      "operation": "read",
+      "resourceId": "mission:InspectionInput"
+    }
+  ],
+  "codes": [
+    "not_compiled"
+  ],
+  "compilationDisposition": "NOT_COMPILED",
+  "coverage": {
+    "auditCoverage": "unassessed",
+    "fipGrants": [
+      "req-read"
+    ],
+    "targetBaseline": [],
+    "targetEnforcement": [
+      {
+        "requirementId": "req-read",
+        "status": "unassessed"
+      }
+    ]
+  },
+  "deployable": false,
+  "exchangeId": "ex-read",
+  "fipVersion": "0.2",
+  "groups": [
+    {
+      "composition": "allOf",
+      "groupId": "read-only",
+      "requirementIds": [
+        "req-read"
+      ]
+    }
+  ],
+  "irVersion": "0",
+  "policyId": "pol-openshell-files",
+  "prohibitions": [],
+  "requirements": [
+    {
+      "audit": "target-native",
+      "auditCoverage": "unassessed",
+      "authorityId": "auth-mission-control",
+      "authorizationId": "az-openshell-files",
+      "bindingIds": [
+        "in-read"
+      ],
+      "composition": "allOf",
+      "conditions": [],
+      "constraints": [],
+      "coverage": "unassessed",
+      "effect": "permit",
+      "groupId": "read-only",
+      "lifetime": "establishment-bound",
+      "requirementId": "req-read",
+      "traceId": "trace-openshell-files"
+    }
+  ],
+  "traceId": "trace-openshell-files"
+}

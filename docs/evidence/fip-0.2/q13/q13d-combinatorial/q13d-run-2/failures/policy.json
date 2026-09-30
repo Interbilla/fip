@@ -1,0 +1,106 @@
+{
+  "actions": [
+    {
+      "id": "ReadInspectionInput",
+      "resourceId": "mission:InspectionInput"
+    },
+    {
+      "id": "WriteInspectionOutput",
+      "resourceId": "mission:InspectionOutput"
+    }
+  ],
+  "actors": [
+    {
+      "id": "agent-field",
+      "identity": "id-agent-field"
+    }
+  ],
+  "authorities": [
+    {
+      "id": "auth-mission-control",
+      "kind": "delegable"
+    }
+  ],
+  "authorizations": [
+    {
+      "actionIds": [
+        "ReadInspectionInput"
+      ],
+      "actorId": "agent-field",
+      "authorityId": "auth-mission-control",
+      "authorizationId": "az-openshell-files",
+      "purpose": "FieldInspection",
+      "requirementIds": [
+        "req-read"
+      ],
+      "resourceIds": [
+        "mission:InspectionInput"
+      ],
+      "validity": {
+        "state": "valid"
+      }
+    }
+  ],
+  "document": "AuthorityPolicy",
+  "enforcementRequirements": [
+    {
+      "audit": "target-native",
+      "bindingIds": [
+        "in-read"
+      ],
+      "composition": "allOf",
+      "effect": "permit",
+      "groupId": "read-only",
+      "lifetime": "establishment-bound",
+      "requirementId": "req-read"
+    }
+  ],
+  "executionBindings": [
+    {
+      "actionId": "ReadInspectionInput",
+      "bindingId": "in-read",
+      "kind": "filesystem",
+      "lifetime": "establishment-bound",
+      "locator": {
+        "path": "/mission/input"
+      },
+      "operation": "read",
+      "resourceId": "mission:InspectionInput"
+    },
+    {
+      "actionId": "WriteInspectionOutput",
+      "bindingId": "out-write",
+      "kind": "filesystem",
+      "lifetime": "establishment-bound",
+      "locator": {
+        "path": "/mission/output"
+      },
+      "operation": "write",
+      "resourceId": "mission:InspectionOutput"
+    }
+  ],
+  "fipVersion": "0.2",
+  "mode": "operational",
+  "policyId": "pol-openshell-files",
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": [
+      "trace-openshell-files"
+    ],
+    "independent": true,
+    "traceId": "trace-openshell-files"
+  },
+  "resources": [
+    {
+      "id": "mission:InspectionInput"
+    },
+    {
+      "id": "mission:InspectionOutput"
+    }
+  ],
+  "status": "ENFORCEMENT CANDIDATE",
+  "traceId": "trace-openshell-files",
+  "validity": {
+    "state": "valid"
+  }
+}

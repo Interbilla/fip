@@ -1,0 +1,394 @@
+{
+  "generator": "q13b-2",
+  "seed": "q13b-ordered-0",
+  "stoppedAt": null,
+  "cases": [
+    {
+      "id": "filesystem-exact-read",
+      "class": "positive-control",
+      "surface": "filesystem",
+      "point": "baseline",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "rest-exact-get",
+      "class": "positive-control",
+      "surface": "rest",
+      "point": "baseline",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "tcp-exact-connect",
+      "class": "positive-control",
+      "surface": "tcp",
+      "point": "baseline",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "mcp-exact-tool",
+      "class": "positive-control",
+      "surface": "mcp",
+      "point": "baseline",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "process-exact-executable",
+      "class": "process-executable",
+      "surface": "process",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "credential-use",
+      "class": "credential",
+      "surface": "credential",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "model-exact-identity",
+      "class": "inference-model",
+      "surface": "inference",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "strict-executable-rest",
+      "class": "coverage",
+      "surface": "rest",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "expired-policy-not-compiled",
+      "class": "lifetime",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "semantic"
+    },
+    {
+      "id": "filesystem-relative-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "representability"
+    },
+    {
+      "id": "filesystem-dotdot-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "representability"
+    },
+    {
+      "id": "filesystem-read-to-delete",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "rest-query-not-enforced",
+      "class": "rest-widening",
+      "surface": "rest",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "filesystem-policy-add-path",
+      "class": "filesystem-widening",
+      "surface": "filesystem",
+      "point": "policy",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "verifier"
+    },
+    {
+      "id": "filesystem-ir-ancestor-after-decision",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-operation-write",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-requirement-deleted",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-allof-to-anyof",
+      "class": "composition",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-lifetime-revocable",
+      "class": "lifetime",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-resource-substituted",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-action-substituted",
+      "class": "semantic-to-binding",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-ir-substrate-in-grants",
+      "class": "substrate-laundering",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "rest-ir-host-widened",
+      "class": "rest-widening",
+      "surface": "rest",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "tcp-ir-port-widened",
+      "class": "tcp-widening",
+      "surface": "tcp",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "mcp-ir-tool-widened",
+      "class": "mcp",
+      "surface": "mcp",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "filesystem-glob-path",
+      "class": "representability",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "representability"
+    },
+    {
+      "id": "filesystem-question-path",
+      "class": "representability",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "representability"
+    },
+    {
+      "id": "filesystem-bracket-path",
+      "class": "representability",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "representability"
+    },
+    {
+      "id": "filesystem-range-path",
+      "class": "representability",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "representability"
+    },
+    {
+      "id": "rest-method-star",
+      "class": "rest-widening",
+      "surface": "rest",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "tcp-any-host",
+      "class": "tcp-widening",
+      "surface": "tcp",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "prohibition-dropped-from-ir",
+      "class": "prohibition",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "approval-without-decision",
+      "class": "approval",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "projection"
+    },
+    {
+      "id": "approval-supplied-ir-without-projection",
+      "class": "approval",
+      "surface": "filesystem",
+      "point": "ir",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "derivation"
+    },
+    {
+      "id": "lifetime-not-yet-valid",
+      "class": "lifetime",
+      "surface": "filesystem",
+      "point": "semantic",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "semantic"
+    },
+    {
+      "id": "coverage-stamped-full-credential",
+      "class": "coverage",
+      "surface": "credential",
+      "point": "coverage",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "capability-manifest-identity-swap",
+      "class": "capability-manifest",
+      "surface": "rest",
+      "point": "manifest",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "adapter"
+    },
+    {
+      "id": "substrate-not-in-fip-grants",
+      "class": "substrate-laundering",
+      "surface": "filesystem",
+      "point": "baseline",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "coverage"
+    },
+    {
+      "id": "rest-policy-host-widened",
+      "class": "target-policy-mutation",
+      "surface": "rest",
+      "point": "policy",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "verifier"
+    },
+    {
+      "id": "rest-policy-downgraded-to-tcp",
+      "class": "cross-surface",
+      "surface": "rest",
+      "point": "policy",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "verifier"
+    },
+    {
+      "id": "tcp-policy-port-widened",
+      "class": "target-policy-mutation",
+      "surface": "tcp",
+      "point": "policy",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "verifier"
+    },
+    {
+      "id": "mcp-policy-tool-widened",
+      "class": "target-policy-mutation",
+      "surface": "mcp",
+      "point": "policy",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "verifier"
+    },
+    {
+      "id": "mcp-policy-downgraded-to-tcp",
+      "class": "cross-surface",
+      "surface": "mcp",
+      "point": "policy",
+      "experimental": "PASS",
+      "unauthorizedEmission": false,
+      "caughtBy": "verifier"
+    }
+  ]
+}

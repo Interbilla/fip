@@ -1,0 +1,24 @@
+{
+  "filesystem_policy": {
+    "include_workdir": false,
+    "read_only": [
+      "/mission/input",
+      "/usr",
+      "/lib",
+      "/etc",
+      "/app",
+      "/var/log",
+      "/proc",
+      "/dev/urandom",
+      "/run/openshell-supervisor-ca"
+    ],
+    "read_write": [
+      "/tmp",
+      "/dev/null"
+    ]
+  },
+  "landlock": {
+    "compatibility": "hard_requirement"
+  },
+  "version": 1
+}

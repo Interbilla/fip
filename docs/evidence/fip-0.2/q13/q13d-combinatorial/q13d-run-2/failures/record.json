@@ -1,0 +1,20 @@
+{
+  "caseId": "q13d-seed-0001-0167-resource=missing",
+  "codes": [
+    "not_compiled"
+  ],
+  "coverageDisposition": "FULL",
+  "deployable": true,
+  "derivationMatched": true,
+  "expect": "no_execute",
+  "historical": null,
+  "operationalIr": true,
+  "positive": false,
+  "primary": "UNAUTHORIZED_DEPLOYABLE_AUTHORITY",
+  "reasons": [],
+  "seed": "q13d-seed-0001",
+  "semantic": "AUTHORIZED",
+  "sequence": null,
+  "surface": "filesystem",
+  "violation": true
+}

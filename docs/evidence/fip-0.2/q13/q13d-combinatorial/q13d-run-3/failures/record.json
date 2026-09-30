@@ -1,0 +1,20 @@
+{
+  "caseId": "q13d-seed-0003-0013-surface=approval-sequence=E-absent",
+  "codes": [
+    "not_compiled"
+  ],
+  "coverageDisposition": "REJECTED",
+  "deployable": false,
+  "derivationMatched": true,
+  "expect": "approval_withheld",
+  "historical": null,
+  "operationalIr": true,
+  "positive": false,
+  "primary": "UNAUTHORIZED_SEMANTIC_ACCEPTANCE",
+  "reasons": [],
+  "seed": "q13d-seed-0003",
+  "semantic": "AUTHORIZED",
+  "sequence": "E-absent",
+  "surface": "approval",
+  "violation": true
+}

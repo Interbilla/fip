@@ -1,0 +1,6 @@
+{
+  "source": "single filesystem read of /mission/input",
+  "mutationPoint": "ir",
+  "change": "binding locator path /mission/input replaced with /mission after projection and before coverage",
+  "originalAuthority": "read /mission/input"
+}

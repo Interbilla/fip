@@ -1,0 +1,3637 @@
+{
+  "aggregateGeneratedExposure": 167,
+  "completed": false,
+  "deployablePolicies": 25,
+  "generatedCases": 167,
+  "generator": "q13d-generator-2",
+  "operationalIrs": 26,
+  "primaryCounts": {
+    "COVERAGE_REJECTED": 1,
+    "DERIVATION_REJECTED": 1,
+    "POSITIVE_CONTROL_AUTHORIZED": 23,
+    "SEMANTICALLY_PREVENTED": 141,
+    "UNAUTHORIZED_DEPLOYABLE_AUTHORITY": 1
+  },
+  "rows": [
+    {
+      "caseId": "q13d-seed-0001-0001-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0002-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0003-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0004-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0005-actor=substituted-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0006-actor=substituted-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0007-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0008-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0009-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor,resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0010-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0011-action=unauthorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0012-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0013-actor=substituted-action=unauthorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0014-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0015-action=unauthorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0016-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0017-purpose=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "purpose_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0018-purpose=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:purpose"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0019-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0020-actor=substituted-purpose=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0021-actor=substituted-purpose=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:purpose"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0022-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0023-purpose=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0024-purpose=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor,purpose"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0025-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0026-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0027-scope=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0028-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0029-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0030-actor=substituted-scope=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0031-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0032-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0033-scope=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0034-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0035-authority=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "authority_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0036-authority=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "authority_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0037-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0038-actor=substituted-authority=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0039-actor=substituted-authority=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0040-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0041-authority=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0042-authority=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0043-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0044-authorization_ref=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "authorization_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0045-authorization_ref=expired",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0046-authorization_ref=revoked",
+      "codes": [
+        "validity_revoked",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0047-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0048-actor=substituted-authorization_ref=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0049-actor=substituted-authorization_ref=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0050-actor=substituted-authorization_ref=revoked",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0051-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0052-authorization_ref=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0053-authorization_ref=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0054-authorization_ref=revoked",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0055-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0056-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0057-delegation=false",
+      "codes": [
+        "delegation_requires_explicit_authority",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0058-delegation=expired",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0059-delegation=revoked",
+      "codes": [
+        "validity_revoked",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0060-delegation=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "policy_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0061-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0062-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0063-actor=substituted-delegation=false",
+      "codes": [
+        "delegation_requires_explicit_authority",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0064-actor=substituted-delegation=expired",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0065-actor=substituted-delegation=revoked",
+      "codes": [
+        "validity_revoked",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0066-actor=substituted-delegation=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "policy_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0067-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0068-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0069-delegation=false",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0070-delegation=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0071-delegation=revoked",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0072-delegation=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0073-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0074-policy_validity=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0075-policy_validity=revoked",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0076-policy_validity=not-yet-valid",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0077-policy_validity=superseded",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0078-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0079-actor=substituted-policy_validity=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0080-actor=substituted-policy_validity=revoked",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0081-actor=substituted-policy_validity=not-yet-valid",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0082-actor=substituted-policy_validity=superseded",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0083-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0084-policy_validity=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0085-policy_validity=revoked",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0086-policy_validity=not-yet-valid",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0087-policy_validity=superseded",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0088-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0089-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0090-approval=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0091-approval=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0092-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0093-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0094-actor=substituted-approval=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0095-actor=substituted-approval=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0096-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0097-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0098-approval=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0099-approval=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0100-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0101-binding=glob",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "REJECTED",
+      "deployable": false,
+      "derivationMatched": true,
+      "expect": "coverage_closed",
+      "historical": null,
+      "operationalIr": true,
+      "positive": false,
+      "primary": "COVERAGE_REJECTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0102-binding=ancestor_ir",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "derivation_closed",
+      "historical": null,
+      "operationalIr": true,
+      "positive": false,
+      "primary": "DERIVATION_REJECTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0103-actor=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0104-actor=substituted-binding=glob",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0105-actor=substituted-binding=ancestor_ir",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "actor_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0106-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0107-binding=glob",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0108-binding=ancestor_ir",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:actor"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0109-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0110-action=unauthorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0111-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0112-resource=substituted-action=unauthorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "action_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0113-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0114-resource=missing-action=unauthorized",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0115-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0116-purpose=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "purpose_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0117-purpose=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:purpose"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0118-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0119-resource=substituted-purpose=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0120-resource=substituted-purpose=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:purpose"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0121-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0122-resource=missing-purpose=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0123-resource=missing-purpose=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource,purpose"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0124-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0125-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0126-scope=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0127-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0128-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0129-resource=substituted-scope=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0130-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0131-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0132-resource=missing-scope=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0133-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0134-authority=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "authority_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0135-authority=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "authority_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0136-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0137-resource=substituted-authority=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0138-resource=substituted-authority=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0139-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0140-resource=missing-authority=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0141-resource=missing-authority=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0142-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0143-authorization_ref=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "authorization_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0144-authorization_ref=expired",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0145-authorization_ref=revoked",
+      "codes": [
+        "validity_revoked",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0146-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0147-resource=substituted-authorization_ref=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0148-resource=substituted-authorization_ref=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0149-resource=substituted-authorization_ref=revoked",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0150-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0151-resource=missing-authorization_ref=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0152-resource=missing-authorization_ref=expired",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0153-resource=missing-authorization_ref=revoked",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0154-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0155-positive",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "positive_deploy",
+      "historical": null,
+      "operationalIr": true,
+      "positive": true,
+      "primary": "POSITIVE_CONTROL_AUTHORIZED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0156-delegation=false",
+      "codes": [
+        "delegation_requires_explicit_authority",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0157-delegation=expired",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0158-delegation=revoked",
+      "codes": [
+        "validity_revoked",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0159-delegation=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "policy_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0160-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0161-resource=substituted",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "resource_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0162-resource=substituted-delegation=false",
+      "codes": [
+        "delegation_requires_explicit_authority",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0163-resource=substituted-delegation=expired",
+      "codes": [
+        "validity_expired",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0164-resource=substituted-delegation=revoked",
+      "codes": [
+        "validity_revoked",
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "DENIED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0165-resource=substituted-delegation=foreign",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "policy_mismatch"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0166-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": null,
+      "deployable": false,
+      "derivationMatched": null,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": false,
+      "positive": false,
+      "primary": "SEMANTICALLY_PREVENTED",
+      "reasons": [
+        "missing_fields:resource"
+      ],
+      "seed": "q13d-seed-0001",
+      "semantic": "INCOMPLETE",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": false
+    },
+    {
+      "caseId": "q13d-seed-0001-0167-resource=missing",
+      "codes": [
+        "not_compiled"
+      ],
+      "coverageDisposition": "FULL",
+      "deployable": true,
+      "derivationMatched": true,
+      "expect": "no_execute",
+      "historical": null,
+      "operationalIr": true,
+      "positive": false,
+      "primary": "UNAUTHORIZED_DEPLOYABLE_AUTHORITY",
+      "reasons": [],
+      "seed": "q13d-seed-0001",
+      "semantic": "AUTHORIZED",
+      "sequence": null,
+      "surface": "filesystem",
+      "violation": true
+    }
+  ],
+  "run": "q13d-run-2",
+  "runtimeOperationalOpportunities": 0,
+  "runtimeUOER": null,
+  "seeds": [
+    "q13d-seed-0001",
+    "q13d-seed-0002",
+    "q13d-seed-0003",
+    "q13d-seed-0004",
+    "q13d-seed-0005",
+    "q13d-seed-0006"
+  ],
+  "semanticCounts": {
+    "AUTHORIZED": 26,
+    "DENIED": 79,
+    "INCOMPLETE": 62
+  },
+  "unauthorizedDeployableEmissions": 1,
+  "unauthorizedOperationalEffects": 0
+}

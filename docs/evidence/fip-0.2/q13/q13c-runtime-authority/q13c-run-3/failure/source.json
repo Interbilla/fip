@@ -1,0 +1,37 @@
+{
+  "action": "ReadInspectionInput",
+  "actor": {
+    "id": "agent-field",
+    "identity": "id-agent-field"
+  },
+  "authority": {
+    "id": "auth-mission-control",
+    "kind": "direct"
+  },
+  "authorization": {
+    "authorizationId": "az-openshell-files",
+    "validity": {
+      "state": "valid"
+    }
+  },
+  "document": "Exchange",
+  "exchangeId": "ex-read",
+  "exchangeType": "Request",
+  "fipVersion": "0.2",
+  "mode": "operational",
+  "policyId": "pol-openshell-files",
+  "provenance": {
+    "assertedBy": "mission-control",
+    "derivedFrom": [
+      "trace-openshell-files"
+    ],
+    "independent": true,
+    "traceId": "trace-openshell-files"
+  },
+  "purpose": "FieldInspection",
+  "resource": {
+    "id": "mission:Other"
+  },
+  "status": "ENFORCEMENT CANDIDATE",
+  "traceId": "trace-q13c"
+}

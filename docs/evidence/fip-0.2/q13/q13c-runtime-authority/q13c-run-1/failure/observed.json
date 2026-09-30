@@ -1,0 +1,87 @@
+{
+  "semantic": "AUTHORIZED",
+  "codes": [
+    "not_compiled"
+  ],
+  "reasons": [],
+  "ir": {
+    "irVersion": "0",
+    "fipVersion": "0.2",
+    "policyId": "pol-openshell-files",
+    "traceId": "trace-openshell-files",
+    "authorityDecision": "AUTHORIZED",
+    "compilationDisposition": "NOT_COMPILED",
+    "deployable": false,
+    "codes": [
+      "not_compiled"
+    ],
+    "authorizationIds": [
+      "az-openshell-files"
+    ],
+    "authorityIds": [
+      "auth-mission-control"
+    ],
+    "requirements": [
+      {
+        "requirementId": "req-read",
+        "effect": "permit",
+        "bindingIds": [
+          "in-read"
+        ],
+        "constraints": [],
+        "conditions": [],
+        "composition": "allOf",
+        "groupId": "read-only",
+        "coverage": "unassessed",
+        "auditCoverage": "unassessed",
+        "traceId": "trace-openshell-files",
+        "lifetime": "establishment-bound",
+        "audit": "target-native",
+        "authorizationId": "az-openshell-files",
+        "authorityId": "auth-mission-control"
+      }
+    ],
+    "groups": [
+      {
+        "groupId": "read-only",
+        "composition": "allOf",
+        "requirementIds": [
+          "req-read"
+        ]
+      }
+    ],
+    "prohibitions": [],
+    "bindings": [
+      {
+        "bindingId": "in-read",
+        "resourceId": "mission:InspectionInput",
+        "actionId": "ReadInspectionInput",
+        "kind": "filesystem",
+        "operation": "read",
+        "locator": {
+          "path": "/mission/input"
+        },
+        "lifetime": "establishment-bound"
+      }
+    ],
+    "coverage": {
+      "fipGrants": [
+        "req-read"
+      ],
+      "targetEnforcement": [
+        {
+          "requirementId": "req-read",
+          "status": "unassessed"
+        }
+      ],
+      "targetBaseline": [],
+      "auditCoverage": "unassessed"
+    },
+    "exchangeId": "ex-delegate"
+  },
+  "derivationMatched": true,
+  "compilation": "FULL",
+  "deployable": true,
+  "coverageDisposition": null,
+  "diagnostics": []
+}
