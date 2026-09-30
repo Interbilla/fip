@@ -115,6 +115,11 @@ def _assess_policy(policy, approvals):
         return _finish("INCOMPLETE", [], ["mode"])
     if not policy.get("policyId"):
         return _finish("INCOMPLETE", [], ["policyId"])
+    if "validity" not in policy:
+        return _finish("INCOMPLETE", [], ["validity"])
+    validity = _validity_problem(policy.get("validity"))
+    if validity:
+        return _finish(validity[0], validity[1], ["policy_validity"])
     authorities = _index(policy.get("authorities") or [], "id")
     if authorities is None:
         return _finish("INCOMPLETE", [], ["duplicate_identifier"])
@@ -326,12 +331,20 @@ def _assess_exchange(exchange, policy, approvals):
     missing = [name for name in REQUIRED_FIELDS[act] if exchange.get(name) in (None, "", [], {})]
     if missing:
         return _finish("INCOMPLETE", [], ["missing_fields:" + ",".join(missing)])
+    if act in ("Request", "Instruction", "Delegation", "Authorization", "Decision") and "validity" in exchange:
+        validity = _validity_problem(exchange.get("validity"))
+        if validity:
+            return _finish(validity[0], validity[1], [])
     if act in ("Assertion", "Recommendation"):
         return _finish("DENIED", [], ["no_operational_effect"])
     if act == "Response":
         return _finish("REVIEW", ["absence_is_not_permission"], ["no_independent_execution_grant"])
     if act == "Decision":
         return _assess_decision(exchange)
+    if act == "Delegation":
+        delegation_result = _delegation(exchange, policy)
+        if delegation_result["authorityDecision"] != "AUTHORIZED" or mode != "operational":
+            return delegation_result
     if mode == "operational" and act in CONSEQUENTIAL:
         if not exchange.get("provenance"):
             return _finish("INCOMPLETE", [], ["provenance"])
@@ -342,8 +355,6 @@ def _assess_exchange(exchange, policy, approvals):
         if policy.get("policyId") != exchange.get("policyId"):
             return _finish("INCOMPLETE", [], ["policy_mismatch"])
         return _exchange_against_policy(exchange, policy, approvals)
-    if act == "Delegation":
-        return _delegation(exchange, policy)
     normative = (exchange.get("normative") or {}).get("state")
     if normative == "prohibited":
         decision, codes = "DENIED", ["explicit_prohibition"]
@@ -360,37 +371,111 @@ def _assess_exchange(exchange, policy, approvals):
     return _finish(decision, codes, reasons)
 
 
+def _presented_identifier(value):
+    if isinstance(value, str) and value:
+        return value
+    if isinstance(value, dict):
+        for key in ("id", "authorizationId", "resourceId", "actorId", "authorityId"):
+            presented = value.get(key)
+            if isinstance(presented, str) and presented:
+                return presented
+    return None
+
+
+def _identity_mismatch(exchange, authorization):
+    """Return a reason when the exchange names a different authorized object.
+
+    Comparison is exact identifier equality. A field the exchange does not
+    present is not rewritten from the authorization.
+    """
+    resource_id = _presented_identifier(exchange.get("resource"))
+    if resource_id is not None and resource_id not in list(authorization.get("resourceIds") or []):
+        return "resource_mismatch"
+    actor_id = _presented_identifier(exchange.get("actor"))
+    if actor_id is not None and authorization.get("actorId") and actor_id != authorization.get("actorId"):
+        return "actor_mismatch"
+    authority_id = _presented_identifier(exchange.get("authority"))
+    if authority_id is not None and authorization.get("authorityId") and authority_id != authorization.get("authorityId"):
+        return "authority_mismatch"
+    authorization_id = _presented_identifier(exchange.get("authorization"))
+    if authorization_id is not None and authorization_id != authorization.get("authorizationId"):
+        return "authorization_mismatch"
+    purpose = exchange.get("purpose")
+    if authorization.get("purpose") and purpose and authorization.get("purpose") != purpose:
+        return "purpose_mismatch"
+    return None
+
+
+def _scope_ids_problem(policy, authorization, exchange):
+    scope_ids = list(authorization.get("scopeIds") or [])
+    if not scope_ids:
+        return None
+    by_id = {item.get("scopeId"): item for item in policy.get("scopes") or []}
+    for scope_id in scope_ids:
+        wanted = by_id.get(scope_id)
+        if wanted is None:
+            return ("INCOMPLETE", [])
+        presented = [
+            item for item in (exchange.get("scope") or [])
+            if isinstance(item, dict) and item.get("dimension") == wanted.get("dimension")
+        ]
+        if not presented:
+            return ("INCOMPLETE", [])
+        if not any(item.get("value") == wanted.get("value") for item in presented):
+            return ("DENIED", [])
+    return None
+
+
 def _exchange_against_policy(exchange, policy, approvals):
     action = exchange.get("action")
     assessed = _assess_policy(policy, approvals)
     matched = [item for item in assessed.get("grants") or [] if item["actionId"] == action]
     if not matched:
+        if policy.get("authorizations"):
+            return _finish("DENIED", [], ["action_mismatch"])
         return _finish("REVIEW", ["absence_is_not_permission"], [])
     grant = matched[0]
     decision = grant["authorityDecision"]
     codes = [code for code in grant["codes"] if code != "not_compiled"]
-    purpose = exchange.get("purpose")
+    mismatch = None
     for authorization in policy.get("authorizations") or []:
         if action not in (authorization.get("actionIds") or []):
             continue
-        if authorization.get("purpose") and purpose and authorization.get("purpose") != purpose:
-            return _finish("DENIED", [], ["purpose_mismatch"])
+        identity = _identity_mismatch(exchange, authorization)
+        if identity:
+            mismatch = identity
+            continue
+        scope_problem = _scope_ids_problem(policy, authorization, exchange)
+        if scope_problem:
+            if scope_problem[0] == "DENIED":
+                mismatch = "scope_mismatch"
+                continue
+            return _finish(scope_problem[0], scope_problem[1], [])
         problem = _conditions(policy, authorization.get("conditions") or [], exchange, approvals)
+        if problem and problem[0] == "DENIED":
+            return _finish("DENIED", problem[1], [])
         if problem and SEVERITY[problem[0]] < SEVERITY.get(decision, 3):
             decision = problem[0]
             codes = problem[1] + [code for code in codes if code not in problem[1]]
-    if exchange.get("credential") and not exchange.get("authorization") and decision == "AUTHORIZED":
-        return _finish("DENIED", ["credential_is_not_authorization"], [])
-    validity = _validity_problem((exchange.get("authorization") or {}).get("validity", "valid"))
-    if validity and validity[0] == "DENIED":
-        return _finish(validity[0], validity[1], [])
-    return _finish(decision, codes, [])
+        if exchange.get("credential") and not exchange.get("authorization") and decision == "AUTHORIZED":
+            return _finish("DENIED", ["credential_is_not_authorization"], [])
+        validity = _validity_problem((exchange.get("authorization") or {}).get("validity", "valid"))
+        if validity and validity[0] == "DENIED":
+            return _finish(validity[0], validity[1], [])
+        return _finish(decision, codes, [])
+    if mismatch:
+        return _finish("DENIED", [], [mismatch])
+    return _finish("REVIEW", ["absence_is_not_permission"], [])
 
 
 def _assess_decision(exchange):
     decision = exchange.get("decision") or {}
     if decision.get("kind") != "approval":
         return _finish("REVIEW", [], ["decision_is_not_an_execution_grant"])
+    if "validity" in decision:
+        validity = _validity_problem(decision.get("validity"))
+        if validity:
+            return _finish(validity[0], validity[1], [])
     if decision.get("value") != "approved" or _state(decision.get("validity")) != "valid" or not decision.get("requirementId"):
         return _finish("INCOMPLETE", ["approval_required"], [])
     return _finish("AUTHORIZED", [], [], extra={"approvalRecord": True})
